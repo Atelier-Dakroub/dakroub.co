@@ -610,7 +610,7 @@ export const entries = [
       anything. Running your own studio is not a sabbatical.</p>
 
       <p>Four years is longer than I planned and I would not shorten it.
-      <a href="/log/transclude">Transclude</a> is downstream of this, and so is
+      <a href="/log/transclude">transclude</a> is downstream of this, and so is
       the fact that the page you are reading ships no JavaScript.</p>
     `,
   },

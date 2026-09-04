@@ -118,7 +118,7 @@ export const entries = [
       LitElement, Web Components, no framework. It never launched.</p>
 
       <p>That project is the direct ancestor of
-      <a href="/log/transclude">Transclude</a>. It is where I stopped arguing
+      <a href="/log/transclude">transclude</a>. It is where I stopped arguing
       that the platform had caught up and started shipping as though it had.</p>
     `,
   },
@@ -239,7 +239,7 @@ export const entries = [
       that can conjure any element out of nowhere reads like magic the day you
       write it and like a search problem a year later.</p>
 
-      <p>It exists because <a href="/log/transclude">Transclude</a> takes the
+      <p>It exists because <a href="/log/transclude">transclude</a> takes the
       document and this takes what is left: the few places where JavaScript
       genuinely has to make a node. A hundred lines you can read in full before
       you adopt them is the entire pitch.</p>

@@ -297,7 +297,7 @@ export const also = [
       {
         what: "Timothy McAllister, concert saxophonist, design and development, twenty-five years",
         where:
-          "Current site built with Transclude, running on Cloudflare Workers",
+          "Current site built with transclude, running on Cloudflare Workers",
         when: "2001 –",
         href: "https://timothymcallister.com",
       },

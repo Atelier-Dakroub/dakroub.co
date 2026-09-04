@@ -34,7 +34,7 @@ export const projects = [
       <h2>The idea</h2>
       <p>Every framework of the last decade treats HTML as a compilation target.
       You write something else, JSX, a template DSL, a component function, and
-      HTML comes out the far end. Transclude inverts that. The file you author
+      HTML comes out the far end. transclude inverts that. The file you author
       <em>is</em> the page. It is valid HTML with a <code>&lt;script
       server&gt;</code> block at the top and a handful of attributes that mean
       something.</p>
@@ -73,7 +73,7 @@ export const projects = [
     dek: "Fifty years of computing as one scroll. The site you are on.",
     year: 2026,
     role: "Everything",
-    stack: ["Transclude", "HTML", "CSS"],
+    stack: ["transclude", "HTML", "CSS"],
     facts: [
       { label: "Client JavaScript", value: "0 bytes" },
       {
@@ -218,7 +218,7 @@ form({ dataController: "hello" },
       <p>domxy is for the case where the page is already server-rendered and one
       part of it has to be built at runtime. It is a hundred lines you can read
       in full before adopting, which is the entire pitch.
-      <a href="/projects/transclude">Transclude</a> is the other half of the
+      <a href="/projects/transclude">transclude</a> is the other half of the
       same position: HTML for the document, and something this small for the
       few places JavaScript genuinely has to make a node.</p>
     `,
@@ -322,7 +322,7 @@ form({ dataController: "hello" },
       interfaces are going to be described rather than dragged, the artifact
       matters more than the editor, and the artifact had better be something a
       person can read, diff and own.
-      <a href="/projects/transclude">Transclude</a> is that conclusion aimed at
+      <a href="/projects/transclude">transclude</a> is that conclusion aimed at
       a smaller and far more tractable problem.</p>
       <p>Two projects that told you what to build next are not failures. They
       are only ones you do not get to link to.</p>
@@ -449,8 +449,6 @@ form({ dataController: "hello" },
     until: 2026,
     role: "Design, development, and the long view",
     stack: ["transclude", "Cloudflare Workers", "HTML", "CSS"],
-    needs:
-      "Pictures of the earlier versions, if any of them survived. Screenshots or a Wayback link would carry this page.",
     facts: [
       { label: "Collaboration", value: "Twenty-five years" },
       { label: "Versions", value: "Five" },
@@ -474,7 +472,7 @@ form({ dataController: "hello" },
       <ol>
         <li><strong>ASP against an Access database</strong>, because in 2001 that
         is what a small site with content in it ran on.</li>
-        <li><strong>The standards rebuild</strong>, the markup stops describing
+        <li><strong>The ExpressionEngine rebuild</strong>, the markup stops describing
         the picture and starts describing the content.</li>
         <li><strong>The responsive one</strong>, when the audience arrived on
         phones and every layout ever made turned out to be the wrong size.</li>
@@ -489,6 +487,46 @@ form({ dataController: "hello" },
       the best argument I have that the medium changes and the job does not: the
       question is always what a person looking up a musician actually needs, and
       the answer has never once been a carousel.</p>
+
+      <div class="versions">
+        <figure>
+          <img src="/media/mcallister-v1.jpg" width="1800" height="562"
+            loading="lazy" decoding="async"
+            alt="A dark page with the name set in wide capitals at the top left over the words concert saxophonist in orange, seven navigation links stacked down the left, and a high contrast black and white photograph of the saxophonist playing at the right. A footer rule, a copyright line and the words Last Modified, December 6, 2001." />
+          <figcaption>One. ASP against an Access database, as the Wayback Machine had it in February 2002. The page ends where the image does: it carried a hand-typed last-modified date, which is what a site had instead of a build.</figcaption>
+        </figure>
+        <figure>
+          <img src="/media/mcallister-v2.jpg" width="1800" height="1048"
+            loading="lazy" decoding="async"
+            alt="A white page with a lowercase grey wordmark, red navigation, an embedded video player showing a blurred orange stage image, and three columns headed upcoming events, applause and blog news." />
+          <figcaption>Two. The ExpressionEngine rebuild, archived February 2013.</figcaption>
+        </figure>
+        <figure>
+          <img src="/media/mcallister-v3.jpg" width="1800" height="1048"
+            loading="lazy" decoding="async"
+            alt="A full-width dark photograph of the saxophonist holding his instrument, with a pull quote from Donald Sinta over it, and a Latest Release section below showing the John Adams City Noir album." />
+          <figcaption>Three. The responsive one, archived November 2014.</figcaption>
+        </figure>
+        <figure>
+          <img src="/media/mcallister-v4.jpg" width="1800" height="1048"
+            loading="lazy" decoding="async"
+            alt="A dark hero photograph of the saxophonist in a suit resting his instrument on his shoulder, with a monospaced pull quote from the Philadelphia Inquirer in the lower left." />
+          <figcaption>Four. Statamic and TailwindCSS, archived April 2024.</figcaption>
+        </figure>
+        <figure>
+          <img src="/media/mcallister-v5.jpg" width="1800" height="1048"
+            loading="lazy" decoding="async"
+            alt="A dark hero photograph of the saxophonist seated with his instrument, a pull quote from the composer John Adams, and Latest Recording and Recent News headings on white below." />
+          <figcaption>Five. A CMS of my own on transclude, live now.</figcaption>
+        </figure>
+      </div>
+
+      <p>Put side by side they date the web more honestly than any timeline
+      does. A page of unbroken text because bandwidth was expensive and nobody
+      had decided what a website looked like yet. A fixed-width column when
+      every screen was the same screen. A photograph that finally fills the
+      window because the screens got good. Every one of them was the obvious
+      answer at the time.</p>
 
       <h2>The current one</h2>
       <p>Server-rendered HTML at the edge, a build that is files, and a content

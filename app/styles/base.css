@@ -161,6 +161,44 @@ blockquote {
   text-decoration-color: color-mix(in oklab, var(--era-accent, var(--accent)) 55%, transparent);
 }
 
+/* Figures written into a body's HTML. The `media-figure` element cannot be
+   used there: a body is injected as raw markup and never goes through the
+   compiler, so a custom element in one would arrive as an empty unknown tag.
+   Same look, plain elements. */
+.prose figure {
+  margin-block: var(--space-m);
+}
+
+.prose figure img {
+  inline-size: 100%;
+  block-size: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--wash, var(--paper));
+}
+
+.prose figcaption {
+  margin-block-start: var(--space-2xs);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--faint);
+  max-inline-size: var(--measure);
+}
+
+/* Five screenshots of the same site over twenty-five years. They are the
+   argument on that page, so they get more width than the measure. */
+.prose .versions {
+  display: grid;
+  gap: var(--space-l);
+  margin-block: var(--space-l);
+}
+
+@media (width >= 64rem) {
+  .prose .versions {
+    margin-inline-end: -3rem;
+  }
+}
+
 /* ── Small pieces that appear on several pages ─────────────────────────── */
 
 .mono {

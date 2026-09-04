@@ -249,7 +249,9 @@ export const entries = [
     dek: "The operating system Apple nearly bought instead of NeXT. I ran it as my daily machine, which in 1999 put me in a very small room.",
     tags: ["beos", "operating systems"],
     feature: true,
-    links: [{ href: "https://www.haiku-os.org", label: "Haiku, which continues it" }],
+    links: [
+      { href: "https://www.haiku-os.org", label: "Haiku, which continues it" },
+    ],
     spec: [
       { label: "By", value: "Be Inc., founded by Jean-Louis Gassée" },
       { label: "On a PC from", value: "March 1998 \u00b7 R3" },
@@ -412,8 +414,8 @@ export const entries = [
       <p>Five versions of his site, and you can date the web off them. The first
       ran on ASP against an Access database, because in 2001 that is what a small
       site with content in it ran on. The most recent runs on a CMS I wrote, on
-      <a href="/log/transclude">Transclude</a>, on Cloudflare Workers. In
-      between: the standards rebuild, the responsive one, and a Statamic build
+      <a href="/log/transclude">transclude</a>, on Cloudflare Workers. In
+      between: the Expression Engine rebuild, the responsive one, and a Statamic build
       that took its performance up by half again.</p>
 
       <p>It is the only thread here that touches all of it. Same collaborator,
