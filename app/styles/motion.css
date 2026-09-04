@@ -1,0 +1,86 @@
+/* Navigation.
+   
+   Every link on this site is an ordinary document request. The browser throws
+   the old page away, parses a new one, and animates between the two by itself
+   because of the four lines below. There is no router, no client-side
+   navigation and no JavaScript involved in any of it. */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* The named elements are declared where they are styled: the header and the
+   footer in layout.css, the filter row in timeline.css, and a chapter opener
+   and a featured entry get theirs inline, because the name has to be unique per
+   element and only the data knows how many there are. */
+
+::view-transition-group(*) {
+  animation-duration: 380ms;
+  animation-timing-function: var(--ease-out);
+}
+
+::view-transition-old(root) {
+  animation: fade-out 200ms var(--ease-out) both;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 320ms var(--ease-out) both;
+}
+
+/* An entry card growing into the page it links to. The group carries both, so
+   the card's own box morphs while the text inside cross-fades. */
+.entry[data-feature],
+.log__title,
+.chapter__opener,
+.era-page .page__head {
+  view-transition-class: story;
+}
+
+::view-transition-group(.story) {
+  animation-duration: 520ms;
+}
+
+::view-transition-old(.story) {
+  animation: fade-out 180ms linear both;
+}
+
+::view-transition-new(.story) {
+  animation: fade-in 300ms 90ms var(--ease-out) both;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────────────
+   Every scroll-driven animation in this stylesheet is already inside a
+   `prefers-reduced-motion: no-preference` query, so nothing there has to be
+   undone. What is left is the transitions and the page transition. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,127 @@
+<script server>
+  import { site } from "../data/site.js";
+  import { markOr } from "../data/brands.js";
+  import { also, capabilities, roles, toolchain } from "../data/work.js";
+
+  export default async () => ({
+    site,
+    capabilities,
+    toolchain,
+    also,
+    roles: roles
+      .filter((role) => !role.draft)
+      .map((role) => ({
+        ...role,
+        when: role.to === role.from ? role.from : `${role.from} – ${role.to}`,
+        did: role.did ?? [],
+        stack: role.stack ?? [],
+        // One registry for /work and the timeline, so a logo dropped in for a
+        // company appears in both places at once.
+        mark: markOr(role.brand, role.org),
+      })),
+  });
+</script>
+
+<title>Work, Joe Dakroub</title>
+<meta
+  name="description"
+  content="Roles, capabilities and the toolchain, oldest last."
+/>
+<meta property="og:title" content="The work, Joe Dakroub" />
+<meta
+  property="og:description"
+  content="Roles, capabilities and the toolchain, oldest last."
+/>
+
+<div class="page spread">
+  <div class="page__head">
+    <p class="kicker">Curriculum vitae</p>
+    <h1>Joe Dakroub</h1>
+    <p class="lede">${site.seeking}</p>
+
+    <div class="contact">
+      <a href="mailto:${site.email}">${site.email}</a>
+      <a if="site.phone" href="tel:${site.phone}">${site.phone}</a>
+      <span if="site.location">${site.location}</span>
+      <span each="link of site.elsewhere" key="link.label">
+        <a href="${link.href}" rel="me">${link.label}</a>
+      </span>
+    </div>
+
+    <p class="print-hint">
+      This page is styled for paper. <kbd>⌘P</kbd> prints it as a resume, with
+      the navigation and the site furniture left off.
+    </p>
+  </div>
+
+  <section>
+    <h2 class="section-head">What I do</h2>
+    <div class="capabilities">
+      <div class="capability" each="group of capabilities" key="group.group">
+        <h3>${group.group}</h3>
+        <p>${group.note}</p>
+        <ul role="list">
+          <li each="item of group.items">${item}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-head">Roles</h2>
+    <ol class="roles roles--marked" role="list">
+      <li class="role" each="role of roles" key="role.id">
+        <org-mark
+          logo="${role.mark.logo}"
+          initials="${role.mark.initials}"
+        ></org-mark>
+        <p class="role__when mono">${role.when}</p>
+        <h3 class="role__title">${role.title}</h3>
+        <p class="role__org">
+          <a if="role.url" href="${role.url}">${role.org}</a>
+          <span else>${role.org}</span>
+          <span if="role.where"> · ${role.where}</span>
+        </p>
+
+        <div class="note" if="role.needs">
+          <b>Unwritten</b>
+          ${role.needs}
+        </div>
+
+        <p class="role__summary" if="role.summary">${role.summary}</p>
+
+        <ul class="role__did" if="role.did.length">
+          <li each="line of role.did">${line}</li>
+        </ul>
+
+        <ul class="stack" role="list" if="role.stack.length">
+          <li each="tool of role.stack">${tool}</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 class="section-head">The toolchain, in the order it arrived</h2>
+    <dl class="toolchain">
+      <div each="decade of toolchain" key="decade.decade">
+        <dt class="mono">${decade.decade}</dt>
+        <dd>${decade.items.join(' · ')}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section each="block of also" key="block.label">
+    <h2 class="section-head">${block.label}</h2>
+    <ul class="roles" role="list">
+      <li class="role" each="item of block.items" key="item.what">
+        <p class="role__when mono" if="item.when">${item.when}</p>
+        <h3 class="role__title" style="font-size: var(--step-1)">
+          <a if="item.href" href="${item.href}">${item.what}</a>
+          <span else>${item.what}</span>
+        </h3>
+        <p class="role__org" if="item.where">${item.where}</p>
+      </li>
+    </ul>
+  </section>
+</div>

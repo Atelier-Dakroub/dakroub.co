@@ -1,0 +1,97 @@
+<script server>
+  import { byYear, eras, stream } from '../../data/timeline.js';
+
+  // Seven files, written at build time. Nothing about an era changes per
+  // request, so nothing about one should be rendered per request.
+  export const paths = () => eras.map((era) => ({ slug: era.slug }));
+
+  export default async ({ params, response }) => {
+    const era = eras.find((one) => one.slug === params.slug) ?? null;
+
+    // A URL the pattern matches but `paths()` never listed. The page decides
+    // the status, which is what keeps dev and production answering the same.
+    if (!era) {
+      response.status = 404;
+      return {
+        found: false, era: null, years: [], others: [],
+        style: '', span: '', dark: false, texture: '',
+      };
+    }
+
+    return {
+      found: true,
+      era,
+      years: byYear(stream({ era: era.slug })),
+      others: eras.map((one) => ({
+        slug: one.slug,
+        name: one.name,
+        span: `${one.from}–${one.to}`,
+        current: one.slug === era.slug ? 'page' : false,
+      })),
+      style: `--era-bg: ${era.bg}; --era-ink: ${era.ink}; --era-accent: ${era.accent}`,
+      dark: era.dark,
+      texture: era.texture,
+      span: `${era.from}–${era.to}`,
+    };
+  };
+</script>
+
+<title>${era ? era.name : 'Not found'}, Joe Dakroub</title>
+<meta if="found" name="description" content="${era.dek}" />
+<meta if="found" property="og:title" content="${era.name} · ${span}" />
+<meta if="found" property="og:description" content="${era.dek}" />
+
+<body class="shell era-page" style="${style}" data-dark="${dark}" data-texture="${texture}"></body>
+
+<div class="page spread" if="found">
+  <div class="page__head era-surface" style="view-transition-name: era-${era.slug}">
+    <p class="kicker">${era.kicker} · <span class="mono">${span}</span></p>
+    <h1>${era.name}</h1>
+    <p class="lede">${era.dek}</p>
+  </div>
+
+  <section class="era-essay" if="era.body">${html(era.body)}</section>
+
+  <h2 class="section-head">Everything that happened</h2>
+
+  <div class="year-group" each="group of years" key="group.year">
+    <h3 class="year">${group.year}</h3>
+    <div class="entries">
+      <time-entry
+        each="entry of group.entries"
+        key="entry.id"
+        href="${entry.href}"
+        stamp="${entry.stamp}"
+        track="${entry.track}"
+        track-label="${entry.trackLabel}"
+        heading="${entry.title}"
+        dek="${entry.dek}"
+        tags="${entry.tags}"
+        mine="${entry.mine}"
+        feature="${entry.feature}"
+        needs="${entry.needs}"
+      ></time-entry>
+    </div>
+  </div>
+
+  <nav class="era-switch" aria-label="Chapters">
+    <a
+      each="other of others"
+      key="other.slug"
+      href="/era/${other.slug}"
+      aria-current="${other.current}"
+    >
+      <span class="mono">${other.span}</span>
+      <b>${other.name}</b>
+    </a>
+  </nav>
+</div>
+
+<div class="page spread" else>
+  <div class="page__head">
+    <p class="kicker">404</p>
+    <h1>No such chapter</h1>
+    <p class="lede">There are seven, and that is not one of them.</p>
+    <p><a href="/">Back to the timeline</a></p>
+  </div>
+</div>

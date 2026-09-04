@@ -1,0 +1,83 @@
+<script server>
+  import { findProject, live } from '../../data/projects.js';
+
+  export const paths = () => live.map((project) => ({ slug: project.slug }));
+
+  export default async ({ params, response }) => {
+    const project = findProject(params.slug);
+
+    if (!project) {
+      response.status = 404;
+      return { found: false, project: null, when: '' };
+    }
+
+    return {
+      found: true,
+      project,
+      when: project.until ? `${project.year} – ${project.until}` : String(project.year),
+    };
+  };
+</script>
+
+<title>${project ? project.name : 'Not found'}, Joe Dakroub</title>
+<meta if="found" name="description" content="${project.dek}" />
+<meta if="found" property="og:title" content="${project.name}, Joe Dakroub" />
+<meta if="found" property="og:description" content="${project.dek}" />
+
+<article class="page spread" if="found">
+  <div class="page__head">
+    <p class="kicker"><span class="mono">${when}</span> · ${project.role}</p>
+    <h1>${project.name}</h1>
+    <p class="lede">${project.dek}</p>
+  </div>
+
+  <section>
+    <dl class="facts" if="project.facts">
+      <div each="fact of project.facts" key="fact.label">
+        <dt>${fact.label}</dt>
+        <dd>${fact.value}</dd>
+      </div>
+    </dl>
+
+    <div class="note" if="project.needs">
+      <b>Unwritten</b>
+      ${project.needs}
+    </div>
+
+    <media-figure
+      if="project.image"
+      src="${project.image.src}"
+      alt="${project.image.alt}"
+      width="${project.image.width}"
+      height="${project.image.height}"
+      caption="${project.image.caption}"
+    ></media-figure>
+
+    <div class="prose" if="project.body">${html(project.body)}</div>
+
+    <ul class="stack" role="list" if="project.stack">
+      <li each="tool of project.stack">${tool}</li>
+    </ul>
+
+    <link-row if="project.links" links="${project.links}" label="Links"></link-row>
+  </section>
+
+  <nav class="pager" aria-label="More">
+    <a href="/projects">
+      <span>← All projects</span>
+      <b>The selected work</b>
+    </a>
+    <a href="/">
+      <span>The long version →</span>
+      <b>Fifty years, one scroll</b>
+    </a>
+  </nav>
+</article>
+
+<div class="page spread" else>
+  <div class="page__head">
+    <p class="kicker">404</p>
+    <h1>No such project</h1>
+    <p><a href="/projects">Back to the list</a></p>
+  </div>
+</div>

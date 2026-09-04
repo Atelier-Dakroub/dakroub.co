@@ -1,0 +1,59 @@
+<!-- The square beside a role on /work: a company's mark, or its initials.
+     
+     Both branches are `aria-hidden`, because the organization's name is written
+     next to it in text. An icon that repeats its own label is a screen reader
+     saying everything twice.
+     
+     The element itself is `display: contents`, so the span inside it is the grid
+     item its page places. -->
+
+<script element>
+  export const properties = {
+    /** A file in `app/icons/logos/`, without the extension. Empty for a monogram. */
+    logo: '',
+    /** One or two letters, worked out from the organization's name in the loader. */
+    initials: '',
+  };
+</script>
+
+<style>
+  :scope {
+    display: contents;
+  }
+
+  /* No box. A company's mark is already a considered shape, and putting it in
+     a tinted rounded square makes every one of them look like an app icon. The
+     square survives only as the space the mark is fitted into, so a column of
+     them lines up whatever their proportions. */
+  .org-mark {
+    display: grid;
+    place-items: center;
+    /* Sized by whatever is placing it: 3.4rem on the resume, 30pt on paper. */
+    inline-size: var(--mark-size, 3.4rem);
+    block-size: var(--mark-size, 3.4rem);
+    flex: none;
+    /* Whatever the page is set in. A mark recolored to a hue nobody chose is
+       a worse mark than the same one in the text's own ink. */
+    color: inherit;
+    font-family: var(--font-mono);
+    /* Proportional to the box rather than a second number to keep in step, so
+       two letters carry the same weight in the column as a mark does. */
+    font-size: calc(var(--mark-size, 3.4rem) * 0.42);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  /* Fills the box, and `preserveAspectRatio` fits it: a square mark uses all of
+     it, a wordmark sits full width and short. */
+  .org-mark svg {
+    inline-size: 100%;
+    block-size: 100%;
+    fill: currentColor;
+  }
+</style>
+
+<span class="org-mark">
+  <svg if="logo" aria-hidden="true"><use href="/logos.svg#${logo}"></use></svg>
+  <span else aria-hidden="true">${initials}</span>
+</span>

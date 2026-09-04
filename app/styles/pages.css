@@ -1,0 +1,650 @@
+/* Everything that is not the timeline: one entry, the resume, the projects,
+   the about page and the colophon. */
+
+/* ── A spec card ───────────────────────────────────────────────────────────
+   The recurring motif of the whole site. A machine, a package, a project: if a
+   thing has numbers attached to it, they go in one of these. */
+
+.spec {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0 var(--space-s);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  border-block: 1px solid var(--era-rule, var(--rule));
+  padding-block: var(--space-xs);
+  margin-block: var(--space-m);
+  max-inline-size: var(--measure);
+}
+
+.spec dt {
+  color: var(--era-faint, var(--faint));
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: var(--step--2);
+  padding-block: 0.35em;
+  align-self: baseline;
+}
+
+.spec dd {
+  margin: 0;
+  padding-block: 0.35em;
+  color: var(--era-ink, var(--ink));
+  font-variant-numeric: tabular-nums;
+}
+
+/* Every row after the first gets a hairline. The row wrapper is
+   `display: contents`, so the rule has to go on the two cells rather than on
+   the thing that holds them. */
+.spec .spec__row:not(:first-child) dt,
+.spec .spec__row:not(:first-child) dd {
+  border-block-start: 1px solid color-mix(in oklab, var(--era-rule, var(--rule)) 60%, transparent);
+}
+
+/* ── One entry ─────────────────────────────────────────────────────────── */
+
+.log {
+  padding-block: var(--space-2xl) var(--space-3xl);
+  row-gap: var(--space-s);
+}
+
+.log__meta {
+  grid-column: rail-start / main-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--era-faint, var(--faint));
+}
+
+.log__meta a {
+  color: var(--era-accent, var(--accent));
+  text-decoration: none;
+}
+
+.log__meta a:hover {
+  text-decoration: underline;
+}
+
+.log__year {
+  font-size: var(--step-2);
+  letter-spacing: -0.03em;
+  color: var(--era-ink, var(--ink));
+  line-height: 1;
+}
+
+.log__title {
+  grid-column: rail-start / main-end;
+  font-size: var(--step-5);
+  max-inline-size: 20ch;
+}
+
+.log__dek {
+  grid-column: rail-start / main-end;
+  font-size: var(--step-1);
+  line-height: 1.45;
+  color: var(--era-muted, var(--muted));
+  max-inline-size: 42ch;
+  margin-block-end: var(--space-m);
+}
+
+/* On the same line as the title, the specification and the tags. Indenting the
+   body to the reading column left every other block on the page hanging, which
+   read as a mistake rather than as a hanging indent. */
+.log__body {
+  grid-column: rail-start / main-end;
+}
+
+.log__aside {
+  grid-column: rail-start / main-end;
+}
+
+.log__links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-block-start: var(--space-m);
+}
+
+.log__links a {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-decoration: none;
+  border-block-end: 1px solid var(--era-accent, var(--accent));
+  padding-block-end: 2px;
+}
+
+.log__links a::after {
+  content: ' ↗';
+  color: var(--era-faint, var(--faint));
+}
+
+.log__links a[href^='/']::after {
+  content: ' →';
+}
+
+/* ── Previous / next ───────────────────────────────────────────────────── */
+
+.pager {
+  grid-column: rail-start / main-end;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1px;
+  background: var(--era-rule, var(--rule));
+  border: 1px solid var(--era-rule, var(--rule));
+  margin-block-start: var(--space-2xl);
+}
+
+.pager a {
+  background: var(--era-bg, var(--paper));
+  padding: var(--space-s);
+  text-decoration: none;
+  display: grid;
+  gap: var(--space-3xs);
+  transition: background var(--fast) var(--ease-out);
+}
+
+.pager a:hover {
+  background: var(--era-wash, var(--wash));
+}
+
+.pager span {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--era-faint, var(--faint));
+}
+
+.pager b {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--step-0);
+  line-height: 1.2;
+}
+
+.pager a:last-child:nth-child(2) {
+  text-align: end;
+}
+
+/* ── A note the author left themselves ─────────────────────────────────── */
+
+.note {
+  border: 1px dashed color-mix(in oklab, var(--era-accent, var(--accent)) 55%, transparent);
+  background: color-mix(in oklab, var(--era-accent, var(--accent)) 7%, transparent);
+  padding: var(--space-s);
+  border-radius: var(--radius);
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  color: var(--era-muted, var(--muted));
+  margin-block: var(--space-m);
+  max-inline-size: var(--measure);
+}
+
+/* On the same line as the title and the body, rather than indented into the
+   reading column on its own. */
+.log > .note {
+  grid-column: rail-start / main-end;
+}
+
+.note b {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--era-accent, var(--accent));
+  display: block;
+  margin-block-end: var(--space-3xs);
+}
+
+/* ── The resume ────────────────────────────────────────────────────────── */
+
+.roles {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-xl);
+}
+
+/* Two columns: the mark, then everything else. The mark spans the date and the
+   job title, which is the block it belongs beside. */
+.roles--marked .role {
+  display: grid;
+  grid-template-columns: var(--mark-size) minmax(0, 1fr);
+  column-gap: var(--space-s);
+  row-gap: var(--space-2xs);
+  align-items: start;
+}
+
+.role {
+  display: grid;
+  gap: var(--space-2xs);
+  padding-block-start: var(--space-m);
+  border-block-start: 1px solid var(--rule);
+}
+
+.roles--marked .role > * {
+  grid-column: 2;
+}
+
+/* `<org-mark>` is `display: contents`, so the span inside it is the grid item.
+   The column and the mark read the same custom property, so they cannot drift
+   apart. */
+.roles--marked {
+  --mark-size: 3.4rem;
+}
+
+.roles--marked .org-mark {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+@media (width < 34rem) {
+  .roles--marked {
+    --mark-size: 2.8rem;
+  }
+
+  .roles--marked .role {
+    column-gap: var(--space-xs);
+  }
+}
+
+/* The section head above it already drew one. */
+.roles > .role:first-child {
+  padding-block-start: 0;
+  border-block-start: 0;
+}
+
+.role__when {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+}
+
+.role__title {
+  font-size: var(--step-2);
+  line-height: 1.15;
+}
+
+.role__org {
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+  color: var(--muted);
+}
+
+.role__org a {
+  color: var(--accent);
+}
+
+.role__summary {
+  color: var(--muted);
+  max-inline-size: var(--measure);
+}
+
+.role__did {
+  padding-inline-start: 1.1em;
+  max-inline-size: var(--measure);
+  display: grid;
+  gap: var(--space-2xs);
+  color: var(--ink);
+}
+
+.role__did li::marker {
+  color: var(--accent);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+  list-style: none;
+  padding: 0;
+  margin-block-start: var(--space-2xs);
+}
+
+.stack li {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.05em 0.55em;
+}
+
+.capabilities {
+  display: grid;
+  gap: var(--space-l);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin-block-start: var(--space-m);
+}
+
+.capability h3 {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-block-end: var(--space-3xs);
+}
+
+.capability p {
+  color: var(--faint);
+  font-size: var(--step--1);
+  margin-block-end: var(--space-2xs);
+}
+
+.capability ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3xs);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.capability li {
+  padding-inline-start: 1em;
+  position: relative;
+}
+
+.capability li::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.62em;
+  inline-size: 5px;
+  block-size: 1px;
+  background: var(--faint);
+}
+
+.toolchain {
+  display: grid;
+  gap: var(--space-s);
+  margin-block-start: var(--space-m);
+}
+
+.toolchain > div {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-s);
+  align-items: baseline;
+  border-block-start: 1px solid var(--rule);
+  padding-block-start: var(--space-2xs);
+}
+
+.toolchain dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--faint);
+}
+
+.toolchain dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+
+.section-head {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--era-muted);
+  border-block-end: 1px solid var(--era-rule);
+  padding-block-end: var(--space-2xs);
+  margin-block-end: var(--space-m);
+  margin-block-start: var(--space-m);
+}
+
+.print-hint {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--faint);
+}
+
+/* ── Projects ──────────────────────────────────────────────────────────── */
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  border-block-start: 1px solid var(--rule);
+}
+
+/* The space between cards used to be a list gap, which left each hover
+   highlight floating away from its own rule while hugging the words on both
+   sides. Padding does the spacing now, so the highlight is one block with room
+   around what is inside it. */
+.project-card {
+  display: grid;
+  gap: var(--space-2xs);
+  padding: var(--space-m) var(--space-s);
+  border-block-end: 1px solid var(--rule);
+  position: relative;
+  transition: background var(--fast) var(--ease-out);
+}
+
+/* Pulled back out so the titles still line up with the heading above them, and
+   only where the gutters are wide enough to give it back. */
+@media (width >= 34rem) {
+  .project-card {
+    margin-inline: calc(var(--space-s) * -1);
+  }
+}
+
+.project-card h2 {
+  font-size: var(--step-3);
+}
+
+.project-card h2 a {
+  text-decoration: none;
+}
+
+.project-card h2 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.project-card p {
+  color: var(--muted);
+  max-inline-size: var(--measure);
+}
+
+.project-card:hover {
+  background: var(--wash);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-s);
+  margin-block: var(--space-l);
+  padding-block: var(--space-s);
+  border-block: 1px solid var(--rule);
+}
+
+.facts > div {
+  display: grid;
+  gap: 2px;
+}
+
+.facts dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.facts dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--step-0);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── About and colophon ────────────────────────────────────────────────── */
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-s);
+  margin-block-start: var(--space-m);
+  font-family: var(--font-mono);
+  font-size: var(--step-0);
+}
+
+.contact a {
+  text-decoration-color: var(--accent);
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--space-s);
+  margin-block: var(--space-m);
+}
+
+.legend__item {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: var(--space-2xs);
+  align-items: start;
+  font-size: var(--step--1);
+}
+
+.legend__mark {
+  inline-size: 9px;
+  block-size: 9px;
+  border-radius: 999px;
+  border: 1.5px solid var(--marker);
+  background: var(--marker);
+  margin-block-start: 0.42em;
+  justify-self: center;
+}
+
+.legend__item[data-track='machine'] .legend__mark {
+  border-radius: 1px;
+}
+
+.legend__item[data-track='make'] .legend__mark {
+  border-radius: 1px;
+  rotate: 45deg;
+  inline-size: 7px;
+  block-size: 7px;
+}
+
+.legend__item[data-track='learn'] .legend__mark {
+  border-radius: 0;
+  border-width: 0;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  margin-block-start: calc(0.42em - 1.5px);
+}
+
+.legend__item[data-track='tech'] .legend__mark,
+.legend__item[data-track='world'] .legend__mark {
+  background: none;
+}
+
+.legend__item[data-track='world'] .legend__mark {
+  inline-size: 12px;
+  block-size: 2px;
+  border: 0;
+  background: var(--marker);
+  border-radius: 0;
+}
+
+.legend b {
+  display: block;
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+.legend span {
+  color: var(--muted);
+}
+
+/* A disclosure that animates, because the browser can now interpolate to
+   `auto`. No script and no measured height. */
+.reveal {
+  border-block-start: 1px solid var(--rule);
+  padding-block: var(--space-xs);
+  interpolate-size: allow-keywords;
+}
+
+.reveal summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  list-style-position: outside;
+}
+
+.reveal summary::marker {
+  color: var(--accent);
+}
+
+.reveal[open] summary {
+  color: var(--ink);
+  margin-block-end: var(--space-xs);
+}
+
+.reveal::details-content {
+  block-size: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    block-size var(--slow) var(--ease-out),
+    content-visibility var(--slow) allow-discrete,
+    opacity var(--slow) var(--ease-out);
+}
+
+.reveal[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+}
+
+/* ── Backstage, which only exists in dev ───────────────────────────────── */
+
+.todo {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-s);
+}
+
+.todo li {
+  border-inline-start: 2px solid var(--accent);
+  padding-inline-start: var(--space-s);
+  display: grid;
+  gap: 2px;
+}
+
+.todo b {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--step-0);
+}
+
+.todo code {
+  font-size: var(--step--2);
+  color: var(--faint);
+  background: none;
+  padding: 0;
+}
+
+.todo p {
+  color: var(--muted);
+  font-size: var(--step--1);
+}

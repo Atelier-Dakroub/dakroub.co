@@ -1,0 +1,75 @@
+<!-- One moment on the timeline.
+     
+     Rendered by the flow at /, by an era page, and by any filtered view, which
+     is the reason it is an element and not markup repeated three times.
+     
+     It is a light element with no behavior, so nothing about it is shipped to
+     the browser: the server writes the markup and that is the end of it. -->
+
+<script element>
+  export const properties = {
+    /** The entry's own page, when it has one. Empty means it is a line, not a link. */
+    href: '',
+    /** What goes in the small type: a month, or nothing when the year says enough. */
+    stamp: '',
+    /** One of the layers in app/data/tracks.js. The marker's shape and color. */
+    track: 'world',
+    /** The track's display name. */
+    trackLabel: '',
+    /** Not `title`: that is a global attribute and the browser draws a tooltip from it. */
+    heading: '',
+    dek: '',
+    /** `[{ label, href }]`, built by `view()` in app/data/timeline.js. */
+    tags: [],
+    /** True for the four layers that are about a person. Fills the marker in. */
+    mine: false,
+    /** Breaks the column and takes more room. */
+    feature: false,
+    /** A note the author left themselves. Shows a chip; /backstage lists them. */
+    needs: '',
+    /**
+     * The view-transition name, so this card morphs into the page it opens.
+     * `none` for the ones that are not worth a name, a page with a hundred of
+     * them would make the browser composite a hundred layers for one click.
+     */
+    vt: 'none',
+  };
+</script>
+
+<style>
+  /* The element itself is not a box. Its <article> is the grid item, which
+     keeps the entry markup one element deep and lets the page's own rules in
+     styles/timeline.css do all the drawing. */
+  :scope {
+    display: contents;
+  }
+</style>
+
+<article
+  class="entry"
+  data-track="${track}"
+  data-mine="${mine}"
+  data-feature="${feature}"
+  style="view-transition-name: ${vt}"
+>
+  <p class="entry__meta">
+    <span if="stamp">${stamp}</span>
+    <span class="entry__track">${trackLabel}</span>
+    <span if="needs" class="needs-note">unwritten</span>
+  </p>
+
+  <h4 class="entry__title">
+    <a if="href" href="${href}">${heading}</a>
+    <span else>${heading}</span>
+  </h4>
+
+  <p if="dek" class="entry__dek">${dek}</p>
+
+  <ul if="tags.length" class="tags">
+    <li each="tag of tags" key="tag.label">
+      <a href="${tag.href}">${tag.label}</a>
+    </li>
+  </ul>
+
+  <slot></slot>
+</article>

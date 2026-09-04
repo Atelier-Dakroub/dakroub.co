@@ -1,0 +1,17 @@
+<!-- A row of links out. An external one gets an arrow that leaves the page and
+     an internal one gets an arrow that does not, which is done in CSS off the
+     href rather than by asking the author to say which is which. -->
+
+<script element>
+  export const properties = {
+    /** `[{ href, label }]` */
+    links: [],
+    label: 'Related links',
+  };
+</script>
+
+<ul if="links.length" class="log__links" aria-label="${label}">
+  <li each="link of links">
+    <a href="${link.href}">${link.label}</a>
+  </li>
+</ul>

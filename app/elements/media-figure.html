@@ -1,0 +1,39 @@
+<!-- A picture, with its caption. The two dimensions are required by the type,
+     because a picture that arrives without them moves the paragraph under it
+     while the page is being read. -->
+
+<script element>
+  export const properties = {
+    src: '',
+    alt: '',
+    width: 1600,
+    height: 1000,
+    caption: '',
+  };
+</script>
+
+<style>
+  :scope {
+    display: block;
+    margin-block: var(--space-m);
+  }
+  img {
+    inline-size: 100%;
+    block-size: auto;
+    border: 1px solid var(--era-rule, var(--rule));
+    border-radius: var(--radius);
+    background: var(--era-wash, var(--wash));
+  }
+  figcaption {
+    margin-block-start: var(--space-2xs);
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--era-faint, var(--faint));
+    max-inline-size: var(--measure);
+  }
+</style>
+
+<figure>
+  <img src="${src}" alt="${alt}" width="${width}" height="${height}" loading="lazy" decoding="async" />
+  <figcaption if="caption">${caption}</figcaption>
+</figure>

@@ -1,0 +1,152 @@
+<script server>
+  import { site } from '../data/site.js';
+  import { all, eras, span, tagIndex, tracks, written } from '../data/timeline.js';
+
+  /** Small numbers read as words in a sentence and as digits in a table. */
+  const word = (n) =>
+    ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'][n] ?? String(n);
+
+  export default async () => ({
+    site,
+    eras: eras.length,
+    entries: all.length,
+    written: written.length,
+    years: span.to - span.from,
+    from: span.from,
+    to: span.to,
+    tracks: tracks.map((track) => ({
+      id: track.id,
+      label: track.plural,
+      blurb: track.blurb,
+      count: all.filter((entry) => entry.track === track.id).length,
+      swatch: `--marker: var(--track-${track.id})`,
+    })),
+    layers: word(tracks.length),
+    ownLayers: word(tracks.filter((track) => track.mine).length),
+    otherLayers: word(tracks.filter((track) => !track.mine).length),
+    // Encoded here: a tag with a space in it is a broken href otherwise, and
+    // a template has no `encodeURIComponent`.
+    tags: tagIndex()
+      .slice(0, 24)
+      .map(({ tag, count }) => ({ tag, count, href: `/?tag=${encodeURIComponent(tag)}` })),
+  });
+</script>
+
+<title>About, Joe Dakroub</title>
+<meta name="description" content="${site.tagline}" />
+<meta property="og:title" content="About, ${site.name}" />
+
+<div class="page spread">
+  <div class="page__head">
+    <p class="kicker">About</p>
+    <h1>${site.name}</h1>
+    <p class="lede">${site.intro}</p>
+  </div>
+
+  <section>
+    <div class="prose">
+      <p>
+        I started on a machine that booted to a prompt and did nothing until you typed at it, and
+        the habit stuck. Everything I have built since has been an attempt to make a system say
+        what it is doing.
+      </p>
+      <p>
+        Professionally that has meant twenty years of production interfaces: a PHP framework at
+        Quicken Loans that is still running, financial applications at Tradeweb, my own studio for
+        three years, design systems for Netflix internal tooling and Apple Music at DockYard, the
+        Kajabi Design System, and now React Native and Next.js at Heyo with Claude Code in the
+        loop every day.
+      </p>
+      <p>
+        Alongside all of it, one thread has never stopped:
+        <a href="/log/mcallister">twenty-five years of design and development</a> for the concert
+        saxophonist Timothy McAllister. Same collaborator, same brief, and every era of the web
+        on this page in between.
+      </p>
+      <p>
+        Design and engineering have never been two jobs to me. A layout is an argument about
+        hierarchy, a component API is an argument about vocabulary, and both of them get decided
+        by the same person in the same afternoon or they get decided badly. The titles have moved
+        around that idea, software engineer, front-end developer, business owner, UIX architect,
+        UX developer, full stack engineer, and the work has stayed put.
+      </p>
+      <p>
+        The other half of what I do is writing, which is not an accident: the degree is a Bachelor
+        of Fine Arts in music performance with a minor in technical writing. Documentation, design
+        docs, the memo that settles an argument. The two things I was formally trained in are
+        performing in front of people and explaining something in writing, and they turned out to
+        be most of the job.
+      </p>
+    </div>
+
+    <div class="contact">
+      <a href="mailto:${site.email}">${site.email}</a>
+      <span if="site.location">${site.location}</span>
+      <span each="link of site.elsewhere" key="link.label">
+        <a href="${link.href}" rel="me">${link.label}</a>
+      </span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-head">How to read the timeline</h2>
+    <p>
+      Every entry belongs to one of ${layers} layers. The ${ownLayers} that are mine are drawn
+      as a solid marker on the spine; the ${otherLayers} that are the room I was in are hollow.
+      The shape says which is which without a legend, but here is the legend anyway.
+    </p>
+
+    <div class="legend">
+      <div class="legend__item" each="track of tracks" key="track.id" data-track="${track.id}" style="${track.swatch}">
+        <span class="legend__mark" aria-hidden="true"></span>
+        <span>
+          <b>${track.label} <span class="mono">(${track.count})</span></b>
+          <span>${track.blurb}</span>
+        </span>
+      </div>
+    </div>
+
+    <dl class="facts">
+      <div>
+        <dt>Span</dt>
+        <dd>${from}–${to}</dd>
+      </div>
+      <div>
+        <dt>Chapters</dt>
+        <dd>${eras}</dd>
+      </div>
+      <div>
+        <dt>Entries</dt>
+        <dd>${entries}</dd>
+      </div>
+      <div>
+        <dt>With a page</dt>
+        <dd>${written}</dd>
+      </div>
+      <div>
+        <dt>Client JavaScript</dt>
+        <dd>0 B</dd>
+      </div>
+    </dl>
+
+    <details class="reveal">
+      <summary>Every tag in use</summary>
+      <ul class="tags">
+        <li each="tag of tags" key="tag.tag">
+          <a href="${tag.href}">${tag.tag} <span class="mono">${tag.count}</span></a>
+        </li>
+      </ul>
+    </details>
+  </section>
+
+  <nav class="pager" aria-label="More">
+    <a href="/work">
+      <span>← The resume</span>
+      <b>Roles, capabilities, toolchain</b>
+    </a>
+    <a href="/colophon">
+      <span>How this is built →</span>
+      <b>The colophon</b>
+    </a>
+  </nav>
+</div>

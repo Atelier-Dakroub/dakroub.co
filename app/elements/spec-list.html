@@ -1,0 +1,27 @@
+<!-- The recurring motif: if a thing has numbers attached to it, they go here.
+     A machine's RAM, a package's license, a project's user count. -->
+
+<script element>
+  export const properties = {
+    /** `[{ label, value }]`. Pass the array straight through: `rows="${entry.spec}"`. */
+    rows: [],
+    /** Read by a screen reader, so a bare table of numbers has a name. */
+    label: 'Specification',
+  };
+</script>
+
+<style>
+  /* The wrapper each row needs to be valid inside a <dl> disappears, so the
+     terms and the definitions are the grid items and the columns line up down
+     the whole list. */
+  :scope .spec__row {
+    display: contents;
+  }
+</style>
+
+<dl if="rows.length" class="spec" aria-label="${label}">
+  <div class="spec__row" each="row of rows" key="row.label">
+    <dt>${row.label}</dt>
+    <dd>${row.value}</dd>
+  </div>
+</dl>

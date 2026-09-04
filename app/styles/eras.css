@@ -1,0 +1,554 @@
+/* One texture per era, drawn in CSS. It is painted on `.era-surface`, which is
+   the chapter opener on the timeline and the head of the era page you land on.
+   Those two carry the same `view-transition-name`, so anything true of one has
+   to be true of the other or the surface vanishes mid-navigation. No images, and none of it is on the
+   text: every layer here sits behind the content at a weight low enough to be
+   a surface rather than a pattern.
+
+   `data-texture` comes from app/data/eras.js. Adding an era means adding a
+   block here and nothing else. */
+
+/* The position of chapter six's hard edge. Registering it as a percentage is
+   what makes it animatable: an unregistered custom property is a string, and a
+   string cannot be interpolated. */
+@property --field {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 58%;
+}
+
+/* Chapter seven's poles. Moving the whole layer by a few percent over most of
+   a minute is not motion, it is a rounding error: a mesh gradient is alive
+   because the poles move inside the frame, so those are what animate. */
+@property --mesh-a {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 84%;
+}
+
+@property --mesh-b {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 14%;
+}
+
+@property --mesh-c {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 84%;
+}
+
+.era-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* A second layer, for the eras whose texture wants a moving highlight rather
+   than a moving pattern. Off unless an era asks for it. */
+.era-surface::before {
+  content: none;
+}
+
+/* 1976–1983 · a CRT: horizontal scan lines and a soft vignette, because a
+   phosphor screen was brightest in the middle and nobody's television was
+   flat. */
+[data-texture='scanlines'] .era-surface::after {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--era-ink) 13%, transparent) 0 1px,
+      transparent 1px 3px
+    ),
+    radial-gradient(
+      120% 90% at 50% 45%,
+      transparent 40%,
+      color-mix(in oklab, black 55%, transparent) 100%
+    );
+}
+
+/* The picture rolls. One pattern period, so the loop is seamless. */
+[data-texture='scanlines'] .era-surface::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: 45%;
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(
+    transparent,
+    color-mix(in oklab, var(--era-ink) 9%, transparent),
+    transparent
+  );
+}
+
+/* 1984–1990 · a two-color ordered dither, the way an eight-bit machine faked a
+   shade it did not have. */
+[data-texture='dither'] .era-surface::after {
+  background-image: repeating-conic-gradient(
+    color-mix(in oklab, var(--era-ink) 14%, transparent) 0% 25%,
+    transparent 0% 50%
+  );
+  background-size: 6px 6px;
+  opacity: 0.9;
+  mask-image: radial-gradient(150% 110% at 78% 24%, black 12%, transparent 78%);
+}
+
+/* This era did not have a monitor. It had the television, on channel three,
+   and the picture came with everything a tuner does to a picture: a tracking
+   band that will not hold still, and a color edge above it that never quite
+   resolved. */
+[data-texture='dither'] .era-surface::before {
+  content: '';
+  position: absolute;
+  inset-inline: -8%;
+  inset-block-start: 0;
+  block-size: 13%;
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--era-accent) 34%, transparent) 0 11%,
+    color-mix(in oklab, var(--era-ink) 22%, transparent) 11% 52%,
+    color-mix(in oklab, var(--era-ink) 7%, transparent) 52% 76%,
+    transparent 100%
+  );
+}
+
+/* 1991–1996 · beige plastic and a bevel. Everything in this era had a highlight
+   on the top edge and a shadow on the bottom one. */
+[data-texture='bevel'] .era-surface::after {
+  background:
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, white 45%, transparent),
+      transparent 18%,
+      transparent 82%,
+      color-mix(in oklab, var(--era-ink) 15%, transparent)
+    ),
+    repeating-linear-gradient(
+      to right,
+      color-mix(in oklab, var(--era-ink) 5%, transparent) 0 2px,
+      transparent 2px 5px
+    );
+}
+
+/* Light moving across a moulded case. */
+/* A curved plastic case shows a soft dark band where it turns away from the
+   light, not a white one. White on a ground this pale is nothing at all. */
+[data-texture='bevel'] .era-surface::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 45%;
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    color-mix(in oklab, var(--era-ink) 9%, transparent),
+    transparent
+  );
+}
+
+/* 1997–2003 · the layout table, with its border showing. */
+[data-texture='grid'] .era-surface::after {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--era-ink) 11%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--era-ink) 11%, transparent) 1px, transparent 1px);
+  background-size: 4.5rem 4.5rem;
+  mask-image: linear-gradient(to bottom, black 20%, transparent 88%);
+}
+
+/* 2004–2010 · the gloss. A highlight across the top half and a reflection under
+   it, applied to buttons, logos, headers and anything else that held still. */
+[data-texture='gloss'] .era-surface::after {
+  background:
+    /* The reflection line, hard, exactly halfway. That edge is the whole
+       signature of the era. On a ground this light a white gloss is invisible,
+       so the bottom half is tinted with the chapter's own ink instead and the
+       edge does the work. */
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, white 65%, transparent) 0%,
+      color-mix(in oklab, white 25%, transparent) 49.4%,
+      color-mix(in oklab, var(--era-ink) 11%, transparent) 50%,
+      color-mix(in oklab, var(--era-ink) 4%, transparent) 100%
+    ),
+    radial-gradient(
+      80% 55% at 50% 0%,
+      color-mix(in oklab, var(--era-accent) 32%, transparent),
+      transparent 72%
+    );
+  opacity: 0.9;
+}
+
+/* The sheen every button in 2007 wished it had. */
+/* The sheen sweeps the lower half, which is the tinted half. A highlight is
+   only visible where there is something to lighten. */
+[data-texture='gloss'] .era-surface::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 46%;
+  inset-block-end: -20%;
+  inset-inline-start: 0;
+  inline-size: 34%;
+  z-index: -2;
+  pointer-events: none;
+  rotate: 10deg;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklab, white 85%, transparent),
+    transparent
+  );
+}
+
+/* 2011–2018 · flat. Colour fields with hard edges and nothing on top of them. */
+[data-texture='flat'] .era-surface::after {
+  background:
+    /* Both fields sit on the trailing side and along the bottom, clear of the
+       heading. A hard edge behind a serif title reads as a printing fault. */
+    linear-gradient(
+      105deg,
+      transparent 0 var(--field),
+      color-mix(in oklab, var(--era-accent) 15%, transparent) var(--field) 100%
+    ),
+    linear-gradient(
+      to top,
+      color-mix(in oklab, var(--era-ink) 8%, transparent) 0 13%,
+      transparent 13% 100%
+    );
+  opacity: 0.9;
+}
+
+/* 2019–present · a soft mesh, which is what a gradient looks like once the
+   browser can interpolate in a perceptual color space. */
+[data-texture='mesh'] .era-surface::after {
+  background:
+    /* Four poles, weighted to the trailing side and the corners. The middle of
+       the leading half stays near the ground color, because that is where the
+       heading is and a pole under white text costs more contrast than it is
+       worth. */
+    radial-gradient(
+      62% 58% at var(--mesh-a) var(--mesh-b),
+      color-mix(in oklab, var(--era-accent) 52%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      58% 56% at 98% var(--mesh-c),
+      color-mix(in oklab, color-mix(in oklab, var(--era-accent) 55%, white) 34%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      46% 46% at 4% 98%,
+      color-mix(in oklab, var(--era-accent) 24%, transparent),
+      transparent 74%
+    ),
+    radial-gradient(
+      90% 78% at 62% 46%,
+      color-mix(in oklab, var(--era-ink) 8%, transparent),
+      transparent 78%
+    );
+  opacity: 0.95;
+  scale: 1.16;
+}
+
+/* ── The textures move ─────────────────────────────────────────────────────
+   A tiled pattern moves by its own background-position, one whole tile, so the
+   loop is seamless and every mask still lines up with the real box. The two
+   textures made of positioned gradients move by a transform instead, taking
+   their slack from a scale.
+
+   The timings are all slow enough to notice only once you have stopped
+   reading, which is the point of a background. */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* A CRT never quite holds still. One scan-line period, so it never seams. */
+  [data-texture='scanlines'] .era-surface::after {
+    animation: roll-scanlines 2.4s linear infinite;
+  }
+
+  [data-texture='scanlines'] .era-surface::before {
+    animation: sweep-down 11s linear infinite;
+  }
+
+  /* A checkerboard shifted by half a cell is the same checkerboard inverted,
+     which is the whole of what a one-bit dither did on a television: it sat
+     there and shimmered. Two phases, well under a flash. */
+  [data-texture='dither'] .era-surface::after {
+    animation: shimmer-dither 2.8s steps(2, end) infinite;
+  }
+
+  [data-texture='dither'] .era-surface::before {
+    animation: tracking-band 24s linear infinite;
+  }
+
+  /* Only the hairline layer drifts. The bevel above it holds still. */
+  [data-texture='bevel'] .era-surface::after {
+    animation: drift-hairlines 9s linear infinite;
+  }
+
+  [data-texture='bevel'] .era-surface::before {
+    animation: sweep-across 16s ease-in-out infinite;
+  }
+
+  /* The table drifts one whole cell over half a minute. */
+  [data-texture='grid'] .era-surface::after {
+    animation: drift-grid 30s linear infinite;
+  }
+
+  /* The sheen, over the tinted half where a highlight can be seen. */
+  [data-texture='gloss'] .era-surface::before {
+    animation: sweep-across 9s ease-in-out infinite;
+  }
+
+  /* The era that made everything answer to the width it was given. The field
+     does not slide, it re-lays-out: the edge is a gradient stop, and the stop
+     moves. Slow enough, and far enough from the heading, to be a surface. */
+  [data-texture='flat'] .era-surface::after {
+    animation: reflow-field 19s ease-in-out infinite alternate;
+  }
+
+  /* A mesh gradient, breathing. Two poles crossing on different paths, so the
+     field never repeats a shape you have already looked at. */
+  [data-texture='mesh'] .era-surface::after {
+    animation: drift-mesh 18s ease-in-out infinite;
+  }
+}
+
+@keyframes roll-scanlines {
+  to {
+    background-position:
+      0 3px,
+      0 0;
+  }
+}
+
+@keyframes shimmer-dither {
+  to {
+    /* One whole cell. Halfway through, the pattern is its own negative. */
+    background-position: 6px 0;
+  }
+}
+
+/* The band rolls through in about seven seconds and then the picture holds for
+   sixteen. A tuner losing the picture on a timer is a metronome; losing it now
+   and again is a television. */
+@keyframes tracking-band {
+  0% {
+    translate: 0 -120%;
+  }
+  9% {
+    translate: 0.9% 180%;
+  }
+  10% {
+    translate: -0.7% 205%;
+  }
+  21% {
+    translate: 0.6% 480%;
+  }
+  22% {
+    translate: -1.1% 505%;
+  }
+  31% {
+    translate: 0 760%;
+  }
+  100% {
+    translate: 0 760%;
+  }
+}
+
+@keyframes drift-hairlines {
+  to {
+    background-position:
+      0 0,
+      5px 0;
+  }
+}
+
+@keyframes drift-grid {
+  to {
+    background-position:
+      4.5rem 4.5rem,
+      4.5rem 4.5rem;
+  }
+}
+
+@keyframes sweep-down {
+  from {
+    translate: 0 -110%;
+  }
+  to {
+    translate: 0 260%;
+  }
+}
+
+@keyframes sweep-across {
+  from {
+    translate: -60% 0;
+  }
+  to {
+    translate: 380% 0;
+  }
+}
+
+@keyframes reflow-field {
+  from {
+    --field: 54%;
+  }
+  to {
+    --field: 69%;
+  }
+}
+
+@keyframes drift-mesh {
+  /* The travel stops short of the text. Drifted any further in and down, the
+     pole put secondary text at Lc 72, which is under the floor this site
+     holds everything else to. */
+  0% {
+    --mesh-a: 80%;
+    --mesh-b: 4%;
+    --mesh-c: 74%;
+  }
+  50% {
+    --mesh-a: 99%;
+    --mesh-b: 20%;
+    --mesh-c: 98%;
+  }
+  100% {
+    --mesh-a: 80%;
+    --mesh-b: 4%;
+    --mesh-c: 74%;
+  }
+}
+
+/* ── The era page ──────────────────────────────────────────────────────── */
+
+.era-page {
+  background: var(--era-bg);
+  color: var(--era-ink);
+  --era-muted: color-mix(in oklab, var(--era-ink) 80%, var(--era-bg));
+  --era-faint: color-mix(in oklab, var(--era-ink) 80%, var(--era-bg));
+  --era-rule: color-mix(in oklab, var(--era-ink) 20%, var(--era-bg));
+  --era-wash: color-mix(in oklab, var(--era-ink) 6%, var(--era-bg));
+}
+
+/* The head is the surface the reader clicked, so it is a band the full width of
+   the page rather than a heading in a column. It reaches back over the page's
+   own top padding to sit flush under the running head, the way the chapter
+   opener does on the timeline. */
+.era-page .page__head {
+  grid-column: full;
+  grid-template-columns: subgrid;
+  margin-block: calc(var(--space-2xl) * -1) var(--space-2xl);
+  padding-block: var(--space-3xl);
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+}
+
+.era-page .page__head > * {
+  grid-column: rail-start / main-end;
+}
+
+/* The same polarity split the chapters use. */
+.era-page[data-dark] {
+  --era-muted: color-mix(in oklab, var(--era-ink) 90%, var(--era-bg));
+  --era-faint: color-mix(in oklab, var(--era-ink) 93%, var(--era-bg));
+  --era-rule: color-mix(in oklab, var(--era-ink) 45%, var(--era-bg));
+}
+
+.era-page .site-footer,
+.era-page .site-header {
+  background: color-mix(in oklab, var(--era-bg) 88%, transparent);
+  color: var(--era-ink);
+  border-color: var(--era-rule);
+}
+
+.era-page .site-nav a {
+  color: var(--era-muted);
+}
+
+.era-page .site-nav a:hover,
+.era-page .site-nav a[aria-current='page'] {
+  color: var(--era-ink);
+}
+
+.era-page .site-footer a {
+  color: var(--era-muted);
+}
+
+.era-page .site-footer h2,
+.era-page .site-footer__note {
+  color: var(--era-faint);
+}
+
+.era-essay {
+  grid-column: rail-start / main-end;
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--era-muted);
+}
+
+.era-essay p + p {
+  margin-block-start: var(--space-s);
+}
+
+/* The other six, so a reader can keep going without returning to the top. */
+.era-switch {
+  grid-column: rail-start / full-end;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 1px;
+  background: var(--era-rule);
+  border: 1px solid var(--era-rule);
+  margin-block-start: var(--space-2xl);
+  max-inline-size: 76rem;
+}
+
+.era-switch a {
+  background: var(--era-bg);
+  padding: var(--space-xs) var(--space-s);
+  text-decoration: none;
+  display: grid;
+  gap: 2px;
+  transition: background var(--fast) var(--ease-out);
+}
+
+.era-switch a:hover {
+  background: var(--era-wash);
+}
+
+.era-switch a[aria-current='page'] {
+  background: var(--era-wash);
+  box-shadow: inset 0 3px 0 var(--era-accent);
+}
+
+.era-switch span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--era-faint);
+}
+
+.era-switch b {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--step--1);
+  line-height: 1.2;
+  color: var(--era-ink);
+}
+
+/* A chapter's ink is chosen for a headline. Held for four hundred words of
+   prose, the most saturated of them (1976's phosphor green) is tiring, so long
+   copy is set a step back from it. */
+.era-page .prose,
+.era-page .era-essay {
+  color: color-mix(in oklab, var(--era-ink) 88%, var(--era-bg));
+}

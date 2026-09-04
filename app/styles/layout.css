@@ -1,0 +1,231 @@
+/* The shell every page shares, and the one grid the whole site lays out on. */
+
+.shell {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-block-size: 100svb;
+}
+
+/* ── The grid ──────────────────────────────────────────────────────────────
+   Four named columns. `main` is the reading measure, `rail` is the year and the
+   spine to its left, and `full` is the whole viewport for a chapter opener.
+
+   Everything on this site sits on these lines, which is why a chapter heading,
+   a timeline entry and a resume role all line up down the page. */
+
+.spread {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gutter), 1fr)
+    [rail-start] var(--rail)
+    [rail-end main-start] minmax(0, var(--measure))
+    [main-end] minmax(var(--gutter), 1fr)
+    [full-end];
+}
+
+.spread > * {
+  grid-column: main;
+}
+
+.spread > .full {
+  grid-column: full;
+}
+
+/* Reaches back into the rail. A featured entry uses it to break the column and
+   say so. */
+.spread > .wide {
+  grid-column: rail-start / main-end;
+}
+
+/* The head wraps here, and gets 1.9rem taller doing it. */
+@media (width < 45rem) {
+  :root {
+    --rail: 2.75rem;
+    --sticky-top: 4.4rem;
+  }
+}
+
+/* ── Header ────────────────────────────────────────────────────────────────
+   A running head, in the sense a book has one. It stays put across a
+   navigation because it is a view transition of its own, so clicking a link
+   moves the page under it rather than redrawing it. */
+
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 20;
+  view-transition-name: site-header;
+  background: color-mix(in oklab, var(--paper) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-block-end: 1px solid var(--era-rule);
+  color: var(--era-ink);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2xs) var(--space-m);
+  padding: var(--space-2xs) var(--gutter);
+  max-inline-size: 88rem;
+  margin-inline: auto;
+}
+
+.site-header__name {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-header__name b {
+  font-weight: 600;
+}
+
+.site-header__name span {
+  color: var(--era-faint);
+}
+
+.site-header__inner > nav {
+  margin-inline-start: auto;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  list-style: none;
+  padding: 0;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--era-muted);
+  padding-block: 2px;
+  border-block-end: 1px solid transparent;
+  transition:
+    color var(--fast) var(--ease-out),
+    border-color var(--fast) var(--ease-out);
+}
+
+.site-nav a:hover {
+  color: var(--ink);
+}
+
+.site-nav a[aria-current='page'] {
+  color: var(--ink);
+  border-block-end-color: var(--accent);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+
+.site-footer {
+  border-block-start: 1px solid var(--era-rule);
+  background: var(--paper);
+  color: var(--ink);
+  padding-block: var(--space-xl) var(--space-l);
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  view-transition-name: site-footer;
+}
+
+.site-footer__inner {
+  grid-column: rail-start / main-end;
+  display: grid;
+  gap: var(--space-m);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  align-items: start;
+}
+
+.site-footer h2 {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--era-faint);
+  margin-block-end: var(--space-2xs);
+}
+
+.site-footer ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3xs);
+}
+
+.site-footer a {
+  color: var(--era-muted);
+}
+
+.site-footer a:hover {
+  color: var(--ink);
+}
+
+.site-footer__note {
+  grid-column: 1 / -1;
+  color: var(--era-muted);
+  font-size: var(--step--2);
+  border-block-start: 1px solid var(--era-rule);
+  padding-block-start: var(--space-s);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-m);
+  justify-content: space-between;
+}
+
+/* An honest badge while the site still has placeholder text in it. Set
+   `inProgress: false` in app/data/site.js and it goes away. */
+.wip {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.06em;
+  color: var(--paper);
+  background: var(--accent);
+  padding: 0.1em 0.5em;
+  border-radius: 999px;
+}
+
+/* ── A page that is not the timeline ───────────────────────────────────── */
+
+.page {
+  padding-block: var(--space-2xl) var(--space-3xl);
+  row-gap: var(--space-l);
+}
+
+.page__head {
+  grid-column: rail-start / main-end;
+  display: grid;
+  gap: var(--space-xs);
+  margin-block-end: var(--space-2xs);
+}
+
+.page__head h1 {
+  font-size: var(--step-6);
+  max-inline-size: 18ch;
+}
+
+.page > section {
+  grid-column: rail-start / main-end;
+}
+
+.page > .section-head,
+.page > .year-group,
+.page > .pager,
+.page > .era-switch {
+  grid-column: rail-start / main-end;
+}
+
+.page > .era-switch {
+  grid-column: rail-start / full-end;
+}
+
+/* A paragraph written straight into a section, with no `.prose` around it, still
+   has to stop at a readable measure. */
+.page > section > p,
+.page > section > .legend + p {
+  max-inline-size: var(--measure);
+}

@@ -1,0 +1,944 @@
+/* The flow: a hero, seven chapters, and a spine down the middle of all of them.
+   Every moving part in this file is a CSS animation attached to a scroll or a
+   view timeline. There is no scroll listener anywhere on this site. */
+
+/* ── The hero ──────────────────────────────────────────────────────────── */
+
+.hero {
+  padding-block: var(--space-3xl) var(--space-2xl);
+  row-gap: var(--space-m);
+  position: relative;
+  isolation: isolate;
+}
+
+.hero__title {
+  grid-column: rail-start / full-end;
+  font-size: var(--step-7);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  max-inline-size: 15ch;
+  text-wrap: balance;
+  view-transition-name: hero-title;
+}
+
+.hero__title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero__lede {
+  grid-column: rail-start / main-end;
+  font-size: var(--step-1);
+  line-height: 1.45;
+  color: var(--muted);
+  max-inline-size: 36rem;
+}
+
+.hero__span {
+  font-weight: 500;
+  grid-column: rail-start / main-end;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2xs) var(--space-s);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--faint);
+  border-block-start: 1px solid var(--rule);
+  padding-block-start: var(--space-s);
+}
+
+.hero__span b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* The one line on this page written for somebody with ninety seconds rather
+   than an afternoon. The timeline is the argument; this is the way out of it
+   for a reader who came to make a decision instead of to read. */
+.hero__short {
+  grid-column: rail-start / main-end;
+  font-size: var(--step--1);
+  color: var(--ink);
+  max-inline-size: 52ch;
+  margin-block-start: var(--space-2xs);
+  text-wrap: pretty;
+}
+
+.hero__short a {
+  color: var(--accent);
+  text-underline-offset: 0.22em;
+}
+
+/* A quiet instruction, because the interaction is scrolling and nothing on
+   screen says so. It fades out as soon as the reader takes the hint. */
+.hero__cue {
+  font-weight: 500;
+  grid-column: rail-start / main-end;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.hero__cue::after {
+  content: '';
+  inline-size: 1px;
+  block-size: 2.5rem;
+  background: linear-gradient(var(--faint), transparent);
+}
+
+/* ── Contents ──────────────────────────────────────────────────────────── */
+
+/* A table of contents, not a card grid. Seven chapters rarely divide evenly
+   into however many columns fit, so a wrapping grid always orphans the last
+   one, and these are chapters one to seven, which read down rather than
+   across. It also lines up with the reading column the entries below it use. */
+.contents {
+  grid-column: rail-start / main-end;
+  display: grid;
+  margin-block-start: var(--space-l);
+  border-block-start: 1px solid var(--rule);
+}
+
+.contents__item {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr) auto;
+  gap: var(--space-3xs) var(--space-m);
+  align-items: baseline;
+  padding: var(--space-xs) var(--space-s);
+  border-block-end: 1px solid var(--rule);
+  border-inline-start: 3px solid var(--swatch);
+  text-decoration: none;
+  transition: background var(--fast) var(--ease-out);
+}
+
+.contents__item:hover {
+  background: var(--wash);
+}
+
+.contents__years {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  color: var(--era-muted);
+  letter-spacing: 0.06em;
+}
+
+.contents__name {
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  line-height: 1.2;
+}
+
+.contents__count {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  color: var(--era-muted);
+  text-align: end;
+  white-space: nowrap;
+}
+
+/* Narrow: the years take their own line above the name. */
+@media (width < 38rem) {
+  .contents__item {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .contents__years {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── A chapter ─────────────────────────────────────────────────────────── */
+
+.timeline {
+  view-timeline: --flow block;
+  position: relative;
+}
+
+.chapter {
+  position: relative;
+  background: var(--era-bg);
+  color: var(--era-ink);
+  padding-block-end: var(--space-3xl);
+  /* Derived from the three the data sets, so a chapter's rules, washes and
+     secondary text are always in key with it. */
+  --era-muted: color-mix(in oklab, var(--era-ink) 80%, var(--era-bg));
+  --era-faint: color-mix(in oklab, var(--era-ink) 80%, var(--era-bg));
+  --era-rule: color-mix(in oklab, var(--era-ink) 20%, var(--era-bg));
+  --era-wash: color-mix(in oklab, var(--era-ink) 6%, var(--era-bg));
+  /* How far the previous era bleeds into this one. It has to finish above the
+     opener's first line of text, so a compact opener gets a shorter join. */
+  --join: min(12vb, 7rem);
+  scroll-margin-block-start: var(--chrome-top);
+}
+
+/* A light-on-dark chapter needs a much higher mix to reach the same measured
+   contrast. `dark` comes off the era in app/data/eras.js. */
+.chapter[data-dark] {
+  --era-muted: color-mix(in oklab, var(--era-ink) 90%, var(--era-bg));
+  --era-faint: color-mix(in oklab, var(--era-ink) 93%, var(--era-bg));
+  --era-rule: color-mix(in oklab, var(--era-ink) 45%, var(--era-bg));
+}
+
+/* The join between two chapters. Without it the page changes color on a hard
+   line; with it the previous era bleeds into the next one over a few
+   centimeters of scrolling, which is what the change actually felt like. */
+.chapter::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  /* Finished well before the opener sets its title. A longer join put chapter
+     seven's white heading in the middle of a wash of chapter six's near-white
+     paper, which is how a whole chapter went missing. */
+  block-size: var(--join);
+  /* Eased, not linear. A straight blend from near-white paper into a near-black
+     chapter puts a mid grey across the full width at its midpoint, and that
+     band reads as fog rather than as a join. Weighting the stops toward the
+     new era spends the pale part in the first third and the rest arriving. */
+  background: linear-gradient(
+    var(--prev-bg, transparent) 0%,
+    color-mix(in oklab, var(--prev-bg, transparent) 52%, var(--era-bg)) 14%,
+    color-mix(in oklab, var(--prev-bg, transparent) 20%, var(--era-bg)) 33%,
+    color-mix(in oklab, var(--prev-bg, transparent) 6%, var(--era-bg)) 54%,
+    var(--era-bg) 78%
+  );
+  pointer-events: none;
+}
+
+.chapter > * {
+  position: relative;
+}
+
+.chapter__opener {
+  min-block-size: min(78svb, 40rem);
+  display: grid;
+  grid-template-columns: subgrid;
+  align-content: center;
+  padding-block: var(--space-3xl);
+  overflow: clip;
+  isolation: isolate;
+}
+
+.chapter__inner {
+  grid-column: rail-start / main-end;
+  display: grid;
+  gap: var(--space-s);
+}
+
+/* The era's years, set as large as the chapter will allow and pushed behind
+   everything. It drifts as the chapter passes, which is the only parallax on
+   the site. */
+.chapter__years {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: calc(var(--gutter) * -0.5);
+  translate: 0 -50%;
+  z-index: -1;
+  font-family: var(--font-mono);
+  font-size: clamp(5rem, 24vw, 20rem);
+  font-weight: 500;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  color: color-mix(in oklab, var(--era-ink) 9%, transparent);
+  text-align: end;
+  pointer-events: none;
+  user-select: none;
+}
+
+.chapter__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--era-accent);
+}
+
+.chapter__name {
+  font-size: var(--step-6);
+  line-height: 0.98;
+  max-inline-size: 16ch;
+  color: var(--era-ink);
+}
+
+.chapter__dek {
+  font-size: var(--step-1);
+  line-height: 1.45;
+  max-inline-size: 40ch;
+  color: var(--era-muted);
+  text-wrap: pretty;
+}
+
+.chapter__more {
+  justify-self: start;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: var(--era-accent);
+  border: 1px solid color-mix(in oklab, var(--era-accent) 45%, transparent);
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: 999px;
+  box-shadow: 0 0 0 0 transparent;
+  transition:
+    border-color var(--fast) var(--ease-out),
+    box-shadow var(--slow) var(--ease-out);
+}
+
+/* The arrow is the moving part, and the ring blooms outward from the edge.
+   Filling the control on hover meant the label crossed the exact color of the
+   background coming the other way, so halfway through the transition the words
+   were invisible. Nothing here sits under the text. */
+.chapter__more::after {
+  content: '→';
+  display: inline-block;
+  margin-inline-start: 0.7em;
+  transition: translate var(--fast) var(--ease-out);
+}
+
+.chapter__more:hover,
+.chapter__more:focus-visible {
+  border-color: var(--era-accent);
+  box-shadow: 0 0 0 0.32em color-mix(in oklab, var(--era-accent) 16%, transparent);
+}
+
+.chapter__more:hover::after,
+.chapter__more:focus-visible::after {
+  translate: 0.3em 0;
+}
+
+/* A filtered timeline is a different kind of reading: the reader came for the
+   entries, not the chapters. The openers shrink to a heading so that two
+   results are not four screens apart. */
+.timeline[data-filtered] .chapter {
+  --join: min(9vb, 4rem);
+}
+
+.timeline[data-filtered] .chapter__opener {
+  min-block-size: auto;
+  padding-block: var(--space-2xl) var(--space-xl);
+}
+
+.timeline[data-filtered] .chapter__name {
+  font-size: var(--step-4);
+}
+
+.timeline[data-filtered] .chapter__years {
+  font-size: clamp(3rem, 11vw, 9rem);
+}
+
+/* ── A year, and the entries under it ──────────────────────────────────── */
+
+.year-group {
+  grid-column: rail-start / main-end;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.year {
+  color: var(--era-muted);
+  align-self: start;
+  position: sticky;
+  inset-block-start: var(--chrome-top);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--step-0);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  padding-block-start: var(--space-s);
+  padding-inline-end: var(--space-2xs);
+  text-align: end;
+  z-index: 1;
+  transition: color var(--fast) var(--ease-out);
+}
+
+/* The list is the spine. Segments touch because the padding is on the inside,
+   so the line is continuous from the first entry of a chapter to the last. */
+.entries {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--space-m);
+  --spine: 1px;
+  border-inline-start: var(--spine) solid var(--era-rule);
+  /* Where a marker's own center has to land. The spine's border sits between
+     0 and --spine, so its middle is half a pixel left of the content edge. */
+  --marker-x: calc(var(--space-m) * -1 - var(--spine) / 2);
+  display: grid;
+}
+
+@media (width < 45rem) {
+  .entries {
+    padding-inline-start: var(--space-s);
+    --marker-x: calc(var(--space-s) * -1 - var(--spine) / 2);
+  }
+  .year {
+    font-size: var(--step--1);
+  }
+}
+
+/* ── An entry ──────────────────────────────────────────────────────────── */
+
+.entry {
+  position: relative;
+  padding-block: var(--space-s);
+  border-block-end: 1px solid color-mix(in oklab, var(--era-rule) 55%, transparent);
+}
+
+.entry:last-child {
+  border-block-end: 0;
+}
+
+/* The marker sits on the spine. Its shape says which layer the entry belongs
+   to, so a reader learns the vocabulary by reading rather than by consulting
+   a legend. */
+.entry::before {
+  content: '';
+  position: absolute;
+  inset-block-start: calc(var(--space-s) + 0.55em);
+  inset-inline-start: var(--marker-x);
+  translate: -50% -50%;
+  inline-size: 9px;
+  block-size: 9px;
+  border-radius: 999px;
+  background: var(--era-bg);
+  border: 1.5px solid var(--marker, var(--era-faint));
+  transition:
+    scale var(--fast) var(--ease-out),
+    translate var(--fast) var(--ease-out),
+    background var(--fast) var(--ease-out);
+}
+
+.entry[data-track='machine'] {
+  --marker: var(--track-machine);
+}
+.entry[data-track='play'] {
+  --marker: var(--track-play);
+}
+.entry[data-track='learn'] {
+  --marker: var(--track-learn);
+}
+.entry[data-track='make'] {
+  --marker: var(--track-make);
+}
+.entry[data-track='work'] {
+  --marker: var(--track-work);
+}
+.entry[data-track='tech'] {
+  --marker: var(--track-tech);
+}
+.entry[data-track='world'] {
+  --marker: var(--track-world);
+}
+
+/* Mine are filled. The world's are hollow. That one difference carries the
+   whole "me against the room" reading of the page. */
+.entry[data-mine]::before {
+  background: var(--marker);
+}
+
+.entry[data-track='machine']::before {
+  border-radius: 1px;
+}
+
+.entry[data-track='make']::before {
+  border-radius: 1px;
+  rotate: 45deg;
+  /* Sized by its diagonal, not its side, so it reads the same width as a
+     circle instead of half again as wide. */
+  inline-size: 7px;
+  block-size: 7px;
+}
+
+.entry[data-track='learn']::before {
+  border-radius: 0;
+  border-width: 0;
+  background: var(--marker);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  margin-block-start: -1.5px;
+}
+
+.entry[data-track='world']::before {
+  inline-size: 12px;
+  block-size: 2px;
+  border-width: 0;
+  background: var(--marker);
+  border-radius: 0;
+}
+
+.entry:hover::before {
+  scale: 1.35;
+}
+
+.entry__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2xs);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--era-faint);
+  margin-block-end: var(--space-3xs);
+}
+
+.entry__track {
+  /* A tint of the layer's color, not the color itself: enough to associate the
+     label with its marker, little enough that the label keeps the ink's
+     measured contrast. */
+  color: color-mix(in oklab, var(--marker, var(--era-faint)) 22%, var(--era-ink));
+}
+
+.entry__title {
+  font-size: var(--step-1);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  color: var(--era-ink);
+}
+
+.entry__title a {
+  text-decoration: none;
+  background-image: linear-gradient(var(--era-accent), var(--era-accent));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--slow) var(--ease-out);
+}
+
+.entry__title a:hover {
+  background-size: 100% 1px;
+}
+
+/* The whole entry is the hit area for the one link inside it, so the click
+   target is the block rather than a line of text. */
+.entry__title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.entry__dek {
+  margin-block-start: var(--space-3xs);
+  color: var(--era-muted);
+  font-size: var(--step-0);
+  line-height: 1.5;
+  max-inline-size: 46ch;
+  text-wrap: pretty;
+}
+
+/* ── A featured entry ──────────────────────────────────────────────────── */
+
+.entry[data-feature] {
+  padding-inline: var(--space-s);
+  padding-block: var(--space-m);
+  margin-block: var(--space-2xs);
+  background: var(--era-wash);
+  border-inline-start: var(--feature-edge) solid var(--era-accent);
+  border-block-end: 0;
+  box-shadow:
+    0 1px 2px color-mix(in oklab, black 7%, transparent),
+    0 8px 20px -8px color-mix(in oklab, black 14%, transparent);
+  transition:
+    translate var(--mid) var(--ease-soft),
+    box-shadow var(--mid) var(--ease-soft);
+}
+
+/* The card lifts a little. Only the ones that open something: an entry with no
+   page of its own is a line, not a link, and should not offer to be pressed. */
+.entry[data-feature]:has(.entry__title a):hover {
+  translate: 0 -4px;
+  box-shadow:
+    0 2px 5px color-mix(in oklab, black 9%, transparent),
+    0 16px 32px -10px color-mix(in oklab, black 20%, transparent);
+}
+
+/* The marker is a child of the card, so the lift takes it off the spine unless
+   it is handed the same distance back. */
+.entry[data-feature]:has(.entry__title a):hover::before {
+  translate: -50% calc(-50% + 3px);
+}
+
+/* A drop shadow on a near-black ground is a shadow nobody can see. What reads
+   on a dark surface is the edge the light would have caught, so the card gets a
+   hairline along its top and keeps only enough shadow underneath to sit the
+   card off the page rather than to darken anything. */
+[data-dark] .entry[data-feature] {
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--era-ink) 20%, transparent),
+    0 12px 28px -10px color-mix(in oklab, black 55%, transparent);
+}
+
+[data-dark] .entry[data-feature]:has(.entry__title a):hover {
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--era-ink) 30%, transparent),
+    0 20px 40px -12px color-mix(in oklab, black 65%, transparent);
+}
+
+/* A featured card draws a 2px edge of its own, and an absolutely positioned
+   child is offset from the padding box, which that border pushes inward. Left
+   uncorrected the marker sat two pixels off the spine, which is exactly the
+   width of the edge. */
+.entry[data-feature] {
+  --feature-edge: 2px;
+}
+
+.entry[data-feature]::before {
+  inset-block-start: calc(var(--space-m) + 0.55em);
+  inset-inline-start: calc(var(--marker-x) - var(--feature-edge));
+  scale: 1.2;
+  /* The same clock as the card. Two things travelling the same distance on
+     different timings is the knock, not the distance. */
+  transition:
+    translate var(--mid) var(--ease-soft),
+    scale var(--mid) var(--ease-soft),
+    background var(--mid) var(--ease-soft);
+}
+
+/* Wide enough for the card to reach into the right-hand gutter and break the
+   column, which is the whole point of featuring one. */
+@media (width >= 64rem) {
+  .entry[data-feature] {
+    margin-inline-end: -3rem;
+  }
+}
+
+@media (width < 45rem) {
+  .entry[data-feature] {
+    padding-inline: var(--space-xs);
+  }
+}
+
+.entry[data-feature] .entry__title {
+  font-size: var(--step-2);
+}
+
+/* ── Tags and small print ──────────────────────────────────────────────── */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+  list-style: none;
+  padding: 0;
+  margin-block-start: var(--space-2xs);
+  position: relative;
+  z-index: 1;
+}
+
+.tags a {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  color: var(--era-muted);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--era-faint);
+  border: 1px solid color-mix(in oklab, var(--era-rule) 80%, transparent);
+  padding: 0.05em 0.45em;
+  border-radius: 999px;
+  transition:
+    color var(--fast) var(--ease-out),
+    border-color var(--fast) var(--ease-out);
+}
+
+.tags a:hover {
+  color: var(--era-ink);
+  border-color: var(--era-accent);
+}
+
+.needs-note {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--era-bg);
+  background: color-mix(in oklab, var(--era-accent) 80%, var(--era-ink));
+  padding: 0 0.4em;
+  border-radius: var(--radius);
+}
+
+/* ── A tagged view says so, and offers the way back ────────────────────── */
+
+.result-note {
+  grid-column: rail-start / main-end;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--muted);
+  padding-block: var(--space-m);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  align-items: baseline;
+}
+
+.result-note a {
+  color: var(--accent);
+}
+
+/* ── The filter row ────────────────────────────────────────────────────────
+   Under the hero rather than over it, so the page still opens on the argument
+   instead of on a control panel, and it sticks the moment the reader has
+   decided to start reading. Seven links and no script: the row is a set of
+   URLs, and the one already showing is the one that clears the filter. */
+
+.filters {
+  position: sticky;
+  inset-block-start: var(--sticky-top);
+  z-index: 3;
+  background: color-mix(in oklab, var(--paper) 90%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-block-end: 1px solid var(--rule);
+}
+
+.filters__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3xs) var(--space-3xs);
+  /* A little more above than below. The row tucks a hair behind the running
+     head when it sticks, and that hair comes out of the top. */
+  padding-block: calc(var(--space-3xs) + 3px) var(--space-3xs);
+  padding-inline: var(--gutter);
+  max-inline-size: 88rem;
+  margin-inline: auto;
+  min-block-size: var(--filters-h);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+}
+
+.filters a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.35em 0.75em;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color var(--fast) var(--ease-out),
+    border-color var(--fast) var(--ease-out),
+    background var(--fast) var(--ease-out);
+}
+
+.filters a > span {
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.filters a:hover,
+.filters a:focus-visible {
+  color: var(--ink);
+  border-color: var(--rule);
+}
+
+/* The row shows what it is showing. Colour alone would not say it, so the
+   selected link also carries the ring and the label goes to full ink. */
+.filters a[aria-current] {
+  color: var(--ink);
+  border-color: color-mix(in oklab, var(--marker, var(--accent)) 55%, var(--rule));
+  background: color-mix(in oklab, var(--marker, var(--accent)) 12%, transparent);
+}
+
+.filters a[aria-current] > span {
+  color: var(--muted);
+}
+
+/* The ring is 2px at a 3px offset everywhere else on the site, which is more
+   than a row this tight can hold: it was being clipped by the head above and
+   the rule below. It sits closer here. */
+.filters a:focus-visible {
+  outline-offset: 1px;
+}
+
+/* A dot in the layer's own color, so the row and the spine speak the same
+   vocabulary without repeating the whole shape alphabet. */
+.filters__dot {
+  inline-size: 7px;
+  block-size: 7px;
+  border-radius: 999px;
+  background: var(--marker);
+  flex: none;
+}
+
+@media (width < 45rem) {
+  .filters__inner {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}
+
+/* ── The instruments: a year, and a bar down the edge ──────────────────── */
+
+.yearometer,
+.progress {
+  display: none;
+}
+
+.progress {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: 3px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.progress__track {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  opacity: 0.3;
+}
+
+.progress__segment {
+  background: var(--swatch);
+}
+
+/* The same seven segments again, at full strength, clipped to how far down the
+   document the reader has come. A single-color thumb cannot be read over seven
+   different backgrounds, and a blend mode cannot help: the bar is its own
+   stacking context, so it would blend with itself rather than with the page.
+   Clipping a second copy needs neither. */
+.progress__lit {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  clip-path: inset(0 0 calc((1 - var(--read)) * 100%) 0);
+}
+
+.yearometer {
+  position: fixed;
+  inset-block-end: var(--space-s);
+  inset-inline-start: var(--space-s);
+  z-index: 30;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--step-1);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  /* It floats over seven different chapter backgrounds, so it carries its own.
+     The same frosted treatment the header uses, which is what stops it reading
+     as a stray number. A blend mode was the first attempt and it is not
+     dependable: whether it sees the chapter behind it or the page depends on
+     which ancestor happens to have made a stacking context. */
+  color: var(--ink);
+  background: color-mix(in oklab, var(--paper) 76%, transparent);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.1em 0.6em 0.15em;
+  backdrop-filter: blur(12px) saturate(1.4);
+}
+
+.yearometer__value::after {
+  counter-reset: yr var(--year);
+  content: counter(yr);
+}
+
+/* Both instruments need a scroll timeline to mean anything, so neither one
+   appears without support for one. A frozen year would be a lie. */
+@supports (animation-timeline: scroll()) {
+  @media (width >= 45rem) and (prefers-reduced-motion: no-preference) {
+    .yearometer,
+    .progress {
+      display: block;
+    }
+
+    .yearometer__value {
+      animation: count-years linear both;
+      animation-timeline: --flow;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .progress__lit {
+      animation: fill-bar linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes count-years {
+  from {
+    --year: 1976;
+  }
+  to {
+    --year: 2026;
+  }
+}
+
+@keyframes fill-bar {
+  to {
+    --read: 1;
+  }
+}
+
+/* ── Reveals ──────────────────────────────────────────────────────────────
+   Entries rise as they come in and the chapter numerals drift as the chapter
+   passes. Both are view timelines, so nothing is measured on the main thread
+   and nothing runs when the reader is not scrolling. */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .entry {
+      animation: rise linear both;
+      animation-timeline: view();
+      /* Entry-only. A range that reaches into cover needs scroll distance the
+         document does not have once you are near the bottom, so the last
+         chapter would hold at opacity 0 and never arrive. */
+      animation-range: entry 25% entry 100%;
+    }
+
+    .chapter__years {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+
+    .chapter__inner > * {
+      animation: rise-slow linear both;
+      animation-timeline: view();
+      animation-range: entry 20% entry 100%;
+    }
+
+    .contents__item {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 90%;
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 1.4rem;
+  }
+}
+
+@keyframes rise-slow {
+  from {
+    opacity: 0;
+    translate: 0 2.5rem;
+  }
+}
+
+@keyframes drift {
+  from {
+    translate: 0 calc(-50% - 4vb);
+  }
+  to {
+    translate: 0 calc(-50% + 4vb);
+  }
+}

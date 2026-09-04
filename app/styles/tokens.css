@@ -1,0 +1,152 @@
+/* Every value the rest of the stylesheet reads. Nothing here draws anything. */
+
+/* Registered so they can be animated and so a wrong value is ignored rather
+   than inherited. `--year` is the one the scroll-driven counter interpolates:
+   an <integer> steps between whole numbers, which is exactly what a year wants
+   to do. */
+@property --year {
+  syntax: '<integer>';
+  inherits: true;
+  initial-value: 1976;
+}
+
+@property --scroll {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/* How far through the document the reader is, 0 to 1. The bar down the edge
+   clips itself with it. */
+@property --read {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --lift {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+:root {
+  color-scheme: light dark;
+
+  /* ── Type ───────────────────────────────────────────────────────────────
+     Three voices. Serif for anything that is prose or a title, sans for
+     interface furniture, mono for anything the machine said: years, specs,
+     tags, code. The mono is doing real work here, it is the sound of the
+     first thirty years of this story.
+
+     No web font is loaded. If you add one, set it on --font-display and
+     --font-body and nothing else has to change. */
+  --font-body: ui-serif, 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-ui: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --font-display: var(--font-body);
+
+  /* A fluid scale, 320px → 1600px. The ratio opens up as the viewport does:
+     1.2 at phone size, 1.28 at desktop, so a headline is dramatic on a big
+     screen and still readable on a small one. */
+  --step--2: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step--1: clamp(0.9rem, 0.87rem + 0.13vw, 0.98rem);
+  --step-0: clamp(1rem, 0.96rem + 0.19vw, 1.12rem);
+  --step-1: clamp(1.2rem, 1.13rem + 0.34vw, 1.42rem);
+  --step-2: clamp(1.44rem, 1.32rem + 0.58vw, 1.81rem);
+  --step-3: clamp(1.73rem, 1.54rem + 0.94vw, 2.31rem);
+  --step-4: clamp(2.07rem, 1.78rem + 1.47vw, 2.94rem);
+  --step-5: clamp(2.49rem, 2.04rem + 2.24vw, 3.75rem);
+  --step-6: clamp(2.99rem, 2.32rem + 3.33vw, 4.78rem);
+  --step-7: clamp(3.58rem, 2.6rem + 4.9vw, 6.09rem);
+
+  /* ── Space ─────────────────────────────────────────────────────────────── */
+  --space-3xs: clamp(0.25rem, 0.24rem + 0.06vw, 0.31rem);
+  --space-2xs: clamp(0.5rem, 0.48rem + 0.11vw, 0.62rem);
+  --space-xs: clamp(0.75rem, 0.72rem + 0.17vw, 0.94rem);
+  --space-s: clamp(1rem, 0.96rem + 0.22vw, 1.25rem);
+  --space-m: clamp(1.5rem, 1.43rem + 0.33vw, 1.87rem);
+  --space-l: clamp(2rem, 1.91rem + 0.45vw, 2.5rem);
+  --space-xl: clamp(3rem, 2.87rem + 0.67vw, 3.75rem);
+  --space-2xl: clamp(4rem, 3.83rem + 0.89vw, 5rem);
+  --space-3xl: clamp(6rem, 5.74rem + 1.34vw, 7.5rem);
+
+  /* ── Measure and columns ───────────────────────────────────────────────── */
+  --measure: 40rem;
+  --gutter: var(--space-s);
+  --rail: clamp(3.5rem, 8vw, 8rem);
+  /* Where a sticky year comes to rest, just clear of the header. */
+  /* The running head's own measured height: 2.62rem once it fits on one line,
+     4.50rem once the nav wraps below the name. The filter row sticks to a hair
+     under it rather than a hair over, because overlap disappears behind the
+     header and a gap shows the page scrolling through the middle of it. */
+  --sticky-top: 2.6rem;
+  --filters-h: 2.9rem;
+  /* Everything the reader cannot scroll under: the head, plus the filter row on
+     the one page that has one. */
+  --chrome-top: var(--sticky-top);
+
+  /* ── Color, for everything that is not inside a chapter ────────────────── */
+  --paper: light-dark(oklch(97.8% 0.008 84), oklch(14% 0.012 266));
+  --ink: light-dark(oklch(20% 0.018 266), oklch(96% 0.008 266));
+  --accent: light-dark(oklch(42% 0.19 258), oklch(87% 0.11 196));
+
+  /* Every one of these is solved rather than chosen. APCA is polarity
+     asymmetric, light text on a dark ground loses contrast far faster as it
+     blends toward the background than dark text on a light one, so the same
+     mix cannot serve both. These percentages are the ones that put `--muted`
+     over Lc 75 and `--faint` over Lc 60 on the darkest and lightest grounds on
+     the site. `light-dark()` rather than a `prefers-color-scheme` block on
+     purpose: the bundler hoists that block above the `:root` it is meant to
+     override, and the override silently loses. See styles/eras.css for the
+     per-chapter equivalents, which key off an attribute and do not have the
+     problem. */
+  --muted: light-dark(
+    color-mix(in oklab, var(--ink) 80%, var(--paper)),
+    color-mix(in oklab, var(--ink) 90%, var(--paper))
+  );
+  --faint: light-dark(
+    color-mix(in oklab, var(--ink) 80%, var(--paper)),
+    color-mix(in oklab, var(--ink) 93%, var(--paper))
+  );
+  --rule: light-dark(
+    color-mix(in oklab, var(--ink) 20%, var(--paper)),
+    color-mix(in oklab, var(--ink) 45%, var(--paper))
+  );
+  --wash: color-mix(in oklab, var(--ink) 4%, var(--paper));
+
+  /* A chapter overwrites these three. Away from the timeline they resolve to
+     the page's own palette, so one set of rules styles both. */
+  --era-bg: var(--paper);
+  --era-ink: var(--ink);
+  --era-accent: var(--accent);
+  --era-muted: var(--muted);
+  --era-rule: var(--rule);
+  --era-wash: var(--wash);
+
+  /* ── Motion ────────────────────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* For something that moves rather than appears. The expo curve above is
+     right for a fade and wrong for a lift: it spends most of the distance in
+     the first quarter of the duration, which the eye reads as a knock. */
+  --ease-soft: cubic-bezier(0.25, 0.6, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --fast: 160ms;
+  --mid: 260ms;
+  --slow: 520ms;
+
+  --radius: 2px;
+}
+
+/* The four layers that are mine, and the two that are the room I was in. The
+   marker on the spine is drawn from these, so a reader learns the vocabulary
+   without a legend. */
+:root {
+  --track-machine: oklch(72% 0.14 60);
+  --track-play: oklch(70% 0.17 340);
+  --track-learn: oklch(70% 0.16 300);
+  --track-make: oklch(72% 0.15 150);
+  --track-work: oklch(68% 0.16 250);
+  --track-tech: oklch(66% 0.06 266);
+  --track-world: oklch(64% 0.04 90);
+}

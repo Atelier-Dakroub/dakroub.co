@@ -1,0 +1,218 @@
+<script server>
+  import { site } from "../data/site.js";
+  import { all, eras, filters, flow, readQuery, stream } from "../data/timeline.js";
+  import { trackBy } from "../data/tracks.js";
+
+  // The page answers `?tag=`, so it cannot be one file: a prerendered page is
+  // the same bytes for every URL that resolves to it, and a tagged view has to
+  // be different bytes. Held for an hour instead, which for a page whose data is
+  // a directory of JavaScript files is the same thing as forever.
+  export const prerender = false;
+  export const revalidate = 3600;
+
+  /** The three colors a chapter themes itself with, plus the one above it. */
+  const styleOf = (chapter) =>
+    [
+      `--era-bg: ${chapter.era.bg}`,
+      `--era-ink: ${chapter.era.ink}`,
+      `--era-accent: ${chapter.era.accent}`,
+      `--prev-bg: ${chapter.previous}`,
+    ].join("; ");
+
+  export default async ({ url }) => {
+    const query = readQuery(url);
+    const list = stream(query);
+    const chapters = flow(list);
+
+    return {
+      site,
+      query,
+      filters: filters(query),
+      // Computed here because a template cannot hold a conditional, and because
+      // "entries tagged apple" and "entries · Work" are different sentences.
+      allCurrent: query.active ? false : "true",
+      noteTail: query.track
+        ? `entries \u00b7 ${trackBy[query.track].plural}`
+        : `entries tagged ${query.tag}`,
+      found: list.length,
+      total: all.length,
+      chapters: chapters.map((chapter) => ({
+        ...chapter,
+        style: styleOf(chapter),
+      })),
+      // The contents block and the bar down the right-hand edge are the same
+      // list seen twice: seven chapters, sized by how much of the page each one
+      // actually occupies.
+      contents: chapters.map((chapter) => ({
+        slug: chapter.era.slug,
+        name: chapter.era.name,
+        kicker: chapter.era.kicker,
+        from: chapter.era.from,
+        to: chapter.era.to,
+        count: chapter.count,
+        // A filtered chapter can hold exactly one thing, and "1 entries" is the
+        // sort of detail a reader notices and an author does not.
+        countLabel: `${chapter.count} ${chapter.count === 1 ? "entry" : "entries"}`,
+        accent: chapter.era.accent,
+      })),
+      bars: chapters.map((chapter) => `${chapter.count}fr`).join(" "),
+      spanText: `${eras[0].from}–${eras[eras.length - 1].to}`,
+    };
+  };
+</script>
+
+<title>Joe Dakroub, fifty years with computers</title>
+<meta property="og:title" content="Fifty years at a screen, in one scroll" />
+<meta
+  property="og:description"
+  content="A time capsule of one life with computers: 1976 to now, as a single vertical timeline."
+/>
+
+<section class="hero spread">
+  <h1 class="hero__title">Fifty years on a screen, in <em>one scroll</em>.</h1>
+
+  <p class="hero__lede">
+    A green cursor in 1976, a magazine listing typed in on a Saturday, a modem,
+    a table layout, a phone that changed every layout ever made, and a web
+    framework in 2026. It is one story and this is the long version of it.
+  </p>
+
+  <p class="hero__span">
+    <span class="mono">${spanText}</span>
+    <span>·</span>
+    <span><b>${total}</b> entries</span>
+    <span>·</span>
+    <span>seven chapters</span>
+    <span>·</span>
+    <span><b>0 bytes</b> of JavaScript</span>
+  </p>
+
+  <p class="hero__short">
+    Hiring? <a href="/work">Work</a> is the resume and
+    <a href="/projects">Projects</a> is the evidence. Everything below is the
+    long version.
+  </p>
+
+  <nav class="contents" aria-label="Chapters">
+    <a
+      class="contents__item"
+      each="chapter of contents"
+      key="chapter.slug"
+      href="/era/${chapter.slug}"
+      style="--swatch: ${chapter.accent}"
+    >
+      <span class="contents__years mono">${chapter.from}–${chapter.to}</span>
+      <span class="contents__name">${chapter.name}</span>
+      <span class="contents__count mono">${chapter.countLabel}</span>
+    </a>
+  </nav>
+
+  <p class="hero__cue">Scroll</p>
+</section>
+
+<nav class="filters" aria-label="Filter the timeline by layer">
+  <div class="filters__inner">
+    <a class="filters__all" href="/#stream" aria-current="${allCurrent}"
+      >Everything <span>${total}</span></a
+    >
+    <a
+      class="filters__one"
+      each="one of filters"
+      key="one.id"
+      href="${one.href}"
+      data-track="${one.id}"
+      style="${one.swatch}"
+      aria-current="${one.current}"
+      ><span class="filters__dot" aria-hidden="true"></span>${one.label}
+      <span>${one.count}</span></a
+    >
+  </div>
+</nav>
+
+<div class="spread" if="query.active">
+  <p class="result-note">
+    <span><b>${found}</b> of ${total} ${noteTail}</span>
+    <a href="/">Show everything</a>
+  </p>
+</div>
+
+<div class="timeline" id="stream" data-filtered="${query.active}" fragment>
+  <section
+    class="chapter spread"
+    each="chapter of chapters"
+    key="chapter.era.slug"
+    id="${chapter.era.slug}"
+    data-texture="${chapter.era.texture}"
+    data-dark="${chapter.era.dark}"
+    style="${chapter.style}"
+  >
+    <div
+      class="chapter__opener era-surface full"
+      style="view-transition-name: era-${chapter.era.slug}"
+    >
+      <div class="chapter__years mono" aria-hidden="true">
+        ${chapter.era.from}<br />${chapter.era.to}
+      </div>
+      <div class="chapter__inner">
+        <p class="chapter__kicker">${chapter.era.kicker}</p>
+        <h2 class="chapter__name">${chapter.era.name}</h2>
+        <p class="chapter__dek">${chapter.era.dek}</p>
+        <a class="chapter__more" href="/era/${chapter.era.slug}"
+          >Read this chapter</a
+        >
+      </div>
+    </div>
+
+    <div class="year-group" each="group of chapter.years" key="group.year">
+      <h3 class="year">${group.year}</h3>
+      <div class="entries">
+        <time-entry
+          each="entry of group.entries"
+          key="entry.id"
+          href="${entry.href}"
+          stamp="${entry.stamp}"
+          track="${entry.track}"
+          track-label="${entry.trackLabel}"
+          heading="${entry.title}"
+          dek="${entry.dek}"
+          tags="${entry.tags}"
+          mine="${entry.mine}"
+          feature="${entry.feature}"
+          needs="${entry.needs}"
+          vt="${entry.vt}"
+        ></time-entry>
+      </div>
+    </div>
+  </section>
+
+  <p class="result-note" if="!chapters.length">
+    <span>Nothing in fifty years matches that.</span>
+    <a href="/">Show everything</a>
+  </p>
+
+  <!-- The two instruments. Both are inside the timeline because both read its
+       view timeline, and neither appears at all unless the browser can drive an
+       animation from a scroll position. -->
+  <div class="progress" aria-hidden="true">
+    <div class="progress__track" style="grid-template-rows: ${bars}">
+      <div
+        class="progress__segment"
+        each="chapter of contents"
+        key="chapter.slug"
+        style="--swatch: ${chapter.accent}"
+      ></div>
+    </div>
+    <div class="progress__lit" style="grid-template-rows: ${bars}">
+      <div
+        class="progress__segment"
+        each="chapter of contents"
+        key="chapter.slug"
+        style="--swatch: ${chapter.accent}"
+      ></div>
+    </div>
+  </div>
+
+  <p class="yearometer mono" aria-hidden="true">
+    <span class="yearometer__value"></span>
+  </p>
+</div>

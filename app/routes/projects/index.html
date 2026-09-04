@@ -1,0 +1,43 @@
+<script server>
+  import { live } from '../../data/projects.js';
+
+  export default async () => ({
+    projects: live.map((project) => ({
+      slug: project.slug,
+      name: project.name,
+      dek: project.dek,
+      when: project.until ? `${project.year} – ${project.until}` : String(project.year),
+      role: project.role ?? '',
+      stack: project.stack ?? [],
+    })),
+  });
+</script>
+
+<title>Projects, Joe Dakroub</title>
+<meta name="description" content="Selected work, with the reasoning left in." />
+<meta property="og:title" content="Projects, Joe Dakroub" />
+<meta property="og:description" content="Selected work, with the reasoning left in." />
+
+<div class="page spread">
+  <div class="page__head">
+    <p class="kicker">Selected work</p>
+    <h1>Projects</h1>
+    <p class="lede">
+      Fewer of them, explained properly. Each one says what the problem was, what I decided, and
+      what I would change.
+    </p>
+  </div>
+
+  <section>
+    <ol class="project-list" role="list">
+      <li class="project-card" each="project of projects" key="project.slug">
+        <p class="role__when mono">${project.when} · ${project.role}</p>
+        <h2><a href="/projects/${project.slug}">${project.name}</a></h2>
+        <p>${project.dek}</p>
+        <ul class="stack" role="list" if="project.stack.length">
+          <li each="tool of project.stack">${tool}</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+</div>

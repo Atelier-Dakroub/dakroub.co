@@ -1,0 +1,292 @@
+<script server>
+  import { all, eras, written } from "../data/timeline.js";
+
+  export default async () => ({
+    entries: all.length,
+    written: written.length,
+    eras: eras.length,
+  });
+</script>
+
+<title>Colophon, Joe Dakroub</title>
+<meta
+  name="description"
+  content="How this site is built: one framework, no client JavaScript, and every effect a web standard."
+/>
+<meta property="og:title" content="Colophon, how this site is built" />
+<meta
+  property="og:description"
+  content="One framework, no client JavaScript, and every effect a web standard."
+/>
+
+<div class="page spread">
+  <div class="page__head">
+    <p class="kicker">Colophon</p>
+    <h1>How this is built, and what it is arguing</h1>
+    <p class="lede">
+      A portfolio should be evidence, not a description of evidence. So this one
+      is made out of the thing it is claiming to be good at.
+    </p>
+  </div>
+
+  <section>
+    <dl class="facts">
+      <div>
+        <dt>Framework</dt>
+        <dd>transclude</dd>
+      </div>
+      <div>
+        <dt>Client JavaScript</dt>
+        <dd>0 B</dd>
+      </div>
+      <div>
+        <dt>Web fonts</dt>
+        <dd>None</dd>
+      </div>
+      <div>
+        <dt>Images</dt>
+        <dd>None</dd>
+      </div>
+      <div>
+        <dt>Entries</dt>
+        <dd>${entries}</dd>
+      </div>
+      <div>
+        <dt>Chapters</dt>
+        <dd>${eras}</dd>
+      </div>
+    </dl>
+
+    <div class="prose">
+      <h2>Everything is a file</h2>
+      <p>
+        The site runs on <a href="https://transclude.dev">transclude</a>, a
+        framework I created. A page is an <code>.html</code> file under
+        <code>app/routes/</code>, the directory tree is the route table, and a
+        <code>&lt;script server&gt;</code> block at the top of the file is the
+        loader that fetches its data. There is no component layer, no JSX and no
+        client bundle. What arrives in the browser is the markup the server
+        made.
+      </p>
+      <p>
+        The framework is not only holding up this page. It also runs
+        <a href="/projects/timothy-mcallister">timothymcallister.com</a> on
+        Cloudflare Workers, which is a client site with an audience that has no
+        idea any of this is unusual, the correct outcome.
+      </p>
+      <p>
+        <code>npm run build</code> renders every page it can to a file. Of the
+        pages here, only the timeline is left to the server, because it answers
+        <code>?tag=</code> and one file cannot be several answers. It holds each
+        render for an hour. Everything else is bytes on a disk.
+      </p>
+
+      <h2>Any part of a page is a URL</h2>
+      <p>
+        Mark an element with an <code>id</code> and a
+        <code>fragment</code> attribute and it becomes addressable on its own.
+        The whole timeline is one:
+        <a href="/?fragment=stream">/?fragment=stream</a> returns the seven
+        chapters and nothing else, no head, no header, no footer. Open it. It is
+        the same compiled markup the full page uses, which is the point: a
+        partial update cannot drift from the page it is updating part of.
+      </p>
+      <p>
+        Nothing on this site swaps a fragment in, because nothing on this site
+        runs JavaScript. The capability is there for the app that needs it.
+      </p>
+
+      <h2>Navigation with no router</h2>
+      <p>
+        Every link here is an ordinary document request. The browser throws the
+        old page away and parses a new one, exactly as it did in 1994, and the
+        transition between them animates because of four lines of CSS:
+      </p>
+      <pre><code>@view-transition {
+  navigation: auto;
+}</code></pre>
+      <p>
+        A chapter opener on the timeline and the heading of that chapter's own
+        page share a
+        <code>view-transition-name</code>, so clicking through morphs one into
+        the other. The header and the footer are named too, which is why they
+        hold still while the page changes underneath them. The site also emits
+        speculation rules, so the browser fetches the next document while your
+        pointer is still on the link.
+      </p>
+      <p>
+        This is the feature a decade of single-page applications existed to
+        provide. It is now four lines and an attribute.
+      </p>
+
+      <h2>Motion with no JavaScript</h2>
+      <p>
+        There is not one scroll listener on this site. Four things move against
+        your scroll position, all of them CSS animations on a scroll or a view
+        timeline, which run off the main thread:
+      </p>
+      <ul>
+        <li>
+          Entries rise as they come into view,
+          <code>animation-timeline: view()</code>.
+        </li>
+        <li>
+          A chapter's years drift behind its title, over the range the chapter
+          covers.
+        </li>
+        <li>
+          The bar down the right edge fills against the document's own scroll.
+        </li>
+        <li>
+          The year in the corner counts from 1976 to 2026. It is a registered
+          <code>&lt;integer&gt;</code> custom property, animated along the
+          timeline's view range and printed with <code>counter()</code>.
+        </li>
+      </ul>
+      <p>
+        The chapter backgrounds move on their own clock rather than on yours.
+        Each of the seven has a texture drawn in CSS, and each one behaves the
+        way its decade did. The 1976 scan lines roll by exactly one pattern
+        period so the loop is seamless. The eight-bit dither does not slide, it
+        jumps in steps, because a dither has no in-between states. Light crosses
+        the beige plastic of the early nineties. The 2007 gloss has the sheen
+        every button of that year wanted. Flat design snaps between positions
+        rather than easing, like a breakpoint firing. The 2019 mesh breathes
+        over forty seconds.
+      </p>
+      <p>
+        Every one of those animates a transform or an opacity, so the compositor
+        does the work and a full-bleed element never repaints. And all of it,
+        scroll-driven and time-driven alike, sits inside a
+        <code>prefers-reduced-motion: no-preference</code> query. A reader who
+        has asked for stillness gets a completely static document.
+      </p>
+      <p>
+        Every one of them sits inside a
+        <code>prefers-reduced-motion: no-preference</code> query, so a reader
+        who has asked for stillness gets a completely static document.
+      </p>
+
+      <h2>The flow is the page</h2>
+      <p>
+        There is no filter row, and there was one for about a day. Fifty years
+        of somebody's life is a thing to read, not a dataset to query, and a row
+        of chips across the top of it kept making the argument that it was the
+        second thing. So it went.
+      </p>
+      <p>
+        What is left is one lateral move: the tags under an entry are links, and
+        following one narrows the timeline to it. That view is a real URL you
+        can send to somebody, the server renders it, and it works with scripting
+        turned off, which is the whole hypermedia argument, made once, in the
+        place a reader is already looking rather than in a toolbar they have to
+        ignore.
+      </p>
+
+      <h2>Seven palettes, from data</h2>
+      <p>
+        Each chapter carries three colors and a texture name in
+        <code>app/data/eras.js</code>. The page writes them onto the section as
+        custom properties, and one set of rules draws all seven chapters. The
+        rest of the palette, muted text, hairlines, washes, is derived from
+        those three with <code>color-mix()</code>, so a chapter cannot end up
+        with a rule that is out of key with its own background. Adding an eighth
+        era is adding an object to an array.
+      </p>
+      <p>
+        The textures are CSS. Scan lines are a repeating gradient, the eight-bit
+        dither is a repeating conic gradient at six pixels, the beige-box bevel
+        is a highlight and a shadow, and the Web 2.0 gloss is exactly the gloss
+        everybody put on everything in 2007. No images.
+      </p>
+
+      <h2>Every color is solved, not chosen</h2>
+      <p>
+        The palette is measured with APCA, the contrast method being developed
+        for WCAG 3, rather than the old 4.5:1 ratio. APCA is polarity aware: it
+        scores light text on a dark ground differently from dark text on a light
+        one, where the ratio treats the two as identical. That difference is
+        most of the reason a dark theme can pass an audit and still be hard to
+        read.
+      </p>
+      <p>
+        Every text element here was measured in a browser rather than estimated,
+        more than seven hundred of them, across every page and all seven chapter
+        palettes. The lowest score on the site is <b>Lc 75</b>, which is APCA's
+        minimum for body text. Most of it sits above Lc 90, the preferred level.
+        Nothing is left in the band where a contrast checker says yes and a
+        person squints.
+      </p>
+      <p>
+        Getting there changed the stylesheet in a way worth saying out loud.
+        Each chapter's secondary and label tones are derived by blending its ink
+        toward its own background, and because APCA is polarity aware, one blend
+        cannot serve both: a dark chapter needs its muted tone at 90% ink where
+        a light one needs 80%. So an era carries a <code>dark</code>
+        flag and the stylesheet has two derivations of the same idea. The
+        alternative was seven hand-picked palettes that drift apart the first
+        time somebody edits one.
+      </p>
+      <p>
+        The smallest type on the site went from 12px to 14px in the same pass.
+        No amount of contrast rescues eleven-pixel text, and APCA is explicit
+        about that in a way the old ratio never was.
+      </p>
+
+      <h2>Type</h2>
+      <p>
+        No web font is loaded, which is why the page paints immediately. Three
+        system stacks do the work: a serif for anything that is prose, a sans
+        for interface furniture, and a monospace for anything the machine said,
+        years, specifications, tags, code. The mono is carrying the first thirty
+        years of this story, so it is not a default, it is a decision.
+      </p>
+
+      <h2>What does not work everywhere</h2>
+      <p>
+        Honestly, because this is a page about engineering. Scroll-driven
+        animations and cross-document view transitions shipped in Chromium first
+        and the other engines have been arriving since. Where they are missing,
+        nothing breaks and nothing is missing except the movement: the year
+        counter and the progress bar hide themselves behind an
+        <code>@supports</code> query rather than sit there frozen and lying, the
+        entries are simply visible, and a navigation is a navigation.
+        <code>field-sizing</code> on the search box and the animated
+        <code>&lt;details&gt;</code> on the about page are the same kind of bet.
+      </p>
+      <p>
+        That is what progressive enhancement is for, and it is the reason this
+        could be built on features this new. The floor is a readable document.
+        Everything above it is optional.
+      </p>
+
+      <h2>Adding to it</h2>
+      <p>
+        The content is seven JavaScript files under
+        <code>app/data/entries/</code>, one per chapter, each exporting an array
+        of plain objects. An entry needs an <code>id</code>, a
+        <code>year</code>, a <code>track</code> and a <code>title</code>. Give
+        it a <code>body</code> and it gets a page of its own at
+        <code>/log/&lt;id&gt;</code>, automatically, in the sitemap and the
+        feed. Give it a <code>needs</code> note and it appears on a to-do list
+        that only exists while the dev server is running.
+      </p>
+      <p>
+        <code>npm run check</code> type-checks every template against the shape
+        its loader returns, with no TypeScript in the app. Misspell a field and
+        the build tells you which line.
+      </p>
+    </div>
+  </section>
+
+  <nav class="pager" aria-label="More">
+    <a href="/projects/this-site">
+      <span>← The project write-up</span>
+      <b>dakroub.co</b>
+    </a>
+    <a href="/">
+      <span>Back to the timeline →</span>
+      <b>Fifty years, one scroll</b>
+    </a>
+  </nav>
+</div>

@@ -1,0 +1,123 @@
+<script server>
+  import { site, nav } from "../data/site.js";
+  import { unwritten } from "../data/timeline.js";
+
+  /**
+   * Wraps every page. It loads once per request and the page below it can read
+   * what it returned through `ctx.layout`.
+   */
+  export default async ({ route, absolute }) => {
+    const path = route.path;
+
+    // The timeline is the front page and also everything under /era and /log,
+    // because those are the same document read at a different depth.
+    const owns = (href) =>
+      href === "/"
+        ? path === "/" || path.startsWith("/era") || path.startsWith("/log")
+        : path.startsWith(href);
+
+    return {
+      site,
+      nav: nav.map((item) => ({
+        ...item,
+        current: owns(item.href) ? "page" : false,
+      })),
+      // The page's own address, for `og:url`. `absolute` resolves against
+      // `metadataBase` in the config rather than against the request, because a
+      // prerendered page has no request and a proxied one has the wrong origin.
+      canonical: absolute(path),
+      // Only ever used to nag the author while the site is still being written.
+      unwritten: unwritten.length,
+      built: new Date().getFullYear(),
+    };
+  };
+</script>
+
+<meta name="description" content="${site.tagline}" />
+<meta name="author" content="${site.name}" />
+<meta property="og:site_name" content="${site.name}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="${site.name}, ${site.role}" />
+<meta property="og:description" content="${site.tagline}" />
+<meta property="og:url" content="${canonical}" />
+<meta name="twitter:card" content="summary" />
+<meta name="theme-color" content="#111318" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="${site.name}"
+  href="/feed.xml"
+/>
+
+<body class="shell"></body>
+
+<a class="skip-link" href="#main">Skip to the content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__name" href="/">
+      <b>${site.name}</b>
+      <span>· ${site.role}</span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="site-nav" role="list">
+        <li each="item of nav">
+          <a
+            href="${item.href}"
+            aria-current="${item.current}"
+            title="${item.hint}"
+            >${item.label}</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <slot></slot>
+</main>
+
+<footer class="site-footer spread">
+  <div class="site-footer__inner">
+    <div>
+      <h2>The site</h2>
+      <ul role="list">
+        <li each="item of nav">
+          <a href="${item.href}">${item.label}</a>
+        </li>
+        <li><a href="/feed.xml">Feed</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Elsewhere</h2>
+      <ul role="list">
+        <li each="link of site.elsewhere">
+          <a href="${link.href}" rel="me">${link.label}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Get in touch</h2>
+      <ul role="list">
+        <li><a href="mailto:${site.email}">${site.email}</a></li>
+        <li if="site.location">${site.location}</li>
+        <!-- <li>Seeking: ${site.seeking} position</li> -->
+      </ul>
+    </div>
+
+    <p class="site-footer__note">
+      <span>
+        ${built} ${site.name}. Built with
+        <a href="https://transclude.dev">transclude</a>, and no client-side
+        JavaScript.
+      </span>
+      <!-- <span if="site.inProgress" class="wip"
+        >${unwritten} entries still to write</span
+      > -->
+    </p>
+  </div>
+</footer>

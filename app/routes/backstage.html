@@ -1,0 +1,117 @@
+<script server>
+  import { eraOf, eras, unwritten } from '../data/timeline.js';
+  import { projects } from '../data/projects.js';
+  import { roles } from '../data/work.js';
+
+  // `npm run dev` serves this page because the dev server reads the directory.
+  // The build writes no file for it, puts no line in the sitemap and leaves it
+  // out of the manifest, so in production the URL is a 404.
+  //
+  // Publishing it, if you ever wanted to, is deleting this line.
+  export const draft = true;
+
+  /** Which of the seven files an entry lives in. The names track the era slugs. */
+  const fileOf = (entry) => {
+    const era = eraOf(entry.year);
+    const index = eras.findIndex((one) => one.slug === era.slug) + 1;
+    return `app/data/entries/0${index}-${era.slug}.js`;
+  };
+
+  export default async () => ({
+    entries: unwritten.map((entry) => ({
+      id: entry.id,
+      year: entry.year,
+      title: entry.title,
+      needs: entry.needs ?? '',
+      file: fileOf(entry),
+      href: entry.body ? `/log/${entry.id}` : '/',
+    })),
+    roles: roles
+      .filter((role) => role.needs)
+      .map((role) => ({ id: role.id, title: `${role.title}, ${role.org}`, needs: role.needs ?? '' })),
+    projects: projects
+      .filter((project) => project.draft || project.needs)
+      .map((project) => ({
+        slug: project.slug,
+        name: project.name,
+        needs: project.needs ?? 'Marked `draft: true`, so it is not built. Write it and remove the flag.',
+      })),
+    count: unwritten.length,
+  });
+</script>
+
+<title>Backstage, ${count} things to write</title>
+
+<div class="page spread">
+  <div class="page__head">
+    <p class="kicker">Dev only · not in the build</p>
+    <h1>${count} things still to write</h1>
+    <p class="lede">
+      Everything in the data files carrying a <code>needs</code> note. Delete the note when the
+      entry is written and it drops off this list.
+    </p>
+  </div>
+
+  <section>
+    <h2 class="section-head">Timeline entries</h2>
+    <ol class="todo" role="list">
+      <li each="entry of entries" key="entry.id">
+        <b><span class="mono">${entry.year}</span> · ${entry.title}</b>
+        <code>${entry.file} → id: '${entry.id}'</code>
+        <p>${entry.needs}</p>
+      </li>
+    </ol>
+  </section>
+
+  <section if="roles.length">
+    <h2 class="section-head">Roles</h2>
+    <ol class="todo" role="list">
+      <li each="role of roles" key="role.id">
+        <b>${role.title}</b>
+        <code>app/data/work.js → id: '${role.id}'</code>
+        <p>${role.needs}</p>
+      </li>
+    </ol>
+  </section>
+
+  <section if="projects.length">
+    <h2 class="section-head">Projects</h2>
+    <ol class="todo" role="list">
+      <li each="project of projects" key="project.slug">
+        <b>${project.name}</b>
+        <code>app/data/projects.js → slug: '${project.slug}'</code>
+        <p>${project.needs}</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 class="section-head">Where everything lives</h2>
+    <dl class="toolchain">
+      <div>
+        <dt class="mono">Identity</dt>
+        <dd><code>app/data/site.js</code>, name, tagline, email, links, and the in-progress flag.</dd>
+      </div>
+      <div>
+        <dt class="mono">Chapters</dt>
+        <dd><code>app/data/eras.js</code>, seven ranges, each with three colors, a texture and an essay.</dd>
+      </div>
+      <div>
+        <dt class="mono">Entries</dt>
+        <dd><code>app/data/entries/*.js</code>, one file per chapter, in year order.</dd>
+      </div>
+      <div>
+        <dt class="mono">Resume</dt>
+        <dd><code>app/data/work.js</code>, roles, capabilities, toolchain, everything else.</dd>
+      </div>
+      <div>
+        <dt class="mono">Projects</dt>
+        <dd><code>app/data/projects.js</code>, the long write-ups.</dd>
+      </div>
+      <div>
+        <dt class="mono">Filters</dt>
+        <dd><code>app/data/tracks.js</code>, the layers. Adding one adds a filter.</dd>
+      </div>
+    </dl>
+  </section>
+</div>

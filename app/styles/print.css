@@ -1,0 +1,177 @@
+/* /work is a resume, so it has to print like one. Everything else prints as a
+   readable document, which mostly means removing the site furniture. */
+
+@media print {
+  :root {
+    --paper: white;
+    --ink: black;
+    --muted: #333;
+    --faint: #555;
+    --rule: #bbb;
+    --accent: black;
+    --step-0: 10pt;
+    --measure: 100%;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 10pt;
+    line-height: 1.4;
+  }
+
+  .site-header,
+  .site-nav,
+  .site-footer,
+  .progress,
+  .yearometer,
+  .pager,
+  .era-switch,
+  .contents,
+  .hero__cue,
+  .print-hint,
+  .skip-link {
+    display: none !important;
+  }
+
+  .page,
+  .log {
+    padding-block: 0;
+  }
+
+  .spread {
+    display: block;
+    max-inline-size: none;
+  }
+
+  .page__head h1 {
+    font-size: 20pt;
+  }
+
+  /* A role must not be split across a page break. That is the one typographic
+     rule a printed resume actually has. */
+  .role,
+  .capability,
+  .project-card {
+    break-inside: avoid;
+  }
+
+  .role {
+    padding-block-start: 6pt;
+    margin-block-start: 0;
+  }
+
+  /* Screen spacing is generous on purpose. Paper is not. */
+  .page,
+  .log {
+    row-gap: 0;
+  }
+
+  .page__head {
+    margin-block-end: 6pt;
+  }
+
+  .lede {
+    font-size: 11pt;
+    max-inline-size: none;
+  }
+
+  .roles {
+    gap: 9pt;
+  }
+
+  .role__summary,
+  .role__did,
+  .capability p {
+    line-height: 1.32;
+  }
+
+  .role__org {
+    font-size: 10pt;
+  }
+
+  .role__did {
+    gap: 2pt;
+  }
+
+  .capabilities {
+    grid-template-columns: 1fr 1fr;
+    gap: 12pt;
+    margin-block-start: 6pt;
+  }
+
+  .capability ul {
+    gap: 1pt;
+  }
+
+  .contact {
+    gap: 4pt 12pt;
+  }
+
+  .toolchain {
+    gap: 4pt;
+  }
+
+  .stack {
+    gap: 3pt;
+  }
+
+  .roles--marked {
+    --mark-size: 30pt;
+  }
+
+  .roles--marked .role {
+    column-gap: 8pt;
+  }
+
+  .role .org-mark {
+    color: #333;
+  }
+
+  .section-head {
+    margin-block-start: 10pt;
+    margin-block-end: 6pt;
+    break-after: avoid;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Paper has no links, so the URL has to be on the page. Internal ones are
+     left alone: nobody types a relative path. */
+  .role__org a[href^='http']::after,
+  .contact a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 8pt;
+    color: #555;
+  }
+
+  .chapter {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Printing changes the scrollport, and a reveal driven by a view timeline can
+     be left holding its first keyframe, which is `opacity: 0`. On paper that
+     is a blank page, so every scroll-driven animation is switched off and its
+     resting state restored. */
+  .entry,
+  .chapter__inner > *,
+  .chapter__years,
+  .contents__item {
+    animation: none !important;
+    opacity: 1 !important;
+    translate: none !important;
+  }
+
+  .chapter__opener::after,
+  .chapter__years,
+  .chapter::before {
+    display: none;
+  }
+}

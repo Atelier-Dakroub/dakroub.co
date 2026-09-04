@@ -1,0 +1,111 @@
+<script server>
+  import { eraOf, findEntry, neighbors, view, written } from '../../data/timeline.js';
+  import { trackBy } from '../../data/tracks.js';
+
+  // One file per written entry. An entry with no `body` has nothing to put on a
+  // page, so it stays a line on the timeline and never appears here.
+  export const paths = () => written.map((entry) => ({ id: entry.id }));
+
+  export default async ({ params, response }) => {
+    const entry = findEntry(params.id);
+
+    if (!entry || !entry.body) {
+      response.status = 404;
+      return { found: false, entry: null, card: null, era: null, track: '', style: '', dark: false, vt: 'none', previous: null, next: null };
+    }
+
+    const era = eraOf(entry.year);
+    const { previous, next } = neighbors(entry.id);
+    const link = (other) =>
+      other ? { href: `/log/${other.id}`, title: other.title, year: other.year } : null;
+
+    return {
+      found: true,
+      entry,
+      // The same projection the timeline card uses, so the two never disagree
+      // about a month name or a tag URL.
+      card: view(entry),
+      era,
+      track: trackBy[entry.track]?.label ?? entry.track,
+      style: `--era-bg: ${era.bg}; --era-ink: ${era.ink}; --era-accent: ${era.accent}`,
+      dark: era.dark,
+      vt: view(entry).vt,
+      previous: link(previous),
+      next: link(next),
+    };
+  };
+</script>
+
+<title>${entry ? entry.title : 'Not found'}, Joe Dakroub</title>
+<meta if="found" name="description" content="${entry.dek}" />
+<meta if="found" property="og:title" content="${entry.year} · ${entry.title}" />
+<meta if="found" property="og:description" content="${entry.dek}" />
+<meta if="found" property="og:type" content="article" />
+
+<body class="shell era-page" style="${style}" data-dark="${dark}"></body>
+
+<article class="log spread" if="found">
+  <p class="log__meta">
+    <span class="log__year mono">${entry.year}</span>
+    <span if="card.stamp">${card.stamp}</span>
+    <span>·</span>
+    <span>${track}</span>
+    <span>·</span>
+    <a href="/era/${era.slug}">${era.name}</a>
+  </p>
+
+  <h1 class="log__title" style="view-transition-name: ${vt}">${entry.title}</h1>
+
+  <p class="log__dek" if="entry.dek">${entry.dek}</p>
+
+  <div class="log__aside" if="entry.spec">
+    <spec-list rows="${entry.spec}" label="Specification"></spec-list>
+  </div>
+
+  <div class="note" if="entry.needs">
+    <b>Unwritten</b>
+    ${entry.needs}
+  </div>
+
+  <div class="log__aside" if="entry.image">
+    <media-figure
+      src="${entry.image.src}"
+      alt="${entry.image.alt}"
+      width="${entry.image.width}"
+      height="${entry.image.height}"
+      caption="${entry.image.caption}"
+    ></media-figure>
+  </div>
+
+  <div class="log__body prose">${html(entry.body)}</div>
+
+  <div class="log__aside">
+    <link-row if="entry.links" links="${entry.links}" label="Links"></link-row>
+
+    <ul class="tags" if="card.tags.length">
+      <li each="tag of card.tags" key="tag.label">
+        <a href="${tag.href}">${tag.label}</a>
+      </li>
+    </ul>
+  </div>
+
+  <nav class="pager" aria-label="More of the timeline">
+    <a if="previous" href="${previous.href}">
+      <span>← Before this</span>
+      <b>${previous.year} · ${previous.title}</b>
+    </a>
+    <a if="next" href="${next.href}">
+      <span>After this →</span>
+      <b>${next.year} · ${next.title}</b>
+    </a>
+  </nav>
+</article>
+
+<div class="page spread" else>
+  <div class="page__head">
+    <p class="kicker">404</p>
+    <h1>Nothing filed under that</h1>
+    <p class="lede">The entry either has no page of its own or does not exist.</p>
+    <p><a href="/">Back to the timeline</a></p>
+  </div>
+</div>

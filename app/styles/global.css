@@ -1,0 +1,24 @@
+/* Linked by every page. It goes through Vite, so nesting and @import work, and
+   the build hashes and compresses it.
+   
+   Order matters and is the only thing this file decides:
+   
+     reset      wrapped in @layer, so everything after it wins
+     tokens     values, no rules
+     base       bare elements
+     layout     the shell and the one grid the whole site sits on
+     timeline   the flow, the spine, the scroll-driven instruments
+     eras       seven chapter palettes and their textures
+     pages      everything that is not the timeline
+     motion     view transitions, and what reduced motion turns off
+     print      /work, on paper */
+
+@import './reset.css';
+@import './tokens.css';
+@import './base.css';
+@import './layout.css';
+@import './timeline.css';
+@import './eras.css';
+@import './pages.css';
+@import './motion.css';
+@import './print.css';
