@@ -9,10 +9,14 @@
   navigation: auto;
 }
 
-/* The named elements are declared where they are styled: the header and the
-   footer in layout.css, the filter row in timeline.css, and a chapter opener
-   and a featured entry get theirs inline, because the name has to be unique per
-   element and only the data knows how many there are. */
+/* The named elements are declared where they are styled: the footer in
+   layout.css, the hero title in timeline.css, and a chapter opener gets its own
+   inline, because the name has to be unique per element and only the data knows
+   how many there are.
+
+   Names are kept few on purpose. Each one is a snapshot the browser takes on
+   every navigation, and the timeline once named seventy-nine entry cards as
+   well, which is why going back to it stuttered. */
 
 ::view-transition-group(*) {
   animation-duration: 380ms;

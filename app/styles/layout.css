@@ -2,6 +2,12 @@
 
 .shell {
   display: grid;
+  /* The column has to be stated. A grid with only rows gets one implicit `auto`
+     column, and an `auto` column sizes to the max-content of what is in it, so
+     a single wide descendant stretches the whole page and every full-bleed row
+     with it. `minmax(0, 1fr)` pins it to the viewport and lets the offender
+     overflow its own box instead of the document. */
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
   min-block-size: 100svb;
 }
@@ -21,6 +27,15 @@
     [rail-end main-start] minmax(0, var(--measure))
     [main-end] minmax(var(--gutter), 1fr)
     [full-end];
+}
+
+/* A grid item's `min-width` is `auto`, which means it refuses to shrink below
+   its own min-content however small the track is. That is what pushed every
+   line off the right edge of a phone: the track was the right size and the item
+   ignored it. Both grids need this, not only the one that shows the damage. */
+.shell > *,
+.spread > * {
+  min-inline-size: 0;
 }
 
 .spread > * {
@@ -43,20 +58,41 @@
     --rail: 2.75rem;
     --sticky-top: 4.4rem;
   }
+
+  /* The measure track has no `fr` in it, so it takes its max-content clamped to
+     `--measure`, however little room there is. At 40rem that is wider than a
+     phone, so every line ran off the right edge and the gutter on that side
+     disappeared. The fix is the measure itself: a reading column on a phone is
+     the screen less the rail and the two gutters, and `vw` is used rather than
+     a percentage because a percentage inside a track resolves against a
+     container whose width is not yet known. */
+  :root {
+    --measure: calc(100vw - var(--rail) - var(--gutter) * 2);
+  }
 }
 
 /* ── Header ────────────────────────────────────────────────────────────────
-   A running head, in the sense a book has one. It stays put across a
-   navigation because it is a view transition of its own, so clicking a link
-   moves the page under it rather than redrawing it. */
+   A running head, in the sense a book has one.
+
+   It deliberately has no `view-transition-name`. A sticky element that is
+   carrying one gets snapshotted at its place in the flow rather than where it
+   is stuck, so on a scrolled page the snapshot sits above the viewport and the
+   header is missing for the whole transition, then reappears when the live
+   element takes back over. Inside the root snapshot instead it is captured
+   where it actually is, and since the two pages draw the same header in the
+   same place, the cross-fade between them is a cross-fade of identical pixels
+   and reads as the head not moving. Which is the effect the name was for. */
 
 .site-header {
   position: sticky;
   inset-block-start: 0;
   z-index: 20;
-  view-transition-name: site-header;
-  background: color-mix(in oklab, var(--paper) 88%, transparent);
-  backdrop-filter: blur(14px) saturate(1.4);
+  /* No `backdrop-filter`. A blurred backdrop on a sticky element is expensive
+     on iOS and has to be recomposited through a view transition, and the head
+     is now inside the root snapshot rather than named, so that cost lands on
+     every navigation. Opaque costs nothing and the text under it was never
+     meant to be read through the head anyway. */
+  background: var(--paper);
   border-block-end: 1px solid var(--era-rule);
   color: var(--era-ink);
 }

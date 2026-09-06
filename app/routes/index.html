@@ -36,6 +36,13 @@
         : `entries tagged ${query.tag}`,
       found: list.length,
       total: all.length,
+      // Every year the counter can land on, rendered once. Safari will not
+      // substitute a `var()` into `counter-reset`, so the number cannot be
+      // computed in CSS; it is picked out of this strip instead.
+      years: Array.from(
+        { length: eras[eras.length - 1].to - eras[0].from + 1 },
+        (_, i) => eras[0].from + i,
+      ),
       chapters: chapters.map((chapter) => ({
         ...chapter,
         style: styleOf(chapter),
@@ -179,7 +186,6 @@
           mine="${entry.mine}"
           feature="${entry.feature}"
           needs="${entry.needs}"
-          vt="${entry.vt}"
         ></time-entry>
       </div>
     </div>
@@ -213,6 +219,10 @@
   </div>
 
   <p class="yearometer mono" aria-hidden="true">
-    <span class="yearometer__value"></span>
+    <span class="yearometer__value">
+      <span class="yearometer__strip">
+        <span each="year of years" key="year">${year}</span>
+      </span>
+    </span>
   </p>
 </div>

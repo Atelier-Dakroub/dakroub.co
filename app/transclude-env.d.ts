@@ -681,6 +681,7 @@ export type IndexData = {
   noteTail: string;
   found: number;
   total: number;
+  years: number[];
   chapters: {
     era: Era;
     previous: string;

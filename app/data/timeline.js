@@ -204,10 +204,11 @@ const MONTHS = [
 /**
  * One entry, ready for `<time-entry>`.
  *
- * `vt` is the view transition name, and only a featured entry with a page of
- * its own gets one. A hundred named elements on the timeline would make the
- * browser composite a hundred layers for a single click, and the ones worth
- * morphing are the ones the eye was already on.
+ * `vt` is the view transition name, for a page that shows few enough entries to
+ * afford one. The timeline does not pass it: a named element is a snapshot the
+ * browser takes on every navigation, and seventy-nine of them made going back
+ * to this page stutter on iOS. The chapter openers keep theirs, which is the
+ * morph worth having.
  *
  * @param {Entry} entry
  */

@@ -86,7 +86,7 @@
 }
 
 .hero__cue::after {
-  content: '';
+  content: "";
   inline-size: 1px;
   block-size: 2.5rem;
   background: linear-gradient(var(--faint), transparent);
@@ -191,7 +191,7 @@
    line; with it the previous era bleeds into the next one over a few
    centimeters of scrolling, which is what the change actually felt like. */
 .chapter::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0 0 auto;
   /* Finished well before the opener sets its title. A longer join put chapter
@@ -296,7 +296,7 @@
    background coming the other way, so halfway through the transition the words
    were invisible. Nothing here sits under the text. */
 .chapter__more::after {
-  content: '→';
+  content: "→";
   display: inline-block;
   margin-inline-start: 0.7em;
   transition: translate var(--fast) var(--ease-out);
@@ -305,7 +305,8 @@
 .chapter__more:hover,
 .chapter__more:focus-visible {
   border-color: var(--era-accent);
-  box-shadow: 0 0 0 0.32em color-mix(in oklab, var(--era-accent) 16%, transparent);
+  box-shadow: 0 0 0 0.32em
+    color-mix(in oklab, var(--era-accent) 16%, transparent);
 }
 
 .chapter__more:hover::after,
@@ -387,7 +388,8 @@
 .entry {
   position: relative;
   padding-block: var(--space-s);
-  border-block-end: 1px solid color-mix(in oklab, var(--era-rule) 55%, transparent);
+  border-block-end: 1px solid
+    color-mix(in oklab, var(--era-rule) 55%, transparent);
 }
 
 .entry:last-child {
@@ -398,7 +400,7 @@
    to, so a reader learns the vocabulary by reading rather than by consulting
    a legend. */
 .entry::before {
-  content: '';
+  content: "";
   position: absolute;
   inset-block-start: calc(var(--space-s) + 0.55em);
   inset-inline-start: var(--marker-x);
@@ -414,25 +416,25 @@
     background var(--fast) var(--ease-out);
 }
 
-.entry[data-track='machine'] {
+.entry[data-track="machine"] {
   --marker: var(--track-machine);
 }
-.entry[data-track='play'] {
+.entry[data-track="play"] {
   --marker: var(--track-play);
 }
-.entry[data-track='learn'] {
+.entry[data-track="learn"] {
   --marker: var(--track-learn);
 }
-.entry[data-track='make'] {
+.entry[data-track="make"] {
   --marker: var(--track-make);
 }
-.entry[data-track='work'] {
+.entry[data-track="work"] {
   --marker: var(--track-work);
 }
-.entry[data-track='tech'] {
+.entry[data-track="tech"] {
   --marker: var(--track-tech);
 }
-.entry[data-track='world'] {
+.entry[data-track="world"] {
   --marker: var(--track-world);
 }
 
@@ -442,11 +444,11 @@
   background: var(--marker);
 }
 
-.entry[data-track='machine']::before {
+.entry[data-track="machine"]::before {
   border-radius: 1px;
 }
 
-.entry[data-track='make']::before {
+.entry[data-track="make"]::before {
   border-radius: 1px;
   rotate: 45deg;
   /* Sized by its diagonal, not its side, so it reads the same width as a
@@ -455,7 +457,7 @@
   block-size: 7px;
 }
 
-.entry[data-track='learn']::before {
+.entry[data-track="learn"]::before {
   border-radius: 0;
   border-width: 0;
   background: var(--marker);
@@ -463,7 +465,7 @@
   margin-block-start: -1.5px;
 }
 
-.entry[data-track='world']::before {
+.entry[data-track="world"]::before {
   inline-size: 12px;
   block-size: 2px;
   border-width: 0;
@@ -493,7 +495,11 @@
   /* A tint of the layer's color, not the color itself: enough to associate the
      label with its marker, little enough that the label keeps the ink's
      measured contrast. */
-  color: color-mix(in oklab, var(--marker, var(--era-faint)) 22%, var(--era-ink));
+  color: color-mix(
+    in oklab,
+    var(--marker, var(--era-faint)) 22%,
+    var(--era-ink)
+  );
 }
 
 .entry__title {
@@ -520,7 +526,7 @@
 /* The whole entry is the hit area for the one link inside it, so the click
    target is the block rather than a line of text. */
 .entry__title a::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
 }
@@ -694,21 +700,28 @@
   position: sticky;
   inset-block-start: var(--sticky-top);
   z-index: 3;
-  background: color-mix(in oklab, var(--paper) 90%, transparent);
-  backdrop-filter: blur(14px) saturate(1.4);
+  background: var(--paper);
   border-block-end: 1px solid var(--rule);
 }
 
 .filters__inner {
   display: flex;
-  flex-wrap: wrap;
+  /* One row, always. Seven items wrap somewhere between a landscape phone and a
+     tablet, and a filter bar that is one row high on one device and two on the
+     next is a different piece of furniture each time. It also keeps
+     `--filters-h` true, which `--chrome-top` measures a fragment's scroll
+     offset against. */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
   align-items: center;
   gap: var(--space-3xs) var(--space-3xs);
   /* A little more above than below. The row tucks a hair behind the running
      head when it sticks, and that hair comes out of the top. */
   padding-block: calc(var(--space-3xs) + 3px) var(--space-3xs);
   padding-inline: var(--gutter);
-  max-inline-size: 88rem;
+  max-inline-size: 128ch;
   margin-inline: auto;
   min-block-size: var(--filters-h);
   font-family: var(--font-mono);
@@ -746,8 +759,16 @@
    selected link also carries the ring and the label goes to full ink. */
 .filters a[aria-current] {
   color: var(--ink);
-  border-color: color-mix(in oklab, var(--marker, var(--accent)) 55%, var(--rule));
-  background: color-mix(in oklab, var(--marker, var(--accent)) 12%, transparent);
+  border-color: color-mix(
+    in oklab,
+    var(--marker, var(--accent)) 55%,
+    var(--rule)
+  );
+  background: color-mix(
+    in oklab,
+    var(--marker, var(--accent)) 12%,
+    transparent
+  );
 }
 
 .filters a[aria-current] > span {
@@ -771,12 +792,10 @@
   flex: none;
 }
 
-@media (width < 45rem) {
-  .filters__inner {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
+/* Firefox and Safari take `scrollbar-width`; this is for the others. The row
+   is short enough that a scrollbar under it would be most of its height. */
+.filters__inner::-webkit-scrollbar {
+  display: none;
 }
 
 /* ── The instruments: a year, and a bar down the edge ──────────────────── */
@@ -835,16 +854,31 @@
      dependable: whether it sees the chapter behind it or the page depends on
      which ancestor happens to have made a stacking context. */
   color: var(--ink);
-  background: color-mix(in oklab, var(--paper) 76%, transparent);
+  background: var(--paper);
   border: 1px solid var(--rule);
   border-radius: 999px;
   padding: 0.1em 0.6em 0.15em;
-  backdrop-filter: blur(12px) saturate(1.4);
 }
 
-.yearometer__value::after {
-  counter-reset: yr var(--year);
-  content: counter(yr);
+/* The year is not computed, it is scrolled to. `counter-reset: yr var(--year)`
+   with `content: counter(yr)` is the obvious way to print an animated number
+   and it prints 0 in Safari, which does not substitute a `var()` there. So
+   every year is in the markup and the strip slides to the right one. It also
+   means the number is real text rather than generated content. */
+.yearometer__value {
+  display: block;
+  block-size: 1lh;
+  overflow: clip;
+}
+
+.yearometer__strip {
+  display: block;
+  translate: 0 calc((var(--year) - 1976) * -1lh);
+}
+
+.yearometer__strip > span {
+  display: block;
+  block-size: 1lh;
 }
 
 /* Both instruments need a scroll timeline to mean anything, so neither one

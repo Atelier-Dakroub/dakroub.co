@@ -329,10 +329,4 @@ export const also = [
       },
     ],
   },
-  {
-    label: "Writing and speaking",
-    items: [
-      { what: "Add talks, articles and posts here", where: "", when: "" },
-    ],
-  },
 ];

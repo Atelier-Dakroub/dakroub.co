@@ -466,7 +466,7 @@
 
 .era-page .site-footer,
 .era-page .site-header {
-  background: color-mix(in oklab, var(--era-bg) 88%, transparent);
+  background: var(--era-bg);
   color: var(--era-ink);
   border-color: var(--era-rule);
 }
