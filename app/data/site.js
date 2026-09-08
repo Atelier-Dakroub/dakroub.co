@@ -11,7 +11,7 @@ export const site = {
 
   /** The one-sentence version, used in <meta name="description"> and on /about. */
   tagline:
-    "Twenty years of production interfaces and design systems, and fifty at a screen. React, React Native and TypeScript, with design and engineering treated as one job.",
+    "Twenty years of production interfaces and design systems, and fifty on a screen. React, React Native and TypeScript, with design and engineering treated as one job.",
 
   /** Two or three sentences. /about opens with this. */
   intro: `I have been putting things on screens since the machine only had one color.
