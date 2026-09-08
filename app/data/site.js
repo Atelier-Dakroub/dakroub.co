@@ -7,7 +7,7 @@ export const site = {
   origin: "https://dakroub.co",
 
   /** Under the name, everywhere. Keep it to one line. */
-  role: "Senior full stack engineer",
+  role: "Senior Full Stack Engineer",
 
   /** The one-sentence version, used in <meta name="description"> and on /about. */
   tagline:
@@ -21,7 +21,7 @@ export const site = {
     the two useful.`,
 
   /** What you are looking for. This is the reason the site exists, so be direct. */
-  seeking: "Senior full stack engineer",
+  seeking: "Senior Full Stack Engineer",
 
   email: "joe@dakroub.co",
 

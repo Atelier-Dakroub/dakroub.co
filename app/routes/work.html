@@ -43,8 +43,14 @@
       <a href="mailto:${site.email}">${site.email}</a>
       <a if="site.phone" href="tel:${site.phone}">${site.phone}</a>
       <span if="site.location">${site.location}</span>
-      <span each="link of site.elsewhere" key="link.label">
-        <a href="${link.href}" rel="me">${link.label}</a>
+      <span class="contact__elsewhere">
+        <a
+          each="link of site.elsewhere"
+          key="link.label"
+          href="${link.href}"
+          rel="me"
+          >${link.label}</a
+        >
       </span>
     </div>
 

@@ -504,6 +504,16 @@
   font-size: var(--step-0);
 }
 
+/* How to reach him, then where else he is. They are different questions, so
+   the second set takes a line of its own rather than trailing off the end of
+   the first and breaking wherever it runs out of room. */
+.contact__elsewhere {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-s);
+}
+
 .contact a {
   text-decoration-color: var(--accent);
 }

@@ -200,6 +200,105 @@ export const entries = [
     tags: ["css", "standards"],
   },
   {
+    id: "working-with-ai",
+    year: 2024,
+    track: "learn",
+    title: "The thing I ended a project over",
+    dek: "Midjourney, then ChatGPT, then Copilot in the editor, then Claude and Claude Code. I killed two years of work in 2022 because I could feel this coming, and it still took me until 2024 to start using it.",
+    tags: ["ai", "tools", "practice"],
+    feature: true,
+    spec: [
+      { label: "Started", value: "2024" },
+      { label: "In this order", value: "Midjourney, ChatGPT, Copilot, Claude" },
+      { label: "Claude Code", value: "February 2025" },
+      { label: "Saw it coming", value: "2022. Acted on it. Did not use it." },
+    ],
+    body: `
+      <p>In 2022 I ended <a href="/projects/hyperspaces">a two-year project</a>
+      because I could not construct the argument for why anybody would keep
+      dragging rectangles to describe an interface they could simply say. Six
+      months later ChatGPT opened to the public and I was right.</p>
+
+      <p>Then I did not touch any of it for two years. I want that on the record,
+      because being early to a conclusion and late to the practice is a specific
+      failure and I would rather name it than let the timeline imply I walked
+      straight from one to the other.</p>
+
+      <h2>The order I came to it in</h2>
+      <p>Midjourney first, which is the low-stakes way in: images, no code,
+      nothing I was responsible for. Then ChatGPT, as a better place to think out
+      loud than a blank file. Then Copilot in VS Code, which was the first time
+      it was inside the work rather than beside it, and which is shaped like
+      autocomplete, so it is good at the next line and has no opinion about the
+      program. Then Claude, and then
+      <a href="/log/claude-code">Claude Code</a> in February 2025, which is a
+      different thing again: it reads the codebase, runs the tests, and comes
+      back with what happened.</p>
+
+      <h2>What I actually think</h2>
+      <p>It is fastest at the work I could already do and slowest at the work I
+      cannot check. That ratio is the whole thing. The bottleneck moves off
+      writing and onto reviewing, and if you are not fit to review the output
+      you have not saved any time, you have borrowed it.</p>
+
+      <p>It is very good at the part of the job that is typing and no good at the
+      part that is deciding. Which is the same thing I have believed since
+      <a href="/log/skeletor">writing a framework other engineers had to live
+      in</a>: the deciding was always the job, and the typing was only ever the
+      cost of it. Thirty years of that cost coming down is not a threat to the
+      work. It is a threat to anybody whose value was the typing.</p>
+
+      <p>This site was built this way, which is the only reason I am willing to
+      say any of it. Every fact on it was checked, most of the prose was argued
+      over, and a fair amount of what got written first was wrong and got
+      thrown out. That is not a workflow that removes the person. It is one that
+      raises the floor on how much they can be responsible for.</p>
+    `,
+  },
+  {
+    id: "claude-code",
+    year: 2025,
+    date: "2025-02-24",
+    track: "tech",
+    title: "Claude Code",
+    dek: "Autocomplete stops suggesting the next line and starts running the test suite. The unit of work goes from a keystroke to an errand, and reviewing becomes the job.",
+    tags: ["ai"],
+    links: [
+      {
+        href: "https://www.anthropic.com/news/claude-3-7-sonnet",
+        label: "The announcement",
+      },
+    ],
+    spec: [
+      { label: "Announced", value: "24 February 2025" },
+      { label: "Alongside", value: "Claude 3.7 Sonnet" },
+      { label: "At launch", value: "A limited research preview" },
+      { label: "Lives in", value: "The terminal, not the editor" },
+    ],
+    body: `
+      <p>Announced on 24 February 2025 with Claude 3.7 Sonnet: a coding tool that
+      reads a codebase, edits files, runs the tests, and commits. A research
+      preview at launch, in the way that things now are.</p>
+
+      <p>What changed is not the quality of the suggestions. It is where the tool
+      sits. Copilot lived in the editor and was shaped like completion, so the
+      unit of work was a line you accepted or ignored. This lives in the terminal
+      and is shaped like delegation, so the unit of work is an errand you hand
+      over and get a report back from. Those are different jobs, and only the
+      second one can be wrong in ways you will not notice by reading the next
+      line.</p>
+
+      <p>Which makes the interesting question a workflow question rather than a
+      model question. Every change you accept is one you did not write, so the
+      cost moves from typing to reviewing, and reviewing is the more expensive
+      skill and the one that does not scale by buying more of it. The people
+      this helps most are the ones who could already have done the work and can
+      tell when it is wrong. <a href="/log/working-with-ai">I use it daily</a>,
+      including on this site, and that is the caveat I would put on any claim
+      about it, including mine.</p>
+    `,
+  },
+  {
     id: "domxy",
     year: 2025,
     date: "2025-01",
