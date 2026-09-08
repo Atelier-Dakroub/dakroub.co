@@ -1,0 +1,45 @@
+# Push to main, and the site is live.
+#
+# The build has to run here rather than being committed: `dist/` is ignored,
+# and the worker imports it directly because workerd has no disk to read from.
+# So a deploy is always built from the commit being deployed, and it is not
+# possible to ship a stale bundle by forgetting to build.
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# A second push while the first is still deploying should win, not queue.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Types first. A deploy that fails here never reaches Cloudflare, and
+      # `transclude-check` reads the same config the build does, so a broken
+      # route or a bad prop is caught before anything ships.
+      - run: npm run check
+
+      - run: npm run build
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

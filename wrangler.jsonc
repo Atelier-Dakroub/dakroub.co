@@ -1,6 +1,9 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "dakroub-co",
+  // An identifier, not a credential: nothing can be done with it without a
+  // token. Naming it here means CI does not need a second secret.
+  "account_id": "64b9fd51252c336e06c0ec8b38f4e6f2",
   "main": "worker.js",
   "compatibility_date": "2026-09-01",
   "observability": { "enabled": true },
