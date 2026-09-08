@@ -10,5 +10,9 @@
 
   // The apex. `custom_domain` makes Cloudflare create and own the DNS record
   // for it, which is why the zone had to move here first.
-  "routes": [{ "pattern": "dakroub.co", "custom_domain": true }]
+  "routes": [
+    { "pattern": "dakroub.co", "custom_domain": true },
+    // Attached so it resolves. worker.js redirects it to the apex.
+    { "pattern": "www.dakroub.co", "custom_domain": true }
+  ]
 }

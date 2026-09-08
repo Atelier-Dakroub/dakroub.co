@@ -8,6 +8,7 @@
     "start": "node --env-file-if-exists=.env node_modules/.bin/transclude-serve",
     "preview": "npm run build && npm start",
     "check": "transclude-check",
+    "audit": "node scripts/audit-links.js",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {

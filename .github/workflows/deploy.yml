@@ -40,6 +40,11 @@ jobs:
 
       - run: npm run build
 
+      # Follows every internal link on every page against the built site. The
+      # type check cannot see these: a link to a page that does not exist is
+      # just a string, and it reaches production silently.
+      - run: npm run audit
+
       # Not `cloudflare/wrangler-action`. That action installs a wrangler of its
       # own, and the one it pinned is older than JSON config support, so it
       # could not read wrangler.jsonc and reported the entry point as missing.
