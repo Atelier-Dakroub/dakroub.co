@@ -181,7 +181,7 @@ export const roles = [
 ];
 
 /**
- * What I do, grouped. This is the part a hiring manager reads first, so it says
+ * What I do, grouped. This is the part anybody skimming reads first, so it says
  * capabilities rather than logos.
  *
  * @type {Array<{ group: string, note: string, items: string[] }>}

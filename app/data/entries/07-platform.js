@@ -441,31 +441,6 @@ export const entries = [
     `,
   },
   {
-    id: "looking",
-    year: 2026,
-    date: "2026-09",
-    track: "work",
-    title: "Open to what is next",
-    dek: "Staff engineer, design engineer, or senior full stack. Phoenix, Arizona, and happy to be remote.",
-    feature: true,
-    links: [
-      { href: "mailto:joe@dakroub.co", label: "joe@dakroub.co" },
-      { href: "/work", label: "The resume" },
-    ],
-    body: `
-      <p>Twenty years of production interfaces. Design systems for Netflix
-      internal tooling and Apple Music, a design system at Kajabi, a PHP
-      framework at Quicken Loans that is still running, three years of my own
-      studio, and a web framework of my own.</p>
-
-      <p>The through-line is that I have never worked anywhere that let me be
-      only a designer or only an engineer, and I have stopped applying for jobs
-      that ask me to pick. What I want next is the staff-shaped version of that:
-      owning the interface layer of a product, the system underneath it, and the
-      argument about what it should be.</p>
-    `,
-  },
-  {
     id: "ukraine",
     year: 2022,
     date: "2022-02-24",

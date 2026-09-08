@@ -20,9 +20,6 @@ export const site = {
     Next.js at Heyo. I design and I build, and I have never found the line between
     the two useful.`,
 
-  /** What you are looking for. This is the reason the site exists, so be direct. */
-  seeking: "Senior Full Stack Engineer",
-
   email: "joe@dakroub.co",
 
   /** Shown on /work, which is the page that prints as a resume. Delete the line

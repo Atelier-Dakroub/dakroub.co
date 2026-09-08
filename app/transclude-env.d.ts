@@ -179,7 +179,6 @@ export type RootLayoutData = {
     role: string;
     tagline: string;
     intro: string;
-    seeking: string;
     email: string;
     phone: string;
     location: string;
@@ -217,7 +216,6 @@ export type AboutContext = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
@@ -259,7 +257,6 @@ export type AboutData = {
     role: string;
     tagline: string;
     intro: string;
-    seeking: string;
     email: string;
     phone: string;
     location: string;
@@ -309,7 +306,6 @@ export type BackstageContext = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
@@ -382,7 +378,6 @@ export type ColophonContext = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
@@ -439,7 +434,6 @@ export type ProjectsIndexContext = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
@@ -501,7 +495,6 @@ export type WorkContext = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
@@ -543,7 +536,6 @@ export type WorkData = {
     role: string;
     tagline: string;
     intro: string;
-    seeking: string;
     email: string;
     phone: string;
     location: string;
@@ -611,7 +603,6 @@ export type IndexContext = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
@@ -653,7 +644,6 @@ export type IndexData = {
     role: string;
     tagline: string;
     intro: string;
-    seeking: string;
     email: string;
     phone: string;
     location: string;
@@ -744,7 +734,6 @@ export type EraSlugContext = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
@@ -844,7 +833,6 @@ export type LogIdContext = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
@@ -948,7 +936,6 @@ export type ProjectsSlugContext = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
@@ -1009,7 +996,6 @@ export type _404Context = {
       role: string;
       tagline: string;
       intro: string;
-      seeking: string;
       email: string;
       phone: string;
       location: string;
