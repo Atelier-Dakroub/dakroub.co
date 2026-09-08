@@ -3,5 +3,9 @@
   "name": "dakroub-co",
   "main": "worker.js",
   "compatibility_date": "2026-09-01",
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+
+  // The apex. `custom_domain` makes Cloudflare create and own the DNS record
+  // for it, which is why the zone had to move here first.
+  "routes": [{ "pattern": "dakroub.co", "custom_domain": true }]
 }
