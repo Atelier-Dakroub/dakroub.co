@@ -286,7 +286,7 @@
   }
 
   [data-texture='dither'] .era-surface::before {
-    animation: tracking-band 24s linear infinite;
+    animation: tracking-band 9s linear infinite;
   }
 
   /* Only the hairline layer drifts. The bevel above it holds still. */
