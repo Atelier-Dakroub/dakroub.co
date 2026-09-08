@@ -40,7 +40,18 @@
 <meta property="og:title" content="${site.name}, ${site.role}" />
 <meta property="og:description" content="${site.tagline}" />
 <meta property="og:url" content="${canonical}" />
-<meta name="twitter:card" content="summary" />
+<!-- The card a link preview shows. Without one, LinkedIn and Slack render a
+     text-only stub, which is a poor advertisement for a site whose argument is
+     that you should go and look at it. Absolute because a scraper does not
+     resolve relative paths. -->
+<meta property="og:image" content="${site.origin}/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta
+  property="og:image:alt"
+  content="Fifty years on a screen, in one scroll. 1976 to 2026, 195 entries, 0 bytes of JavaScript."
+/>
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="theme-color" content="#111318" />
 <!-- The cursor from the first chapter, which is the one image the whole site
      opens on. SVG for anything current; the .ico exists because a browser asks
