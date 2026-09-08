@@ -40,6 +40,11 @@ jobs:
 
       - run: npm run build
 
-      - uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      # Not `cloudflare/wrangler-action`. That action installs a wrangler of its
+      # own, and the one it pinned is older than JSON config support, so it
+      # could not read wrangler.jsonc and reported the entry point as missing.
+      # The version in package-lock is the version that deploys, which is also
+      # the version that runs locally.
+      - run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
