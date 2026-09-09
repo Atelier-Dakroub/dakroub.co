@@ -61,11 +61,18 @@
      renamed into an ICO container: that file has to be a real BMP icon. The PNG
      link is the belt to that braces. The apple-touch icon is square on purpose,
      since iOS rounds the corners itself and rounding them twice looks like a
-     mistake. -->
+     mistake.
+
+     The manifest is there for the icon and nothing else. iOS 16.4 and later
+     prefer its icons over the apple-touch link when adding to a home screen,
+     and without either it screenshots the page. `display` is `browser` on
+     purpose: this is a site to read, and launching it without a URL bar or a
+     back button would take away the two controls a reader actually uses. -->
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
 <link
   rel="alternate"
   type="application/rss+xml"
