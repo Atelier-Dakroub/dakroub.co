@@ -391,17 +391,6 @@ export const also = [
     ],
   },
   {
-    label: "Music",
-    items: [
-      {
-        what: "Soundtrack for The Trouble with Trash, an independent children’s film for PBS",
-        where:
-          "Co-authored by Cynthia Nill · written at the University of Michigan – Flint",
-        when: "",
-      },
-    ],
-  },
-  {
     label: "Education",
     items: [
       {
