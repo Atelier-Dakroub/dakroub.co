@@ -1,0 +1,40 @@
+<!-- Rendered by `npm run social`. Both files here are the source for an image
+     that is published somewhere this repository does not control, so they live
+     with the source rather than only as a PNG somebody once exported.
+
+     Everything is inline on purpose: no external stylesheet, no webfont, no
+     asset. A card that depends on the site running is a card you cannot rebuild
+     in two years. The palette is the site's, converted from the oklch tokens to
+     hex, because these are rendered once rather than by a browser that knows
+     what oklch is. -->
+<!-- 1200x630, out: app/public/og.png -->
+<style>
+  html,body{margin:0;padding:0}
+  body{
+    width:1200px;height:630px;background:#07090e;color:#eff2f7;
+    font-family:ui-serif,'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 84px;box-sizing:border-box;position:relative;overflow:hidden;
+  }
+  /* The same scanline wash the first chapter uses, at a weight that survives
+     being resized to a thumbnail. */
+  .field{position:absolute;inset:0;z-index:0;
+    background:repeating-linear-gradient(to bottom,rgba(239,242,247,.05) 0 1px,transparent 1px 4px),
+               radial-gradient(90% 70% at 78% 18%,rgba(112,235,236,.14),transparent 70%);}
+  .in{position:relative;z-index:1}
+  h1{font-size:96px;line-height:.98;letter-spacing:-.03em;font-weight:600;margin:0}
+  em{font-style:normal;color:#70ebec}
+  .meta{margin-top:44px;font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,monospace;
+    font-size:25px;letter-spacing:.02em;color:#7d8086}
+  .meta b{color:#eff2f7;font-weight:500}
+  .who{position:absolute;bottom:52px;left:84px;z-index:1;
+    font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,monospace;
+    font-size:24px;letter-spacing:.04em;color:#eff2f7}
+  .who span{color:#7d8086}
+</style>
+<div class="field"></div>
+<div class="in">
+  <h1>Fifty years<br>on a screen,<br>in <em>one scroll</em>.</h1>
+  <p class="meta"><b>1976–2026</b> · <b>195</b> entries · <b>0 bytes</b> of JavaScript</p>
+</div>
+<div class="who">dakroub.co <span>· Joe Dakroub</span></div>

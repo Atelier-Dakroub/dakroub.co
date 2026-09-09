@@ -9,6 +9,7 @@
     "preview": "npm run build && npm start",
     "check": "transclude-check",
     "audit": "node scripts/audit-links.js",
+    "social": "node scripts/build-social.js",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
