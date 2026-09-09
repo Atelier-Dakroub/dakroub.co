@@ -154,6 +154,7 @@ export const roles = [
     summary:
       "Internal and external financial applications, and the first stretch where the job was as much about the team as the code.",
     did: [
+      "Joined BondDesk, a fixed-income trading venue for advisers; Tradeweb acquired it in 2013 and the combined business became Tradeweb Direct.",
       "Built a single-page application with a component-based architecture in ExtJS, composed screens, shared state, one data layer, years before React gave the industry a name for it.",
       "Designed and developed internal and external financial applications for a financial marketplace.",
       "Led front-end teams and established the development practices they worked to.",
@@ -173,7 +174,7 @@ export const roles = [
     did: [
       "Led the front-end half of a team of twelve, split between front end and back end.",
       "Architected an internal PHP framework that carried at least six production sites, including quickenloans.com, rockfinancial.com and realestateinsiders.com.",
-      "That framework is still running, more than fifteen years later, on internal and external systems.",
+      "That framework is still running twenty years later, on internal and external systems.",
       "Designed and built the company’s first mobile site at m.quickenloans.com, in the era of the separate mobile host.",
     ],
     stack: ["PHP", "JavaScript", "CSS", "SQL Server"],
