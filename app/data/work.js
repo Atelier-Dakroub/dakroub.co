@@ -300,6 +300,59 @@ export const summary = `Twenty years building production interfaces and design
   and this one. Accessible, component-driven UI and web standards throughout,
   and I have never found the line between designing and building useful.`;
 
+/**
+ * The categorised list, for the readers who are scanning for nouns rather than
+ * reading sentences: an applicant tracking system, and a person deciding in
+ * four seconds whether the stack matches.
+ *
+ * It is a definition list, not a table. A table is the usual way to set this
+ * and it is the thing most likely to be flattened into nonsense by a parser
+ * walking the DOM. Every entry here is claimed somewhere else on the page as
+ * well, in a role or a project, so nothing in it is only a keyword.
+ */
+export const skills = [
+  {
+    label: "Languages",
+    items: ["TypeScript", "JavaScript", "PHP", "Swift", "Objective-C"],
+  },
+  {
+    label: "Frontend",
+    items: [
+      "React",
+      "React Native",
+      "Next.js",
+      "Expo",
+      "Ember.js",
+      "Web Components",
+      "Lit",
+      "HTML",
+      "CSS",
+      "TailwindCSS",
+      "Emotion",
+      "Sass",
+      "ShadCN",
+      "Storybook",
+    ],
+  },
+  {
+    label: "Backend",
+    items: ["Node.js", "Nest.js", "Prisma", "Deno", "PHP", "REST", "GraphQL"],
+  },
+  { label: "Data", items: ["PostgreSQL", "SQL Server", "MySQL", "SQLite"] },
+  {
+    label: "Practice",
+    items: [
+      "Design systems",
+      "Accessibility, WCAG and ARIA",
+      "Web standards",
+      "Progressive enhancement",
+      "Claude Code and AI-assisted development",
+      "Git",
+      "Figma",
+    ],
+  },
+];
+
 export const also = [
   {
     label: "Open source",

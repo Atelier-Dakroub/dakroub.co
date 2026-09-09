@@ -551,6 +551,10 @@ export type WorkData = {
     note: string;
     items: string[];
   }[];
+  skills: {
+    label: string;
+    items: string[];
+  }[];
   summary: string;
   toolchain: {
     decade: string;

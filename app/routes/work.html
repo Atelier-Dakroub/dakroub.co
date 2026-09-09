@@ -1,11 +1,19 @@
 <script server>
   import { site } from "../data/site.js";
   import { markOr } from "../data/brands.js";
-  import { also, capabilities, roles, summary, toolchain } from "../data/work.js";
+  import {
+    also,
+    capabilities,
+    roles,
+    skills,
+    summary,
+    toolchain,
+  } from "../data/work.js";
 
   export default async () => ({
     site,
     capabilities,
+    skills,
     summary,
     toolchain,
     also,
@@ -74,6 +82,16 @@
         </ul>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2 class="section-head">Technical skills</h2>
+    <dl class="skills">
+      <div each="group of skills" key="group.label">
+        <dt>${group.label}</dt>
+        <dd>${group.items.join(' · ')}</dd>
+      </div>
+    </dl>
   </section>
 
   <section>
