@@ -280,6 +280,22 @@ export const toolchain = [
  *
  * @type {Array<{ label: string, items: Array<{ what: string, where: string, when: string, href?: string }> }>}
  */
+/**
+ * The paragraph at the top. A human reads this and the first role and often
+ * nothing else, and a model screening resumes summarises from it, so it leads
+ * with the things that are specific and checkable rather than with a category.
+ * "Frontend-leaning full stack engineer" describes several hundred thousand
+ * people; a framework running somebody else's production site describes one.
+ */
+export const summary = `Twenty years building production interfaces and design
+  systems, for consumer products and enterprise tooling, including design
+  systems for Netflix internal tooling and Apple Music at DockYard and the
+  design system at Kajabi. Currently a senior engineer at Heyo, working daily in
+  React, React Native and TypeScript with Claude Code in the loop. I also write
+  transclude, an HTML-first web framework that runs a client's production site
+  and this one. Accessible, component-driven UI and web standards throughout,
+  and I have never found the line between designing and building useful.`;
+
 export const also = [
   {
     label: "Open source",
@@ -289,6 +305,19 @@ export const also = [
         where: "@transclude/core · MIT · Node, Bun, Deno and workerd",
         when: "2026 –",
         href: "https://transclude.dev",
+      },
+      {
+        what: "dakroub.co, fifty years of computing as one scroll, on transclude",
+        where:
+          "Source public · zero client JavaScript · Cloudflare Workers · 195 entries",
+        when: "2026",
+        href: "https://github.com/Atelier-Dakroub/dakroub.co",
+      },
+      {
+        what: "domxy, a library that makes every HTML element a function",
+        where: "111 lines · one Proxy · no build step · no dependencies",
+        when: "2025",
+        href: "https://domxy.js.org",
       },
     ],
   },

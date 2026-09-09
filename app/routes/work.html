@@ -1,11 +1,12 @@
 <script server>
   import { site } from "../data/site.js";
   import { markOr } from "../data/brands.js";
-  import { also, capabilities, roles, toolchain } from "../data/work.js";
+  import { also, capabilities, roles, summary, toolchain } from "../data/work.js";
 
   export default async () => ({
     site,
     capabilities,
+    summary,
     toolchain,
     also,
     roles: roles
@@ -53,6 +54,8 @@
         >
       </span>
     </div>
+
+    <p class="page__summary">${summary}</p>
 
     <p class="print-hint">
       This page is styled for paper. <kbd>⌘P</kbd> prints it as a resume, with

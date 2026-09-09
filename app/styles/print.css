@@ -9,7 +9,31 @@
     --faint: #555;
     --rule: #bbb;
     --accent: black;
+    /* The whole scale, not just step 0. Every step is a clamp with a `vw` term
+       in it, and on an 8.5in page a viewport unit is enormous, so the headings
+       and the spacing were sized for a wall. Pinning them in points is what
+       took this from five pages to two. */
+    --step--2: 7.5pt;
+    --step--1: 8.5pt;
     --step-0: 10pt;
+    --step-1: 11pt;
+    --step-2: 12.5pt;
+    --step-3: 14pt;
+    --step-4: 16pt;
+    --step-5: 18pt;
+    --step-6: 20pt;
+    --step-7: 22pt;
+
+    --space-3xs: 2pt;
+    --space-2xs: 3pt;
+    --space-xs: 5pt;
+    --space-s: 7pt;
+    --space-m: 10pt;
+    --space-l: 14pt;
+    --space-xl: 18pt;
+    --space-2xl: 22pt;
+    --space-3xl: 26pt;
+
     --measure: 100%;
   }
 
@@ -84,6 +108,7 @@
     gap: 9pt;
   }
 
+  .page__summary,
   .role__summary,
   .role__did,
   .capability p {
@@ -98,9 +123,13 @@
     gap: 2pt;
   }
 
+  /* One column on paper. Two reads fine to a person and badly to an applicant
+     tracking system, which flattens a multi-column region by walking the DOM
+     and can interleave two unrelated lists into one. The page is longer this
+     way and parses in the order it is written. */
   .capabilities {
-    grid-template-columns: 1fr 1fr;
-    gap: 12pt;
+    grid-template-columns: 1fr;
+    gap: 8pt;
     margin-block-start: 6pt;
   }
 
@@ -144,6 +173,7 @@
 
   /* Paper has no links, so the URL has to be on the page. Internal ones are
      left alone: nobody types a relative path. */
+  .role__title a[href^='http']::after,
   .role__org a[href^='http']::after,
   .contact a[href^='http']::after {
     content: ' (' attr(href) ')';

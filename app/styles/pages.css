@@ -495,6 +495,14 @@
 
 /* ── About and colophon ────────────────────────────────────────────────── */
 
+/* The paragraph under the contact line. Named apart from `.role__summary`,
+   which is the one-line summary on each individual role. */
+.page__summary {
+  margin-block-start: var(--space-m);
+  max-inline-size: 46rem;
+  color: var(--muted);
+}
+
 .contact {
   display: flex;
   flex-wrap: wrap;

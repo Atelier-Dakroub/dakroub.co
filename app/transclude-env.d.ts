@@ -550,19 +550,27 @@ export type WorkData = {
     note: string;
     items: string[];
   }[];
+  summary: string;
   toolchain: {
     decade: string;
     items: string[];
   }[];
-  also: {
+  also: ({
     label: string;
     items: {
       what: string;
       where: string;
       when: string;
-      href?: string | undefined;
+      href: string;
     }[];
-  }[];
+  } | {
+    label: string;
+    items: {
+      what: string;
+      where: string;
+      when: string;
+    }[];
+  })[];
   roles: {
     id: string;
     title: string;
