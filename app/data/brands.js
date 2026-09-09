@@ -24,7 +24,7 @@
  */
 export const brands = {
   heyo: { label: "Heyo", initials: "HE", logo: "heyo" },
-  freelance: { label: "Freelance", initials: "FR" },
+  freelance: { label: "Freelance", initials: "FR", logo: "dakroub" },
   kajabi: { label: "Kajabi", initials: "KA", logo: "kajabi" },
   dockyard: { label: "DockYard", initials: "DY", logo: "dockyard" },
   "detroit-trading": {
