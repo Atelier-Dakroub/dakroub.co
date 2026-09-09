@@ -5,6 +5,30 @@
 /** @type {Entry[]} */
 export const entries = [
   {
+    id: "html-4",
+    year: 1999,
+    date: "1999-12-24",
+    track: "tech",
+    title: "HTML 4.01",
+    dek: "The version the web actually ran on for the next fifteen years. Presentation is formally somebody else's job now, which is the whole argument of the following decade.",
+    tags: ["html", "standards", "css"],
+    links: [{ href: "https://www.w3.org/TR/html401/", label: "The recommendation" }],
+    body: `
+      <p>HTML 3.2 in January 1997 was the first version the W3C wrote on its
+      own, and it standardised the mess: <code>font</code>, <code>center</code>,
+      the attributes everybody was already using. HTML 4.0 arrived eleven months
+      later and started taking them back, deprecating presentation in favour of
+      stylesheets. 4.01 is the tidy-up, on Christmas Eve 1999.</p>
+
+      <p>Then nothing, for fifteen years. This is the document I built against
+      for most of my career, and the reason
+      <a href="/log/switch-to-standards">deleting the tables</a> in 2004 was
+      possible at all: the separation everybody argued about in the mid-2000s
+      had already been written down in 1997. It just took the browsers, and the
+      people writing the pages, another seven years to mean it.</p>
+    `,
+  },
+  {
     id: "jobs-returns",
     year: 1997,
     date: "1997-07",

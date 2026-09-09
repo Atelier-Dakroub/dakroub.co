@@ -5,6 +5,29 @@
 /** @type {Entry[]} */
 export const entries = [
   {
+    id: "html-2",
+    year: 1995,
+    date: "1995-11-24",
+    track: "tech",
+    title: "HTML 2.0",
+    dek: "RFC 1866. Four years after the first eighteen tags, the language everybody was already writing finally has a specification to be wrong about.",
+    tags: ["html", "standards"],
+    links: [{ href: "https://www.rfc-editor.org/rfc/rfc1866", label: "RFC 1866" }],
+    body: `
+      <p>Berners-Lee described eighteen elements in 1991 and the web spent four
+      years growing on top of a document that was closer to release notes than
+      to a standard. RFC 1866 is the first time HTML is written down as a thing
+      with rules, published through the IETF rather than the W3C, which had only
+      existed a year.</p>
+
+      <p>It is a small document by later standards and it is already behind the
+      browsers. Netscape had been shipping tags nobody had agreed on for two
+      years by then, which is the pattern the next decade runs on: the vendors
+      ship, the spec catches up, and whoever writes the pages pays the
+      difference.</p>
+    `,
+  },
+  {
     id: "visual-basic-1",
     year: 1991,
     date: "1991-05",

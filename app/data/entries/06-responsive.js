@@ -5,6 +5,39 @@
 /** @type {Entry[]} */
 export const entries = [
   {
+    id: "html-5",
+    year: 2014,
+    date: "2014-10-28",
+    track: "tech",
+    title: "HTML5, and the last version number",
+    dek: "Fifteen years after 4.01, a recommendation that mostly ratifies what browsers already shipped. Five years later the W3C hands the spec to the WHATWG and HTML stops having versions at all.",
+    tags: ["html", "standards"],
+    links: [
+      {
+        href: "https://www.w3.org/TR/2014/REC-html5-20141028/",
+        label: "The 2014 recommendation",
+      },
+      { href: "https://html.spec.whatwg.org", label: "The living standard" },
+    ],
+    body: `
+      <p>The gap between HTML 4.01 and this is fifteen years, and almost none of
+      it was spent waiting. The WHATWG had been
+      writing the real specification since 2004 and the browsers had been
+      shipping it, so the 2014 recommendation is largely a ratification of work
+      already in production.</p>
+
+      <p>The part that matters came later. On 28 May 2019 the W3C named the
+      WHATWG the sole publisher of HTML, and the version numbers stopped. There
+      is no HTML6 and there will not be one: there is a living standard that
+      changes when a feature ships, and periodic snapshots for anybody who needs
+      to cite a date.</p>
+
+      <p>That is a better arrangement than it sounds and it is why the rest of
+      this chapter happens. A platform that only grows on version boundaries
+      cannot give you <code>:has()</code> in a year. This one can.</p>
+    `,
+  },
+  {
     id: "bootstrap",
     year: 2011,
     date: "2011-08-19",
