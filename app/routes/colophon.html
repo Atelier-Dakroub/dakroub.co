@@ -150,33 +150,35 @@
         period so the loop is seamless. The eight-bit dither does not slide, it
         jumps in steps, because a dither has no in-between states. Light crosses
         the beige plastic of the early nineties. The 2007 gloss has the sheen
-        every button of that year wanted. Flat design snaps between positions
-        rather than easing, like a breakpoint firing. The 2019 mesh breathes
-        over forty seconds.
+        every button of that year wanted. Flat design resizes its colour field
+        rather than sliding it, the way a layout answers a breakpoint. The 2019
+        mesh drifts its poles over eighteen seconds.
       </p>
       <p>
-        Every one of those animates a transform or an opacity, so the compositor
-        does the work and a full-bleed element never repaints. And all of it,
-        scroll-driven and time-driven alike, sits inside a
-        <code>prefers-reduced-motion: no-preference</code> query. A reader who
-        has asked for stillness gets a completely static document.
-      </p>
-      <p>
-        Every one of them sits inside a
+        Three of those move by <code>translate</code>, which the compositor
+        handles without touching paint. The rest are honest about costing more:
+        the tiled patterns step their own <code>background-position</code>, and
+        the flat and mesh eras interpolate a registered custom property inside a
+        gradient, which repaints. It is one element per chapter, behind the
+        text, at an opacity where a dropped frame is invisible, and it buys
+        textures that are drawn rather than loaded. All of it, scroll-driven and
+        time-driven alike, sits inside a
         <code>prefers-reduced-motion: no-preference</code> query, so a reader
         who has asked for stillness gets a completely static document.
       </p>
 
       <h2>The flow is the page</h2>
       <p>
-        There is no filter row, and there was one for about a day. Fifty years
-        of somebody's life is a thing to read, not a dataset to query, and a row
-        of chips across the top of it kept making the argument that it was the
-        second thing. So it went.
+        The filter row went once, on the argument that fifty years of somebody's
+        life is a thing to read rather than a dataset to query. It came back,
+        because a reader who wants only the machines should not have to scroll
+        forty years to find them. What settled it is that the row costs nothing
+        to ignore: it sits under the head, it is seven links, and it holds no
+        state.
       </p>
       <p>
-        What is left is one lateral move: the tags under an entry are links, and
-        following one narrows the timeline to it. That view is a real URL you
+        The row and the tags under an entry are the same lateral move, and
+        following either narrows the timeline. That view is a real URL you
         can send to somebody, the server renders it, and it works with scripting
         turned off, which is the whole hypermedia argument, made once, in the
         place a reader is already looking rather than in a toolbar they have to
