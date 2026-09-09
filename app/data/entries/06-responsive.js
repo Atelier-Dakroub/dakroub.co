@@ -38,6 +38,15 @@ export const entries = [
     `,
   },
   {
+    id: "ie6-countdown",
+    year: 2011,
+    date: "2011-03-04",
+    track: "tech",
+    title: "Microsoft asks the world to stop using Microsoft's browser",
+    dek: "ie6countdown.com: a live map of how much of each country is still on a ten-year-old browser, published by the company that wrote it.",
+    tags: ["microsoft", "browser"],
+  },
+  {
     id: "bootstrap",
     year: 2011,
     date: "2011-08-19",

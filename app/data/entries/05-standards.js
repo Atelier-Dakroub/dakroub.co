@@ -234,6 +234,15 @@ export const entries = [
     tags: ['cloud'],
   },
   {
+    id: 'ie-7',
+    year: 2006,
+    date: '2006-10-18',
+    track: 'tech',
+    title: 'Internet Explorer 7, five years late',
+    dek: 'Microsoft puts the team back together, because Firefox took a fifth of the web. Tabs, transparent PNGs, and proof that the only thing that ever moved this browser was competition.',
+    tags: ['microsoft', 'browser'],
+  },
+  {
     id: 'wii',
     year: 2006,
     date: '2006-11-19',

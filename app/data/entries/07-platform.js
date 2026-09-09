@@ -123,6 +123,59 @@ export const entries = [
     `,
   },
   {
+    id: "ie-retires",
+    year: 2022,
+    date: "2022-06-15",
+    track: "tech",
+    title: "Internet Explorer is retired",
+    dek: "Twenty-six years, and a headstone in South Korea reading “He was a good tool to download other browsers.” The joke is fair. It is not the whole obituary.",
+    tags: ["microsoft", "browser", "standards"],
+    feature: true,
+    spec: [
+      { label: "Shipped", value: "August 16, 1995" },
+      { label: "Retired", value: "June 15, 2022" },
+      { label: "Switched off for good", value: "February 14, 2023, by an Edge update" },
+      { label: "Peak share", value: "About 95 percent, around 2003" },
+      { label: "Still inside Edge", value: "IE mode, through at least 2029" },
+    ],
+    body: `
+      <p>Microsoft retired the Internet Explorer 11 desktop application on 15
+      June 2022, and on 14 February 2023 an Edge update switched it off
+      permanently on the machines that still had it. A
+      South Korean engineer bought a headstone with the logo carved into it and
+      the line "He was a good tool to download other browsers," and the
+      photograph went around the world in a day, because everyone who has ever
+      built a web page had a version of that joke ready.</p>
+
+      <p>The angry entry is already written. <a href="/log/ie-6">Version 6</a>
+      took the browser with the best standards support in the industry, stood
+      the team down for five years, and left the rest of us supporting the
+      result until the corporate desktops it lived on were physically replaced.
+      Every technique I learned between 2001 and 2010 was shaped by that. So was
+      every estimate I gave.</p>
+
+      <p>The obituary should carry the rest of it too. This is the browser that
+      shipped <a href="/log/ie-3">CSS first</a>, four months before there was a
+      recommendation to ship. It shipped <code>innerHTML</code>, which every
+      other engine copied and none of them has removed. It shipped
+      <a href="/log/xmlhttprequest">XMLHTTP</a> for a webmail client and made
+      every web application since possible by accident. It shipped
+      <a href="/log/active-desktop">an embeddable renderer</a> twenty years
+      before we decided that was a good idea and gave it a name. Its Macintosh
+      team invented the doctype switch, which is the reason a browser in 2026
+      can still render a page written in 1998 without breaking the one written
+      this morning. And it shipped conditional comments, still the only
+      version-targeting mechanism the web has had that did not require guessing
+      at a user agent string.</p>
+
+      <p>Both halves are the same fact. Internet Explorer moved fastest when it
+      was losing and stopped dead the moment it won, and nothing about that was
+      particular to Microsoft. Which is why I do not read the headstone as a
+      joke about one company. Three engines are left. Two of them are paid for,
+      directly or through a search deal, by the same advertising business.</p>
+    `,
+  },
+  {
     id: "has-and-layers",
     year: 2022,
     track: "tech",

@@ -113,6 +113,40 @@ export const entries = [
     `,
   },
   {
+    id: "active-desktop",
+    year: 1997,
+    date: "1997-09-30",
+    track: "tech",
+    title: "Active Desktop, and a renderer you could put inside anything",
+    dek: "Internet Explorer 4 puts a web page behind your icons and hands every program on Windows an HTML engine. Electron, twenty years early, and nobody had a word for it.",
+    tags: ["microsoft", "browser", "html"],
+    body: `
+      <p>IE4 shipped as a change to the operating system. Active Desktop
+      replaced the wallpaper with a live web page, with channels pushing content
+      onto it on a schedule. It was slow, it fell over, most people turned it
+      off inside a week, and it was completely right about where interfaces were
+      going.</p>
+
+      <p>The consequential half was quieter. The same release pulled the
+      renderer out into a library and wrapped it in a control, so any
+      application on Windows could put a browser inside itself in an afternoon.
+      Help files became HTML. Installers became HTML. Mail was rendered with it.
+      A whole category of Windows software was a web page in a frame with a
+      native menu bar on top, ten years before anyone said Electron and twenty
+      before it was respectable.</p>
+
+      <p>This is also where DHTML arrives: a document you can rewrite after it
+      has loaded, and <code>innerHTML</code> to do it with. That property is a
+      Microsoft invention which every other browser copied, none of them has
+      removed, and most of the web still updates itself through.</p>
+
+      <p>Three weeks after it shipped the Department of Justice was in court
+      over the fact that you could not take it out again. That argument ran for
+      four years. The thing it was about, a browser welded into an operating
+      system, is now how every operating system works.</p>
+    `,
+  },
+  {
     id: "imac",
     year: 1998,
     date: "1998-08-15",
@@ -311,6 +345,34 @@ export const entries = [
       a real graphical system on top, which is the trade BeOS had been offering
       me without the loneliness. I have never entirely stopped comparing things
       to it.</p>
+    `,
+  },
+  {
+    id: "xmlhttprequest",
+    year: 1999,
+    date: "1999-03-18",
+    track: "tech",
+    title: "XMLHTTP, written for a webmail client",
+    dek: "Internet Explorer 5 ships an object that fetches a URL without leaving the page. It was for Outlook Web Access. It turned out to be every web application built since.",
+    tags: ["microsoft", "javascript", "web"],
+    body: `
+      <p>The Outlook Web Access team needed Exchange mail to work in a browser,
+      and a browser in 1999 could only ask for an entire new page. So they wrote
+      a control that fetched a URL in the background and handed the response
+      back to script, and it went out in Internet Explorer 5 under the name
+      XMLHTTP, because the XML team shipped it and XML was what everything was
+      called that year.</p>
+
+      <p>Almost nobody outside Redmond noticed. Mozilla copied it the following
+      year, Safari in 2004, Opera in 2005, and it sat in every browser doing
+      very little until Google shipped Gmail and Maps and somebody gave the
+      technique a name. The single capability that made web applications
+      possible arrived six years before
+      the industry worked out what it was for, in a mail client, from the
+      company that spent the same decade holding the platform still.</p>
+
+      <p>It took until 2015 for the web to replace it with something better
+      designed. The replacement does the same job.</p>
     `,
   },
   {
@@ -522,6 +584,62 @@ export const entries = [
       accelerates with your thumb, one gesture that scales from the next track
       to the far end of the library. The hardware existed to make the hierarchy
       navigable. Interface design decided what got manufactured, which happens less often than it should.</p>
+    `,
+  },
+  {
+    id: "ie-6",
+    year: 2001,
+    date: "2001-08-27",
+    track: "tech",
+    title: "Internet Explorer 6, and then five years of nothing",
+    dek: "It wins the browser war and the team is stood down. What the web can do is frozen at what this one program can do, for most of a decade.",
+    tags: ["microsoft", "browser", "standards", "css"],
+    feature: true,
+    spec: [
+      { label: "Released", value: "August 27, 2001" },
+      { label: "Bundled with", value: "Windows XP, two months later" },
+      { label: "Peak share", value: "About 95 percent, around 2003" },
+      { label: "Next version", value: "October 2006" },
+      { label: "Support ended", value: "April 2014" },
+    ],
+    body: `
+      <p>Internet Explorer 6 shipped in August 2001, went out on every copy of
+      Windows XP in October, and won. Every competitor was dead or a rounding
+      error, and by 2003 something close to ninety-five percent of the people on
+      the web were seeing it through this one program.</p>
+
+      <p>Then Microsoft stopped. Not slowed down. Stopped. The team was broken
+      up and moved to other work, and in 2003 the company said there would be no
+      more standalone releases at all: the browser was a Windows feature now,
+      and Windows shipped when Windows shipped. The next version came out in
+      October 2006, five years and two months later, into a market that was
+      still mostly running the old one, because the old one lived on corporate
+      desktops nobody was going to touch.</p>
+
+      <p>That is the stranglehold, and it is worth being exact about what it
+      was. It was not incompetence. This is the same company that had shipped
+      <a href="/log/ie-3">the first browser with CSS in it</a> five years
+      earlier and could obviously have kept going. A browser good enough to run
+      real applications was a threat to the only reason anyone bought Windows,
+      and the argument that might have forced Microsoft to care had already been
+      won. Stopping was the rational move. It cost everybody else about ten
+      years.</p>
+
+      <p>What it looked like from a desk: no <code>min-width</code>, no
+      <code>max-width</code>, no <code>position: fixed</code>, no alpha channel
+      in a PNG without a proprietary filter, no <code>:hover</code> on anything
+      that was not a link, a box model that measured the wrong thing the moment
+      a doctype was slightly off, and an undocumented internal flag that decided
+      whether your CSS applied and which you could only set by accident. Every
+      site got a second stylesheet. Every team had somebody whose week went into
+      the second stylesheet. <a href="/log/jquery">jQuery</a>, and most of what
+      libraries did for the following decade, exists to paper over this
+      browser.</p>
+
+      <p>One good thing came out of it. A generation learned to build a page
+      that still worked when things were missing, because things were always
+      missing. That is progressive enhancement, and at the time it was not a
+      philosophy. It was a coping mechanism.</p>
     `,
   },
   {

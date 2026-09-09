@@ -445,6 +445,43 @@ export const entries = [
     tags: ["film", "cgi"],
   },
   {
+    id: "ie-3",
+    year: 1996,
+    date: "1996-08-13",
+    track: "tech",
+    title: "Internet Explorer 3, the first browser with a stylesheet in it",
+    dek: "Microsoft's third attempt is the first one it wrote itself, and the first browser anywhere to implement CSS. The company that later froze the web began by moving it.",
+    tags: ["microsoft", "browser", "css", "standards"],
+    feature: true,
+    spec: [
+      { label: "Released", value: "August 13, 1996" },
+      { label: "Version 1", value: "August 1995, licensed from Spyglass" },
+      { label: "First to ship", value: "CSS, four months before the recommendation" },
+      { label: "Also in the box", value: "JScript, ActiveX, mail, news" },
+      { label: "Price", value: "Free, which was the strategy" },
+    ],
+    body: `
+      <p>Internet Explorer 1 was Spyglass Mosaic with a Microsoft label on it,
+      sold in August 1995 inside an add-on pack you bought separately from
+      <a href="/log/windows-95">Windows 95</a>. Version 2 followed in three
+      months. Neither was any good and neither needed to be. The plan was to
+      keep shipping until one of them was.</p>
+
+      <p>Version 3 is the one that arrived. It was the first Microsoft wrote
+      rather than licensed, and it was the first browser of any kind to
+      implement <a href="/log/css1">CSS</a>, four months before there was a
+      recommendation to implement. Chris Wilson wrote that support and then
+      spent the next thirty years on the standard he had shipped early.</p>
+
+      <p>This is the half of the story that gets left out. Netscape's answer to
+      styling a document was a proprietary tag and a stylesheet language written
+      in JavaScript. Microsoft's answer was to build the thing the W3C was still
+      drafting. For about two years Internet Explorer was the browser you tested
+      in if you cared about the specification, which within five years becomes
+      an unimaginable sentence.</p>
+    `,
+  },
+  {
     id: "css1",
     year: 1996,
     date: "1996-12-17",
