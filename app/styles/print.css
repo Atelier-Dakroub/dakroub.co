@@ -133,8 +133,40 @@
     margin-block-start: 6pt;
   }
 
+  /* The same words, as running text. Six stacked bullets per capability is four
+     of them down the page; set inline they wrap into a paragraph and cost a
+     quarter of the height. Nothing is dropped, because this is the part an
+     applicant tracking system reads for keywords and a person skims for
+     whether the right nouns are present. */
   .capability ul {
-    gap: 1pt;
+    display: block;
+    gap: 0;
+  }
+
+  .capability li {
+    display: inline;
+  }
+
+  .capability li:not(:last-child)::after {
+    content: ' · ';
+    color: #777;
+  }
+
+  /* Everything before the current decade prints as a line: the title, the
+     organisation, the dates and the one-sentence summary. A reader skimming
+     twenty years wants the recent roles in detail and the older ones as proof
+     the years are accounted for, which is what the bullets cost four pages to
+     say twice. */
+  .role[data-brief] .role__did,
+  .role[data-brief] .stack {
+    display: none;
+  }
+
+  /* The toolchain by decade is a good story on a screen and a page of paper
+     nobody asked for. */
+  .toolchain,
+  .toolchain-head {
+    display: none;
   }
 
   .contact {

@@ -94,6 +94,7 @@ type Project = {
     value: string;
   }[] | undefined;
   image?: Media | undefined;
+  brief?: boolean | undefined;
   draft?: boolean | undefined;
   needs?: string | undefined;
 };
@@ -581,6 +582,7 @@ export type WorkData = {
     to: string;
     summary?: string | undefined;
     brand?: string | undefined;
+    brief?: boolean | undefined;
     draft?: boolean | undefined;
     needs?: string | undefined;
     when: string;

@@ -86,6 +86,10 @@
  * @property {string[]} [stack]
  * @property {string} [brand] a row in `app/data/brands.js`. Without one the role
  *   shows a monogram of the organization's initials instead.
+ * @property {boolean} [brief] print this one as a single line. The web page
+ *   shows every role in full; paper does not have the room, and a reader
+ *   skimming twenty years wants the last five in detail and the rest as proof
+ *   the years are accounted for.
  * @property {boolean} [draft]
  * @property {string} [needs] a note to yourself, listed at /backstage
  */
@@ -105,6 +109,10 @@
  * @property {string} [body] HTML
  * @property {Array<{ label: string, value: string }>} [facts]
  * @property {Media} [image]
+ * @property {boolean} [brief] print this one as a single line. The web page
+ *   shows every role in full; paper does not have the room, and a reader
+ *   skimming twenty years wants the last five in detail and the rest as proof
+ *   the years are accounted for.
  * @property {boolean} [draft]
  * @property {string} [needs] a note to yourself, listed at /backstage
  */

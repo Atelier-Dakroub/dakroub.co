@@ -79,7 +79,7 @@
   <section>
     <h2 class="section-head">Roles</h2>
     <ol class="roles roles--marked" role="list">
-      <li class="role" each="role of roles" key="role.id">
+      <li class="role" each="role of roles" key="role.id" data-brief="${role.brief}">
         <org-mark
           logo="${role.mark.logo}"
           initials="${role.mark.initials}"
