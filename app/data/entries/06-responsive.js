@@ -232,6 +232,77 @@ export const entries = [
     `,
   },
   {
+    id: "halt-and-catch-fire",
+    year: 2014,
+    date: "2014-06-01",
+    track: "world",
+    title: "Halt and Catch Fire",
+    dek: "Four seasons about people who are right too early and lose anyway. My favorite show, and the era it is set in is the least of the reason.",
+    tags: ["television", "culture", "web"],
+    feature: true,
+    spec: [
+      { label: "Ran", value: "AMC · June 2014 to October 2017" },
+      { label: "Seasons", value: "Four · forty episodes" },
+      { label: "Created by", value: "Christopher Cantwell and Christopher C. Rogers" },
+      { label: "Set across", value: "1983 to 1994" },
+      { label: "Named after", value: "An instruction that stops the processor and does not give it back" },
+      { label: "Watched", value: "All of it, several times" },
+    ],
+    body: `
+      <p>Four seasons on AMC following the same handful of people from a PC
+      clone company in Texas in 1983 to a search engine that does not exist yet
+      in 1994. The title is programmer folklore: halt and catch fire is an
+      instruction that does nothing useful, it stops the processor and does not
+      give it back, and the joke was passed around for twenty years before
+      anybody put it on a screen.</p>
+
+      <p>I have watched all four seasons several times. It is my favorite
+      television and the period detail is the least of the reason, which is
+      worth saying because the period detail is very good. The subject is
+      failure, and what different people do with it.</p>
+
+      <p>Nobody on this show wins. They are early every time. They build a
+      portable computer and Apple announces the Macintosh the same week. They
+      build an online community two years before anyone wants one. They build a
+      hand-made directory of the web and put it up against a crawler that is
+      obviously going to beat it. The last episode is set in 1994 and hands one
+      of them an idea you already know somebody else is about to get rich on.
+      That is the shape of all four seasons and it never resolves.</p>
+
+      <p>What it is about is how each of them handles that. Joe MacMillan burns
+      the thing down and turns up somewhere else with a new suit and a new
+      pitch, and the show is clear that this is not growth, it is the same
+      avoidance running on a longer loop. Gordon builds the best machine of his
+      life once, watches it fail, and carries it for ten years. Cameron is the
+      most talented person in every room and cannot finish anything, so she
+      leaves. Donna is the only one who learns to actually run something, and
+      the show charges her for it in a way it never charges the men.</p>
+
+      <p>Season three is mine. It moves everyone to California and then jumps
+      from 1986 to 1990 in its last episode, and the ground goes out from under
+      them. The eighties end. The personal computer stops being the story. The
+      web turns up. Watching people who spent a decade mastering one era find
+      out the era is over is the best thing this show does, and season three is
+      where it does it.</p>
+
+      <p>AMC nearly cancelled it after the first season and renewed it three
+      more times on an audience that never grew. A show about being right and
+      unwatched, which was right and unwatched.</p>
+
+      <p>It lands for me like nothing else has, and the reason is on this page.
+      Fifty years of entries and a real number of them did not work.
+      <a href="/log/first-ios-app">An app that got a letter instead of a
+      launch</a>. A social network with no server in it that never shipped. Work
+      that outlived the company it was done for, and plenty that did not outlive
+      the year. Nothing else I have watched treats that as the subject rather
+      than the obstacle before the win.</p>
+
+      <p>It also aired from 2014 to 2017, which is almost exactly the
+      <a href="/log/time-away">four years I spent out of an office</a>. I did
+      not notice that until I wrote this entry down.</p>
+    `,
+  },
+  {
     id: "swift",
     year: 2014,
     date: "2014-06-02",
