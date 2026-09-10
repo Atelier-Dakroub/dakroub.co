@@ -297,9 +297,13 @@ export const entries = [
       the year. Nothing else I have watched treats that as the subject rather
       than the obstacle before the win.</p>
 
-      <p>It also aired from 2014 to 2017, which is almost exactly the
-      <a href="/log/time-away">four years I spent out of an office</a>. I did
-      not notice that until I wrote this entry down.</p>
+      <p>It ran from 2014 to 2017, and that is when I watched it, which is
+      also exactly the <a href="/log/time-away">four years I spent out of an
+      office</a>. Four seasons about people starting over, during the one
+      stretch of my working life where I had deliberately stopped. Anything
+      that lands this hard is partly about when it reached you. I do not think
+      I would have heard it the same way from inside somebody's release
+      schedule.</p>
     `,
   },
   {
