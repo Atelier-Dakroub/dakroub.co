@@ -426,6 +426,42 @@ export const entries = [
     `,
   },
   {
+    id: "backrooms",
+    year: 2026,
+    date: "2026-05-29",
+    track: "world",
+    title: "Backrooms, which I have not seen",
+    dek: "One photograph of empty yellow carpet, posted to a message board in 2019, becomes a twenty-year-old's first feature and the highest-grossing film A24 has released.",
+    tags: ["film", "internet", "culture"],
+    body: `
+      <p>It started as an image and a caption. Damp yellow carpet, fluorescent
+      light, no windows, and a line about falling out of the world into the
+      empty rooms behind it. Kane Parsons was a teenager when he turned that
+      into a found-footage series on YouTube in January 2022, made at home with
+      free tools. A24 signed him thirteen months later. The film opened in May
+      2026, cost under ten million dollars, took nearly four hundred million,
+      and made him the youngest director to have a film reach number one.</p>
+
+      <p>I have not seen it. I do not watch films or television any more, and I
+      could not tell you when that stopped being a temporary arrangement. What
+      I like is the pictures, and I have liked them for years. Liminal spaces.
+      Corridors photographed at the wrong hour. Rooms that were built for a
+      purpose nobody is currently carrying out. An office at four in the
+      morning does it, and so does every waiting area I have ever walked
+      through alone.</p>
+
+      <p>The part that belongs on this page is how it was made. Somebody with
+      free 3D software and an account on a video site built something good
+      enough that a studio bought it, and four years later it had out-earned
+      everything else that studio had ever released. This page has told that
+      story before, in <a href="/log/indie-game-the-movie">a documentary about
+      four people making three games</a>. The tools get cheaper, the distance
+      from a bedroom to an audience gets shorter, and it keeps happening. I
+      find that encouraging every single time, which is presumably why I made a
+      card for a film I am never going to watch.</p>
+    `,
+  },
+  {
     id: "transclude",
     year: 2026,
     track: "make",
