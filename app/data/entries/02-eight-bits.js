@@ -489,6 +489,61 @@ export const entries = [
     `,
   },
   {
+    id: "roger-wilco",
+    year: 1987,
+    track: "make",
+    title: "The man at Microsoft who called me back",
+    dek: "I was eleven, my Roger Wilco had a head and no body, and the program kept crashing. Microsoft tech support took the problem exactly as seriously as anybody else's.",
+    tags: ["basic", "graphics", "sierra"],
+    feature: true,
+    spec: [
+      { label: "I was", value: "Eleven" },
+      { label: "Trying to draw", value: "Roger Wilco, from Space Quest" },
+      { label: "Got as far as", value: "A head" },
+      { label: "The bug", value: "Arrays dimensioned too small" },
+      { label: "The fix", value: "Bigger numbers in the DIM calls" },
+      { label: "Delivered by", value: "Voicemail, after Little League" },
+    ],
+    body: `
+      <p>Space Quest had come out the autumn before and Roger Wilco walked
+      around the screen when you pressed the cursor keys, and I wanted that more
+      than I wanted anything else the computer could do. So I set out to build
+      it in QuickBASIC. No sprites and no art program. Every part of him was
+      drawn by the program itself, arc by arc and line by line, because drawing
+      him was the only way I knew to get him on the screen.</p>
+
+      <p>I got a head. I never got a body. The thing kept crashing and I had no
+      way at all of finding out why. There was nothing to search. No forum, no
+      newsgroup I knew about, nobody at school to ask. The manual told you what
+      each keyword did, which is a different question from what I had done
+      wrong.</p>
+
+      <p>So I found a phone number for Microsoft technical support and called
+      it. We traded voicemails for a few days, which was itself a fairly new way
+      to talk to a stranger, and then we got each other live. He stayed on the
+      line while an eleven-year-old typed out what he suggested, saved it, ran
+      it, and reported back what happened. That is a very slow loop. He waited
+      through all of it.</p>
+
+      <p>I had a Little League game that day and had to cut him off mid-call. He
+      called back later and left the fix on the machine. My arrays were too
+      small, and if I dimensioned them larger the graphics would keep drawing.
+      They did.</p>
+
+      <p>He had no way of knowing whether I was a customer worth an afternoon,
+      and as far as I could tell it did not occur to him to work it out. He took
+      the problem seriously because it was a problem. I have thought about that
+      man a great deal more than he could ever have expected, and every time I
+      answer a question from somebody who is obviously new, he is the standard I
+      am measuring myself against.</p>
+
+      <p>The head was the only part of Roger Wilco I ever finished. Four years
+      later I came back to the same language for
+      <a href="/log/quickbasic">the interfaces</a>, and I was still drawing
+      everything a pixel at a time.</p>
+    `,
+  },
+  {
     id: "ps2-model-30",
     year: 1988,
     track: "machine",

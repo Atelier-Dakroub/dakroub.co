@@ -111,7 +111,9 @@ export const entries = [
     tags: ["basic", "dos"],
     feature: true,
     body: `
-      <p>I came to QuickBASIC for one instruction. <code>SCREEN 13</code> gave you
+      <p>I had been writing QuickBASIC since
+      <a href="/log/roger-wilco">I was eleven</a>. What made it the thing I
+      lived in was one instruction. <code>SCREEN 13</code> gave you
       320 × 200 in 256 colors, the mode the
       <a href="/log/ps2-model-30">PS/2</a> had introduced me to, from a language
       that compiled to an <code>.EXE</code> you could hand to somebody. Line
@@ -121,7 +123,7 @@ export const entries = [
 
       <p>What I actually built with it was interfaces. Menus you drove with a
       mouse, buttons that looked pressed, panels that opened over other panels,
-      all of it drawn a pixel at a time,, because there was nothing to draw them
+      all of it drawn a pixel at a time, because there was nothing to draw them
       for me and no convention to copy.</p>
 
       <p>I did not know the word for any of that. I would not hear "UI" for
