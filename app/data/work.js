@@ -398,11 +398,6 @@ export const also = [
         where: "University of Michigan – Flint",
         when: "",
       },
-      {
-        what: "Clarkston Senior High School",
-        where: "Clarkston, Michigan",
-        when: "1994",
-      },
     ],
   },
 ];
