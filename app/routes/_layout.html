@@ -16,8 +16,46 @@
         ? path === "/" || path.startsWith("/era") || path.startsWith("/log")
         : path.startsWith(href);
 
+    // One node saying which person this site is, on every page. A search engine
+    // reads a personal site either as an entity or as a pile of documents, and
+    // the difference is whether something on the page names the person and
+    // links the accounts that corroborate them. It goes out as data through
+    // `json()` rather than as hand-written braces, which is both the only way a
+    // value may reach a nested script and one fewer place a typo can produce a
+    // block that parsers drop in silence.
+    //
+    // No dates anywhere in it. An entry carries the year the thing happened,
+    // not the day it was written, so a `datePublished` built from one would be
+    // a false claim made to a crawler that has no way to check it.
+    const person = {
+      "@type": "Person",
+      "@id": `${site.origin}/#person`,
+      name: site.name,
+      url: site.origin,
+      jobTitle: site.role,
+      description: site.tagline,
+      email: `mailto:${site.email}`,
+      address: site.location,
+      // The site's own address is `url`. Repeating it here would claim the
+      // person is also somebody else.
+      sameAs: site.elsewhere
+        .map((link) => link.href)
+        .filter((href) => !href.startsWith(site.origin)),
+    };
+
+    const website = {
+      "@type": "WebSite",
+      "@id": `${site.origin}/#site`,
+      url: site.origin,
+      name: site.name,
+      description: site.tagline,
+      inLanguage: "en",
+      publisher: { "@id": person["@id"] },
+    };
+
     return {
       site,
+      jsonld: { "@context": "https://schema.org", "@graph": [person, website] },
       nav: nav.map((item) => ({
         ...item,
         current: owns(item.href) ? "page" : false,
@@ -79,6 +117,8 @@
   title="${site.name}"
   href="/feed.xml"
 />
+
+<script type="application/ld+json">${json(jsonld)}</script>
 
 <body class="shell"></body>
 

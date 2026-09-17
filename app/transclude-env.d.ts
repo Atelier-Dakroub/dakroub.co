@@ -49,6 +49,7 @@ type Entry = {
   id: string;
   year: number;
   date?: string | undefined;
+  published?: string | undefined;
   until?: string | number | undefined;
   track: Track;
   title: string;
@@ -189,6 +190,30 @@ export type RootLayoutData = {
     }[];
     inProgress: boolean;
   };
+  jsonld: {
+    "@context": string;
+    "@graph": ({
+      "@type": string;
+      "@id": string;
+      name: string;
+      url: string;
+      jobTitle: string;
+      description: string;
+      email: string;
+      address: string;
+      sameAs: string[];
+    } | {
+      "@type": string;
+      "@id": string;
+      url: string;
+      name: string;
+      description: string;
+      inLanguage: string;
+      publisher: {
+        "@id": string;
+      };
+    })[];
+  };
   nav: {
     href: string;
     label: string;
@@ -225,6 +250,30 @@ export type AboutContext = {
         href: string;
       }[];
       inProgress: boolean;
+    };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
     };
     nav: {
       href: string;
@@ -316,6 +365,30 @@ export type BackstageContext = {
       }[];
       inProgress: boolean;
     };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
+    };
     nav: {
       href: string;
       label: string;
@@ -388,6 +461,30 @@ export type ColophonContext = {
       }[];
       inProgress: boolean;
     };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
+    };
     nav: {
       href: string;
       label: string;
@@ -443,6 +540,30 @@ export type ProjectsIndexContext = {
         href: string;
       }[];
       inProgress: boolean;
+    };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
     };
     nav: {
       href: string;
@@ -504,6 +625,30 @@ export type WorkContext = {
         href: string;
       }[];
       inProgress: boolean;
+    };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
     };
     nav: {
       href: string;
@@ -625,6 +770,30 @@ export type IndexContext = {
         href: string;
       }[];
       inProgress: boolean;
+    };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
     };
     nav: {
       href: string;
@@ -757,6 +926,30 @@ export type EraSlugContext = {
       }[];
       inProgress: boolean;
     };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
+    };
     nav: {
       href: string;
       label: string;
@@ -855,6 +1048,30 @@ export type LogIdContext = {
         href: string;
       }[];
       inProgress: boolean;
+    };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
     };
     nav: {
       href: string;
@@ -959,6 +1176,30 @@ export type ProjectsSlugContext = {
       }[];
       inProgress: boolean;
     };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
+    };
     nav: {
       href: string;
       label: string;
@@ -1018,6 +1259,30 @@ export type _404Context = {
         href: string;
       }[];
       inProgress: boolean;
+    };
+    jsonld: {
+      "@context": string;
+      "@graph": ({
+        "@type": string;
+        "@id": string;
+        name: string;
+        url: string;
+        jobTitle: string;
+        description: string;
+        email: string;
+        address: string;
+        sameAs: string[];
+      } | {
+        "@type": string;
+        "@id": string;
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+        publisher: {
+          "@id": string;
+        };
+      })[];
     };
     nav: {
       href: string;
