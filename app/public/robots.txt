@@ -2,4 +2,13 @@
 User-agent: *
 Allow: /
 
+# Except the timeline's own filters. `?tag=` and `?track=` return the front page
+# with fewer entries on it, and the pills under every entry add up to a hundred
+# and thirty-three such links. A crawler that follows them fetches one page a
+# hundred and thirty-three times and reaches none of the writing. The canonical
+# link on each one says so, but only after the fetch, and a new site does not
+# have the crawl budget to say it that many times.
+Disallow: /*?tag=
+Disallow: /*?track=
+
 Sitemap: https://dakroub.co/sitemap.xml
