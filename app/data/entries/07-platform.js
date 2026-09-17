@@ -9,6 +9,7 @@
 export const entries = [
   {
     id: "dockyard",
+    published: "2026-09-04",
     year: 2019,
     until: 2020,
     track: "work",
@@ -38,6 +39,7 @@ export const entries = [
   },
   {
     id: "kajabi",
+    published: "2026-09-04",
     year: 2020,
     until: 2022,
     track: "work",
@@ -97,6 +99,7 @@ export const entries = [
   },
   {
     id: "freelance",
+    published: "2026-09-04",
     year: 2022,
     until: 2025,
     track: "work",
@@ -124,6 +127,7 @@ export const entries = [
   },
   {
     id: "ie-retires",
+    published: "2026-09-09",
     year: 2022,
     date: "2022-06-15",
     track: "tech",
@@ -177,6 +181,7 @@ export const entries = [
   },
   {
     id: "has-and-layers",
+    published: "2026-09-04",
     year: 2022,
     track: "tech",
     title: ":has(), @layer, and container queries all ship",
@@ -202,6 +207,7 @@ export const entries = [
   },
   {
     id: "view-transitions",
+    published: "2026-09-04",
     year: 2023,
     date: "2023-03",
     track: "tech",
@@ -221,6 +227,7 @@ export const entries = [
   },
   {
     id: "scroll-driven-animations",
+    published: "2026-09-04",
     year: 2023,
     date: "2023-07",
     track: "tech",
@@ -254,6 +261,7 @@ export const entries = [
   },
   {
     id: "working-with-ai",
+    published: "2026-09-08",
     year: 2024,
     track: "learn",
     title: "The thing I ended a project over",
@@ -310,6 +318,7 @@ export const entries = [
   },
   {
     id: "claude-code",
+    published: "2026-09-08",
     year: 2025,
     date: "2025-02-24",
     track: "tech",
@@ -353,6 +362,7 @@ export const entries = [
   },
   {
     id: "domxy",
+    published: "2026-09-04",
     year: 2025,
     date: "2025-01",
     track: "make",
@@ -399,6 +409,7 @@ export const entries = [
   },
   {
     id: "heyo",
+    published: "2026-09-04",
     year: 2025,
     track: "work",
     title: "Heyo",
@@ -427,6 +438,7 @@ export const entries = [
   },
   {
     id: "backrooms",
+    published: "2026-09-10",
     year: 2026,
     date: "2026-05-29",
     track: "world",
@@ -463,6 +475,7 @@ export const entries = [
   },
   {
     id: "transclude",
+    published: "2026-09-04",
     year: 2026,
     track: "make",
     title: "transclude",
@@ -508,6 +521,7 @@ export const entries = [
   },
   {
     id: "this-site",
+    published: "2026-09-04",
     year: 2026,
     track: "make",
     title: "This page",

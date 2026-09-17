@@ -22,6 +22,7 @@ export const entries = [
   },
   {
     id: 'first-screens',
+    published: '2026-09-04',
     year: 1976,
     track: 'play',
     title: 'Screens, before any of them were computers',
@@ -51,6 +52,7 @@ export const entries = [
   },
   {
     id: 'the-1977-trinity',
+    published: '2026-09-04',
     year: 1977,
     track: 'tech',
     title: 'The 1977 trinity',
@@ -77,6 +79,7 @@ export const entries = [
   },
   {
     id: 'atari-vcs',
+    published: '2026-09-04',
     year: 1977,
     date: '1977-09',
     track: 'machine',
@@ -121,6 +124,7 @@ export const entries = [
   },
   {
     id: 'colossal-cave',
+    published: '2026-09-04',
     year: 1977,
     track: 'play',
     title: 'Colossal Cave Adventure spreads on the ARPANET',
@@ -162,6 +166,7 @@ export const entries = [
   },
   {
     id: 'zork-i',
+    published: '2026-09-04',
     year: 1980,
     track: 'play',
     title: 'Zork I',
@@ -205,6 +210,7 @@ export const entries = [
   },
   {
     id: 'donkey-kong',
+    published: '2026-09-04',
     year: 1981,
     date: '1981-07',
     track: 'play',
@@ -270,6 +276,7 @@ export const entries = [
   },
   {
     id: 'commodore-64',
+    published: '2026-09-04',
     year: 1982,
     date: '1982-08',
     track: 'tech',

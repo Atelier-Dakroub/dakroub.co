@@ -6,6 +6,7 @@
 export const entries = [
   {
     id: "html-2",
+    published: "2026-09-09",
     year: 1995,
     date: "1995-11-24",
     track: "tech",
@@ -38,6 +39,7 @@ export const entries = [
   },
   {
     id: "linux-0-01",
+    published: "2026-09-04",
     year: 1991,
     date: "1991-08-25",
     track: "tech",
@@ -65,6 +67,7 @@ export const entries = [
   },
   {
     id: "www-public",
+    published: "2026-09-04",
     year: 1991,
     date: "1991-08-06",
     track: "tech",
@@ -104,6 +107,7 @@ export const entries = [
   },
   {
     id: "quickbasic",
+    published: "2026-09-04",
     year: 1991,
     track: "make",
     title: "QuickBASIC, and SCREEN 13",
@@ -132,6 +136,7 @@ export const entries = [
   },
   {
     id: "first-cd-rom",
+    published: "2026-09-04",
     year: 1991,
     track: "play",
     title: "Mixed-Up Mother Goose, on CD-ROM",
@@ -204,6 +209,7 @@ export const entries = [
   },
   {
     id: "doom",
+    published: "2026-09-04",
     year: 1993,
     date: "1993-12-10",
     track: "play",
@@ -222,6 +228,7 @@ export const entries = [
   },
   {
     id: "myst",
+    published: "2026-09-04",
     year: 1993,
     date: "1993-09-24",
     track: "play",
@@ -259,6 +266,7 @@ export const entries = [
   },
   {
     id: "first-modem",
+    published: "2026-09-04",
     year: 1994,
     track: "machine",
     title: "Two modems in one year",
@@ -288,6 +296,7 @@ export const entries = [
   },
   {
     id: "clarkston-high",
+    published: "2026-09-04",
     year: 1994,
     track: "learn",
     title: "Clarkston Senior High School",
@@ -313,6 +322,7 @@ export const entries = [
   },
   {
     id: "midi-rig",
+    published: "2026-09-04",
     year: 1994,
     track: "machine",
     title: "A Korg X3, and music on a screen",
@@ -374,6 +384,7 @@ export const entries = [
   },
   {
     id: "first-web-page",
+    published: "2026-09-04",
     year: 1996,
     track: "make",
     title: "A practice page, learned from view source",
@@ -407,6 +418,7 @@ export const entries = [
   },
   {
     id: "windows-95",
+    published: "2026-09-04",
     year: 1995,
     date: "1995-08-24",
     track: "tech",
@@ -448,6 +460,7 @@ export const entries = [
   },
   {
     id: "ie-3",
+    published: "2026-09-09",
     year: 1996,
     date: "1996-08-13",
     track: "tech",
@@ -485,6 +498,7 @@ export const entries = [
   },
   {
     id: "css1",
+    published: "2026-09-04",
     year: 1996,
     date: "1996-12-17",
     track: "tech",

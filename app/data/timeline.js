@@ -19,13 +19,24 @@ import { trackBy, tracks, mine } from './tracks.js';
 /** Authored order, era by era. Within a year the file's order is kept. */
 const authored = [...green, ...eight, ...beige, ...source, ...standards, ...responsive, ...platform];
 
+const DAY = /^\d{4}-\d{2}-\d{2}$/;
+
 // An id is a URL. Two entries sharing one would make `/log/<id>` ambiguous and
 // the second would never be reachable, so it is a startup error rather than a
 // mystery in six months.
+//
+// A missing `published` is the second such error. The feed dates an item by it,
+// and an entry with a body but no date would go out dated by its `year`, which
+// for most of this timeline is decades ago: a reader would file it below the
+// whole back catalogue and nobody would ever see it. A feed nobody reads fails
+// quietly, so it fails here instead.
 const seen = new Set();
 for (const entry of authored) {
   if (seen.has(entry.id)) throw new Error(`[data] two entries share the id "${entry.id}"`);
   seen.add(entry.id);
+
+  if (entry.body && !entry.draft && !DAY.test(entry.published ?? ''))
+    throw new Error(`[data] "${entry.id}" has a body, so it needs published: "YYYY-MM-DD"`);
 }
 
 /**

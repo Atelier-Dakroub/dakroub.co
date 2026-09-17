@@ -24,6 +24,7 @@ export const entries = [
   },
   {
     id: 'firefox-1',
+    published: '2026-09-04',
     year: 2004,
     date: '2004-11-09',
     track: 'tech',
@@ -51,6 +52,7 @@ export const entries = [
   },
   {
     id: 'world-of-warcraft',
+    published: '2026-09-04',
     year: 2004,
     date: '2004-11-23',
     track: 'play',
@@ -69,6 +71,7 @@ export const entries = [
   },
   {
     id: 'quicken-loans',
+    published: '2026-09-04',
     year: 2005,
     until: 2010,
     track: 'work',
@@ -109,6 +112,7 @@ export const entries = [
   },
   {
     id: 'switch-to-standards',
+    published: '2026-09-04',
     year: 2004,
     track: 'make',
     title: 'Deleting the tables',
@@ -159,6 +163,7 @@ export const entries = [
   },
   {
     id: 'jquery',
+    published: '2026-09-04',
     year: 2006,
     date: '2006-01-14',
     track: 'tech',
@@ -175,6 +180,7 @@ export const entries = [
   },
   {
     id: 'skeletor',
+    published: '2026-09-04',
     year: 2006,
     track: 'make',
     title: 'Skeletor, and a CMS called Eternia',
@@ -244,6 +250,7 @@ export const entries = [
   },
   {
     id: 'wii',
+    published: '2026-09-04',
     year: 2006,
     date: '2006-11-19',
     track: 'machine',
@@ -282,6 +289,7 @@ export const entries = [
   },
   {
     id: 'iphone',
+    published: '2026-09-04',
     year: 2007,
     date: '2007-01-09',
     track: 'tech',
@@ -354,6 +362,7 @@ export const entries = [
   },
   {
     id: 'nodejs',
+    published: '2026-09-04',
     year: 2009,
     date: '2009-11-08',
     track: 'tech',
@@ -387,6 +396,7 @@ export const entries = [
   },
   {
     id: 'tradeweb',
+    published: '2026-09-04',
     year: 2010,
     until: 2015,
     track: 'work',
@@ -420,6 +430,7 @@ export const entries = [
   },
   {
     id: 'css-maze',
+    published: '2026-09-04',
     year: 2010,
     track: 'make',
     title: 'A dungeon maze made of CSS transforms',
@@ -444,6 +455,7 @@ export const entries = [
   },
   {
     id: 'rentalbug',
+    published: '2026-09-04',
     year: 2010,
     track: 'work',
     title: 'rentalbug.com',
@@ -466,6 +478,7 @@ export const entries = [
   },
   {
     id: 'first-ios-app',
+    published: '2026-09-04',
     year: 2010,
     track: 'make',
     title: 'Points+, and the letter that ended it',
@@ -521,6 +534,7 @@ export const entries = [
   },
   {
     id: 'responsive-web-design',
+    published: '2026-09-04',
     year: 2010,
     date: '2010-05-25',
     track: 'tech',
@@ -541,6 +555,7 @@ export const entries = [
   },
   {
     id: 'thoughts-on-flash',
+    published: '2026-09-04',
     year: 2010,
     date: '2010-04-29',
     track: 'tech',

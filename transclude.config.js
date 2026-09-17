@@ -45,14 +45,24 @@ export default {
     title: `${site.name} — the timeline`,
     description: site.tagline,
     language: 'en',
-    // Newest first, which for a fifty-year timeline means the present.
+    // Newest first by the day the entry went up, not by the year it is about. A
+    // reader sorts on this date and shows what has arrived since it last looked,
+    // so an entry written this morning about 1983 has to be dated this morning.
+    // Dated 1983 it lands under fifty years of back catalogue and is never seen.
+    //
+    // The year is still the first thing in the title, which is where a reader
+    // wants it: the date says when to read this, the title says what it is about.
+    // Entries that went up together keep the timeline's order, newest year first.
     items: () =>
-      [...written].reverse().map((entry) => ({
-        title: `${entry.year} — ${entry.title}`,
-        path: `/log/${entry.id}`,
-        date: entry.date ? `${entry.date}-01`.slice(0, 10) : `${entry.year}-01-01`,
-        description: entry.dek ?? '',
-      })),
+      [...written]
+        .reverse()
+        .sort((a, b) => (a.published < b.published ? 1 : a.published > b.published ? -1 : 0))
+        .map((entry) => ({
+          title: `${entry.year} — ${entry.title}`,
+          path: `/log/${entry.id}`,
+          date: entry.published,
+          description: entry.dek ?? '',
+        })),
   },
 
   outDir: 'dist',

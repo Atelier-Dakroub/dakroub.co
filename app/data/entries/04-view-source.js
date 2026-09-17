@@ -6,6 +6,7 @@
 export const entries = [
   {
     id: "html-4",
+    published: "2026-09-09",
     year: 1999,
     date: "1999-12-24",
     track: "tech",
@@ -57,6 +58,7 @@ export const entries = [
   },
   {
     id: "bfa",
+    published: "2026-09-04",
     year: 1999,
     track: "learn",
     title: "A Bachelor of Fine Arts in music performance",
@@ -80,6 +82,7 @@ export const entries = [
   },
   {
     id: "red-hat",
+    published: "2026-09-04",
     year: 1997,
     track: "learn",
     title: "Red Hat 4, from a shelf at Best Buy",
@@ -114,6 +117,7 @@ export const entries = [
   },
   {
     id: "active-desktop",
+    published: "2026-09-09",
     year: 1997,
     date: "1997-09-30",
     track: "tech",
@@ -166,6 +170,7 @@ export const entries = [
   },
   {
     id: "wasp",
+    published: "2026-09-04",
     year: 1998,
     date: "1998-08",
     track: "tech",
@@ -193,6 +198,7 @@ export const entries = [
   },
   {
     id: "y2k",
+    published: "2026-09-04",
     year: 1999,
     track: "work",
     title: "Y2K, one plant at a time",
@@ -238,6 +244,7 @@ export const entries = [
   },
   {
     id: "ldm-intranet",
+    published: "2026-09-04",
     year: 2000,
     track: "work",
     title: "An intranet for LDM Technologies",
@@ -265,6 +272,7 @@ export const entries = [
   },
   {
     id: "trouble-with-trash",
+    published: "2026-09-04",
     year: 1998,
     track: "make",
     title: "A soundtrack for The Trouble with Trash",
@@ -300,6 +308,7 @@ export const entries = [
   },
   {
     id: "beos",
+    published: "2026-09-04",
     year: 1999,
     date: "1999-06",
     track: "learn",
@@ -349,6 +358,7 @@ export const entries = [
   },
   {
     id: "xmlhttprequest",
+    published: "2026-09-09",
     year: 1999,
     date: "1999-03-18",
     track: "tech",
@@ -404,6 +414,7 @@ export const entries = [
   },
   {
     id: "dot-com-crash",
+    published: "2026-09-04",
     year: 2000,
     date: "2000-03-10",
     track: "world",
@@ -442,6 +453,7 @@ export const entries = [
   },
   {
     id: "first-mac",
+    published: "2026-09-04",
     year: 2001,
     date: "2001-03",
     track: "machine",
@@ -481,6 +493,7 @@ export const entries = [
   },
   {
     id: "mcallister",
+    published: "2026-09-04",
     year: 2001,
     until: "now",
     track: "work",
@@ -518,6 +531,7 @@ export const entries = [
   },
   {
     id: "hillman-curtis",
+    published: "2026-09-04",
     year: 2001,
     track: "learn",
     title: "Learning Flash from Hillman Curtis",
@@ -559,6 +573,7 @@ export const entries = [
   },
   {
     id: "ipod",
+    published: "2026-09-04",
     year: 2001,
     date: "2001-10-23",
     track: "tech",
@@ -588,6 +603,7 @@ export const entries = [
   },
   {
     id: "ie-6",
+    published: "2026-09-09",
     year: 2001,
     date: "2001-08-27",
     track: "tech",
@@ -668,6 +684,7 @@ export const entries = [
   },
   {
     id: "osx",
+    published: "2026-09-04",
     year: 2001,
     date: "2001-03-24",
     track: "tech",
@@ -704,6 +721,7 @@ export const entries = [
   },
   {
     id: "css-zen-garden",
+    published: "2026-09-04",
     year: 2003,
     date: "2003-05-07",
     track: "tech",
@@ -740,6 +758,7 @@ export const entries = [
   },
   {
     id: "september-11",
+    published: "2026-09-04",
     year: 2001,
     date: "2001-09-11",
     track: "world",

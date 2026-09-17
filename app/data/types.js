@@ -22,6 +22,10 @@
  * @property {string} id unique, lowercase, dashes. It is the URL.
  * @property {number} year
  * @property {string} [date] `YYYY-MM` or `YYYY-MM-DD`, to order within a year
+ * @property {string} [published] `YYYY-MM-DD`, the day this entry went on the
+ *   site. Required once an entry has a `body`, because the feed dates items by
+ *   it. It is not `year`: `year` is when the thing happened, which for most of
+ *   this timeline is decades before anyone wrote about it.
  * @property {number|string} [until] the last year, or `'now'` for something still going
  * @property {Track} track
  * @property {string} title

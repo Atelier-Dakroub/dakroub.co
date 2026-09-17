@@ -6,6 +6,7 @@
 export const entries = [
   {
     id: "first-machine",
+    published: "2026-09-04",
     year: 1985,
     track: "machine",
     title: "An IBM PCjr",
@@ -55,6 +56,7 @@ export const entries = [
   },
   {
     id: "hands-on-basic",
+    published: "2026-09-04",
     year: 1985,
     track: "learn",
     title: "Hands-On BASIC for the IBM PCjr",
@@ -88,6 +90,7 @@ export const entries = [
   },
   {
     id: "first-program",
+    published: "2026-09-04",
     year: 1985,
     track: "make",
     title: "Hello, world",
@@ -110,6 +113,7 @@ export const entries = [
   },
   {
     id: "school-pet",
+    published: "2026-09-04",
     year: 1984,
     track: "machine",
     title: "A Commodore PET in the corner",
@@ -146,6 +150,7 @@ export const entries = [
   },
   {
     id: "macintosh",
+    published: "2026-09-04",
     year: 1984,
     date: "1984-01-24",
     track: "tech",
@@ -173,6 +178,7 @@ export const entries = [
   },
   {
     id: "kings-quest",
+    published: "2026-09-04",
     year: 1984,
     track: "play",
     title: "King's Quest",
@@ -217,6 +223,7 @@ export const entries = [
   },
   {
     id: "bards-tale",
+    published: "2026-09-04",
     year: 1985,
     track: "play",
     title: "The Bard's Tale",
@@ -236,6 +243,7 @@ export const entries = [
   },
   {
     id: "ultima-iv",
+    published: "2026-09-04",
     year: 1985,
     track: "play",
     title: "Ultima IV: Quest of the Avatar",
@@ -261,6 +269,7 @@ export const entries = [
   },
   {
     id: "pagemaker",
+    published: "2026-09-04",
     year: 1985,
     date: "1985-07",
     track: "tech",
@@ -309,6 +318,7 @@ export const entries = [
   },
   {
     id: "typing-in-listings",
+    published: "2026-09-04",
     year: 1985,
     track: "make",
     title: "Typing programs in from magazines",
@@ -327,6 +337,7 @@ export const entries = [
   },
   {
     id: "christmas-tree",
+    published: "2026-09-04",
     year: 1985,
     date: "1985-12",
     track: "make",
@@ -380,6 +391,7 @@ export const entries = [
   },
   {
     id: "colorpaint",
+    published: "2026-09-04",
     year: 1986,
     track: "make",
     title: "ColorPaint, and a mouse",
@@ -435,6 +447,7 @@ export const entries = [
   },
   {
     id: "hypercard",
+    published: "2026-09-04",
     year: 1987,
     date: "1987-08",
     track: "tech",
@@ -462,6 +475,7 @@ export const entries = [
   },
   {
     id: "ascii-adventure",
+    published: "2026-09-04",
     year: 1987,
     track: "make",
     title: "An adventure game, in ASCII",
@@ -490,6 +504,7 @@ export const entries = [
   },
   {
     id: "roger-wilco",
+    published: "2026-09-10",
     year: 1987,
     track: "make",
     title: "The man at Microsoft who called me back",
@@ -545,6 +560,7 @@ export const entries = [
   },
   {
     id: "ps2-model-30",
+    published: "2026-09-04",
     year: 1988,
     track: "machine",
     title: "An IBM PS/2 Model 30",
@@ -586,6 +602,7 @@ export const entries = [
   },
   {
     id: "deluxe-paint",
+    published: "2026-09-04",
     year: 1989,
     track: "learn",
     title: "A mouse, and Deluxe Paint II",
@@ -625,6 +642,7 @@ export const entries = [
   },
   {
     id: "sound-blaster",
+    published: "2026-09-04",
     year: 1989,
     track: "work",
     title: "A Sound Blaster, and a byline",
@@ -667,6 +685,7 @@ export const entries = [
   },
   {
     id: "simcity",
+    published: "2026-09-04",
     year: 1989,
     track: "play",
     title: "SimCity",

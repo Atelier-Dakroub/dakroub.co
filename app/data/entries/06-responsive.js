@@ -6,6 +6,7 @@
 export const entries = [
   {
     id: "html-5",
+    published: "2026-09-09",
     year: 2014,
     date: "2014-10-28",
     track: "tech",
@@ -75,6 +76,7 @@ export const entries = [
   },
   {
     id: "coda-plugins",
+    published: "2026-09-04",
     year: 2013,
     track: "make",
     title: "Six or seven plugins for Coda",
@@ -104,6 +106,7 @@ export const entries = [
   },
   {
     id: "wedding",
+    published: "2026-09-04",
     year: 2013,
     track: "make",
     title: "Wedding invitations, in HTML and CSS",
@@ -143,6 +146,7 @@ export const entries = [
   },
   {
     id: "indie-game-the-movie",
+    published: "2026-09-04",
     year: 2012,
     date: "2012-06",
     track: "world",
@@ -185,6 +189,7 @@ export const entries = [
   },
   {
     id: "react",
+    published: "2026-09-04",
     year: 2013,
     date: "2013-05-29",
     track: "tech",
@@ -212,6 +217,7 @@ export const entries = [
   },
   {
     id: "sketch-3",
+    published: "2026-09-04",
     year: 2014,
     date: "2014-04",
     track: "tech",
@@ -233,6 +239,7 @@ export const entries = [
   },
   {
     id: "halt-and-catch-fire",
+    published: "2026-09-10",
     year: 2014,
     date: "2014-06-01",
     track: "world",
@@ -308,6 +315,7 @@ export const entries = [
   },
   {
     id: "swift",
+    published: "2026-09-04",
     year: 2014,
     date: "2014-06-02",
     track: "tech",
@@ -334,6 +342,7 @@ export const entries = [
   },
   {
     id: "dubspot",
+    published: "2026-09-04",
     year: 2016,
     track: "work",
     title: "An LMS for a music school",
@@ -411,6 +420,7 @@ export const entries = [
   },
   {
     id: "hand-whittled",
+    published: "2026-09-04",
     year: 2015,
     until: 2018,
     track: "work",
@@ -444,6 +454,7 @@ export const entries = [
   },
   {
     id: "figma",
+    published: "2026-09-04",
     year: 2016,
     date: "2016-09-27",
     track: "tech",
@@ -459,6 +470,7 @@ export const entries = [
   },
   {
     id: "css-grid",
+    published: "2026-09-04",
     year: 2017,
     date: "2017-03",
     track: "tech",
@@ -477,6 +489,7 @@ export const entries = [
   },
   {
     id: "detroit-trading",
+    published: "2026-09-04",
     year: 2018,
     until: 2019,
     track: "work",
@@ -520,6 +533,7 @@ export const entries = [
   },
   {
     id: "deno",
+    published: "2026-09-04",
     year: 2018,
     date: "2018-06",
     track: "tech",
@@ -574,6 +588,7 @@ export const entries = [
   },
   {
     id: "brutalism",
+    published: "2026-09-04",
     year: 2018,
     track: "make",
     title: "My personal site, named in a brutalism roundup",
@@ -611,6 +626,7 @@ export const entries = [
   },
   {
     id: "custom-elements",
+    published: "2026-09-04",
     year: 2018,
     date: "2018-10-23",
     track: "tech",
@@ -679,6 +695,7 @@ export const entries = [
   },
   {
     id: "time-away",
+    published: "2026-09-04",
     year: 2014,
     until: 2018,
     track: "learn",
@@ -733,6 +750,7 @@ export const entries = [
   },
   {
     id: "etrade",
+    published: "2026-09-04",
     year: 2012,
     track: "make",
     title: "Components inside somebody else's page",
@@ -784,6 +802,7 @@ export const entries = [
   },
   {
     id: "tiny-wings",
+    published: "2026-09-04",
     year: 2011,
     date: "2011-02-18",
     track: "play",
@@ -831,6 +850,7 @@ export const entries = [
   },
   {
     id: "gta",
+    published: "2026-09-04",
     year: 2013,
     date: "2013-09-17",
     track: "play",
@@ -875,6 +895,7 @@ export const entries = [
   },
   {
     id: "flappy-bird",
+    published: "2026-09-04",
     year: 2014,
     date: "2014-02",
     track: "play",
