@@ -336,6 +336,72 @@ export const entries = [
     tags: ['film'],
   },
   {
+    id: 'dragons-lair',
+    published: '2026-09-18',
+    year: 1983,
+    date: '1983-06',
+    track: 'play',
+    title: 'Dragon’s Lair, and then Space Ace',
+    dek: 'A hand-drawn cartoon in an arcade cabinet, fifty cents a play, and not one pixel of it drawn by the machine.',
+    tags: ['arcade', 'laserdisc', 'animation'],
+    feature: true,
+    spec: [
+      { label: 'Released', value: 'June 1983' },
+      { label: 'Animation', value: 'Don Bluth, four years after he left Disney' },
+      { label: 'Hardware', value: 'A Zilog Z80 and a Pioneer laserdisc player' },
+      { label: 'Graphics', value: 'None. There is no frame buffer, because nothing is drawn' },
+      { label: 'On the disc', value: 'About twenty-two minutes of film' },
+      { label: 'Per play', value: '50 cents, twice what the cabinet beside it took' },
+      { label: 'Sequel', value: 'Space Ace, 1984, the same team' },
+    ],
+    body: `
+      <p>Every cabinet in the summer of 1983 was made of pixels, and then this
+      one was a cartoon. Not a game drawn to look like a cartoon. An actual
+      cartoon, animated by hand by people who had walked out of Disney, at film
+      quality, on a screen in a restaurant.</p>
+
+      <p>There was one at a restaurant we went to and I played it every time we
+      were there. It took fifty cents when everything else took a quarter, and
+      you could lose all of it in about nine seconds, because the whole game is
+      an instant: the drawbridge starts to fall, the tentacles come out of the
+      floor, and you have a fraction of a second to move the stick the one
+      correct way. I was terrible at it. It did not matter at all. I went home
+      and drew it from memory, over and over, for months.</p>
+
+      <p>Then I found out how it worked, and that is the part that has never
+      left. There are no graphics in the machine. There is a twelve-inch
+      laserdisc holding about twenty-two minutes of film, and a Z80 whose entire
+      job is to tell the disc player which frame to jump to next. Move the stick
+      correctly and it seeks to the scene where you live; move it wrong and it
+      seeks to the scene where you do not. The computer never drew a single line
+      of what I was looking at. It only decided what came next.</p>
+
+      <p>Space Ace arrived the following year from the same people, and it made
+      the machinery visible. You chose Cadet, Captain or Space Ace at the start,
+      and the setting decided which scenes on the disc you were shown. Same
+      disc, different path through it. Ace gets hit with Borf’s Infanto Ray and
+      spends the game as a boy called Dexter, and at certain moments the word
+      ENERGIZE comes up and you can spend the instant turning back into
+      yourself, which is a choice about which reel plays rather than a power in
+      the story. I could not have said any of that then. I could see it.</p>
+
+      <p>Two years later there was <a href="/log/first-machine">a computer in my
+      bedroom</a> that could put sixteen colors on a screen at 320 &times; 200,
+      which is not a Don Bluth film and was never going to be. The distance
+      between what I saw in that restaurant and what my machine could draw is
+      most of what I have spent the rest of this page trying to close.
+      <a href="/log/donkey-kong">Donkey Kong</a> made me want to know who
+      decides the rules. Dragon’s Lair made me want to know who draws the
+      pictures, and whether a computer could ever be taught to do it.</p>
+    `,
+    links: [
+      {
+        href: 'https://en.wikipedia.org/wiki/Dragon%27s_Lair',
+        label: 'Dragon’s Lair on Wikipedia',
+      },
+    ],
+  },
+  {
     id: "sts-1",
     year: 1981,
     date: "1981-04-12",
