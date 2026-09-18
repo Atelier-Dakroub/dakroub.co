@@ -1,5 +1,7 @@
 // 2011 – 2018
 
+import { coversGallery } from '../covers.js';
+
 /** @typedef {import('../types.js').Entry} Entry */
 
 /** @type {Entry[]} */
@@ -486,6 +488,100 @@ export const entries = [
       layouts on this page are built out of it. Named lines, a subgrid for the
       entry cards, and no wrapper divs that exist only to hold a float.</p>
     `,
+  },
+  {
+    id: "book-covers",
+    published: "2026-09-18",
+    year: 2017,
+    date: "2017-03",
+    track: "make",
+    title: "Book covers, made out of class names",
+    dek: "Fifty-four days of a post a morning, and a shelf of 1960s paperbacks rebuilt from nothing but Tachyons utility classes.",
+    tags: ["css", "tachyons", "design", "typography"],
+    feature: true,
+    spec: [
+      { label: "Ran", value: "March 6 to April 28, 2017" },
+      { label: "Rate", value: "One post every morning, about two hundred of them" },
+      { label: "Built with", value: "Jekyll, Liquid templates, Tachyons" },
+      { label: "Shown here", value: "Twelve covers" },
+      { label: "Images used", value: "None. Every mark is an element with a class on it" },
+      { label: "Vocabulary", value: "377 class names, and no way to add a 378th" },
+    ],
+    body: `
+      <p>For fifty-four days in the spring of 2017 I put something on my site
+      every morning before work. Around two hundred posts: a palette pulled off
+      some object, a death screen from a game, a site of the day, whatever I had
+      been listening to. One of the runs was book covers, and it is the one I
+      still think about.</p>
+
+      <p>The rule was that nothing could be a picture. Every cover had to be
+      elements with class names on them, and the class names had to come out of
+      <a href="https://tachyons.io">Tachyons</a>, which is a stylesheet of
+      single-purpose classes and no polite way to invent a new one. A circle is
+      <code>br-100</code>. A color is <code>bg-hot-pink</code>, and it is that
+      pink or it is a different class. Type runs <code>f1</code> to
+      <code>f6</code> and there is nothing between <code>f2</code> and
+      <code>f3</code>, so if the title does not fit, the title changes.</p>
+
+      <p>Tachyons is <a href="https://mrmrs.cc">Adam Morse</a>'s, built with
+      <a href="https://jxnblk.com">Brent Jackson</a>, and it was the first
+      stylesheet I had seen that argued a position instead of handing you
+      components. Bootstrap gave you a button. This gave you a fixed set of
+      values, a file small enough to read in a sitting, and the expectation that
+      you would compose in the markup and stop writing CSS. It made that case
+      about three years before Tailwind made it to a much larger room, and I was
+      certain at the time that it was going to be big.</p>
+
+      <p>That turned out to be the whole point, and it is why these particular
+      books. A cover from 1965 was made under its own arithmetic: a set number
+      of inks, a press that could do certain things and not others, and a
+      designer deciding what to build inside that. The shape of the problem is
+      the same. Someone hands you a small set of values, chosen before you
+      arrived, and everything interesting has to happen in the arrangement.</p>
+
+      <p>The autumn before, I had watched the third season of
+      <a href="/log/halt-and-catch-fire">Halt and Catch Fire</a>, which ends by
+      jumping four years forward and putting everybody down in 1990. Something
+      about that stuck. I spent that spring reading the history of the web and
+      making deliberately crude early-nineties things out of it for no reason at
+      all: system fonts, hard edges, structure left showing. A year later
+      somebody <a href="/log/brutalism">filed one of my sites under
+      brutalism</a>, which is the same instinct arriving in public.</p>
+
+      <p>The covers started the same month that
+      <a href="/log/css-grid">CSS Grid shipped in every browser</a>, and there
+      is not one line of it in them. It is all floats, <code>display: table</code>
+      and the padding-bottom trick for a square, because that is what the
+      stylesheet had. Eighteen months after that spring the industry had the
+      separation-of-concerns argument at full volume. I had already had it quietly with myself for two months,
+      and the answer I came to was that the argument is really about who gets to
+      invent a value, and that not being allowed to was the best part.</p>
+
+      <p>Here are twelve of them, each next to the book it came from. The
+      markup is the 2017 markup, converted from Liquid to plain HTML and
+      otherwise untouched, so the mistakes are the original mistakes.</p>
+
+      ${coversGallery}
+
+      <p>Four of them do not line up, and the mismatches are the part worth
+      looking at. The Donagan was never finished and the old file says so: the
+      white shapes want a black outline, and you cannot see that they want one
+      until the book is beside them. The Kultermann is not the jacket in the
+      scan at all, so I was working from another printing. The Galileo rings
+      and the Haerle arches are the right drawing in colors the books never
+      used, which is what the constraint costs: there is one red, one pink and
+      one gold, and if the real thing was between two of them, it is not.</p>
+
+      <p>One number, because it is the funniest thing in the folder. The Hartz
+      cover, the field of a few hundred dots, is thirty kilobytes of markup that
+      compresses to one. The photograph of the real book beside it is
+      eighty-eight kilobytes and compresses to nothing at all.</p>
+    `,
+    links: [
+      { href: "https://tachyons.io", label: "Tachyons" },
+      { href: "https://archive.org", label: "The Internet Archive" },
+      { href: "https://openlibrary.org", label: "Open Library" },
+    ],
   },
   {
     id: "detroit-trading",
