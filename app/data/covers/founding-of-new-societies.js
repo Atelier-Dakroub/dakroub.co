@@ -8,7 +8,7 @@ export default {
   year: 1964,
   posted: '2017-04-25',
   scan: {
-    src: '/media/covers/founding-of-new-societies.jpg',
+    src: '/media/covers/founding-of-new-societies.webp',
     alt: 'A dark blue jacket with a grid of small dots, grey at the top and turning to magenta, orange and olive further down.',
     width: 578,
     height: 900,

@@ -8,7 +8,7 @@ export default {
   year: 1970,
   posted: '2017-04-06',
   scan: {
-    src: '/media/covers/theory-of-colours.jpg',
+    src: '/media/covers/theory-of-colours.webp',
     alt: 'The MIT Press paperback: a three by three grid of red squares, each cut by a green diagonal that leans further over as the eye goes down.',
     width: 360,
     height: 552,

@@ -8,7 +8,7 @@ export default {
   year: 1971,
   posted: '2017-04-07',
   scan: {
-    src: '/media/covers/self-and-others.jpg',
+    src: '/media/covers/self-and-others.webp',
     alt: 'A Pelican paperback: a blue circle and a red circle overlapping a pink one, the overlaps going dark where they cross.',
     width: 303,
     height: 500,

@@ -8,7 +8,7 @@ export default {
   year: 1978,
   posted: '2017-03-30',
   scan: {
-    src: '/media/covers/jazz-improvisation.jpg',
+    src: '/media/covers/jazz-improvisation.webp',
     alt: 'Four nested arches of different heights, drawn as thick concentric outlines, rising across the lower half of the cover.',
     width: 380,
     height: 500,

@@ -8,7 +8,7 @@ export default {
   year: 1965,
   posted: '2017-03-20',
   scan: {
-    src: '/media/covers/the-uncommitted.jpg',
+    src: '/media/covers/the-uncommitted.webp',
     alt: 'Sixteen identical heads in profile arranged in a grid on a tan ground, one of them red and the rest dark blue.',
     width: 325,
     height: 500,

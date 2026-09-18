@@ -8,7 +8,7 @@ export default {
   year: 1968,
   posted: '2017-03-17',
   scan: {
-    src: '/media/covers/situation-ethics.jpg',
+    src: '/media/covers/situation-ethics.webp',
     alt: 'Two rows of circles on black bands, each circle quartered in magenta, gold and white.',
     width: 594,
     height: 900,

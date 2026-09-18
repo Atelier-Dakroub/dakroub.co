@@ -9,7 +9,7 @@ export default {
   // Never published: it was still in _drafts when the site stopped.
   posted: null,
   scan: {
-    src: '/media/covers/african-architecture.jpg',
+    src: '/media/covers/african-architecture.webp',
     alt: 'Fine yellow and black rules ruled in blocks at right angles, close enough together to shimmer.',
     width: 612,
     height: 900,

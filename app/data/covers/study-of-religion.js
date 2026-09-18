@@ -8,7 +8,7 @@ export default {
   year: 1978,
   posted: '2017-04-01',
   scan: {
-    src: '/media/covers/study-of-religion.jpg',
+    src: '/media/covers/study-of-religion.webp',
     alt: 'Bands of red, yellow and hot pink stripes, each band sheared at a different angle so the columns lean against each other.',
     width: 603,
     height: 900,

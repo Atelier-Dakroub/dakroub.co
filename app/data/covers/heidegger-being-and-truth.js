@@ -8,7 +8,7 @@ export default {
   year: 1965,
   posted: '2017-03-12',
   scan: {
-    src: '/media/covers/heidegger-being-and-truth.jpg',
+    src: '/media/covers/heidegger-being-and-truth.webp',
     alt: 'A black cover with a dense spirograph of thin red circles around an open center, the title in white grotesque capitals above it.',
     width: 599,
     height: 900,

@@ -8,7 +8,7 @@ export default {
   year: 1962,
   posted: '2017-03-29',
   scan: {
-    src: '/media/covers/crime-of-galileo.jpg',
+    src: '/media/covers/crime-of-galileo.webp',
     alt: 'A paperback with nine concentric rings in blue, gold and slate around a black disc and a white starburst, under the title set in heavy grotesque capitals.',
     width: 326,
     height: 500,

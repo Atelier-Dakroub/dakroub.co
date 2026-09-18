@@ -8,7 +8,7 @@ export default {
   year: 1977,
   posted: '2017-04-09',
   scan: {
-    src: '/media/covers/theory-of-morality.jpg',
+    src: '/media/covers/theory-of-morality.webp',
     alt: 'An orange cover filled with a grid of white quarter circles and half circles, each rotated so the field never repeats.',
     width: 536,
     height: 900,

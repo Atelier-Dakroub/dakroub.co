@@ -8,7 +8,7 @@ export default {
   year: 1972,
   posted: '2017-04-12',
   scan: {
-    src: '/media/covers/theory-of-justice.jpg',
+    src: '/media/covers/theory-of-justice.webp',
     alt: 'An Oxford paperback: a black panel of type over a Mondrian arrangement of grey, red, white and black rectangles.',
     width: 394,
     height: 600,
