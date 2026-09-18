@@ -191,7 +191,7 @@ const layout = `
 
 /**
  * The stylesheet the gallery needs, as one block. The Tachyons half is scoped
- * to `.covers__art`, so those 377 class names exist inside a cover and nowhere
+ * to `.covers__art`, so those 222 class names exist inside a cover and nowhere
  * else on the site.
  */
 export const coversCss = `${layout}

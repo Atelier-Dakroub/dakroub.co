@@ -505,7 +505,7 @@ export const entries = [
       { label: "Built with", value: "Jekyll, Liquid templates, Tachyons" },
       { label: "Shown here", value: "Twelve covers" },
       { label: "Images used", value: "None. Every mark is an element with a class on it" },
-      { label: "Vocabulary", value: "377 class names, and no way to add a 378th" },
+      { label: "Vocabulary", value: "222 class names, and no way to add a 223rd" },
     ],
     body: `
       <p>For fifty-four days in the spring of 2017 I put something on my site
@@ -563,14 +563,16 @@ export const entries = [
 
       ${coversGallery}
 
-      <p>Four of them do not line up, and the mismatches are the part worth
+      <p>Three of them do not line up, and the mismatches are the part worth
       looking at. The Donagan was never finished and the old file says so: the
       white shapes want a black outline, and you cannot see that they want one
       until the book is beside them. The Kultermann is not the jacket in the
-      scan at all, so I was working from another printing. The Galileo rings
-      and the Haerle arches are the right drawing in colors the books never
-      used, which is what the constraint costs: there is one red, one pink and
-      one gold, and if the real thing was between two of them, it is not.</p>
+      scan at all, so I was working from another printing. The Haerle arches
+      are the right drawing in colors the book never used, which is what the
+      constraint costs: if the real ink sat between two of the ones in the box,
+      it is not here. The Galileo rings are as close as the box gets, and its
+      gold is still brighter than the book's mustard, because there is no
+      mustard.</p>
 
       <p>One number, because it is the funniest thing in the folder. The Hartz
       cover, the field of a few hundred dots, is thirty kilobytes of markup that
