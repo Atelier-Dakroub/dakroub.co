@@ -586,6 +586,107 @@ export const entries = [
     ],
   },
   {
+    id: "utopian-scholastic",
+    published: "2026-09-22",
+    year: 2017,
+    track: "world",
+    title: "Utopian Scholastic",
+    dek: "A name arrives for the way learning looked in the nineties, and a vaporwave microgenre gives it a sound. Neither is nostalgic for the decade. Both are nostalgic for the optimism.",
+    tags: ["music", "culture", "cd-rom", "design"],
+    feature: true,
+    spec: [
+      {
+        label: "Named",
+        value: "2017, by a Facebook group: utopian scholastic designs from a pre-9/11 world",
+      },
+      { label: "Which became", value: "The Consumer Aesthetics Research Institute" },
+      { label: "The look", value: "Edutainment design, late 1980s to late 1990s" },
+      {
+        label: "The sound",
+        value: "Utopian Virtual, a vaporwave microgenre out of James Ferraro’s Far Side Virtual, 2011",
+      },
+      { label: "Filed under", value: "Encarta Wave" },
+      { label: "Encarta itself", value: "March 1993 to the end of 2009" },
+    ],
+    body: `
+      <p>Somebody finally named it. In 2017 a Facebook group called
+      <i>utopian scholastic designs from a pre-9/11 world</i> put a label on a
+      look anybody who was a child then can identify in about a fifth of a
+      second. Black background. A planet. A cutaway diagram of something with
+      its skin off. A dinosaur photographed as though it had sat for the
+      portrait. Type set wide and certain. Eyewitness books, science
+      documentaries, and the box a CD-ROM encyclopedia came in. The group grew
+      into the Consumer Aesthetics Research Institute, which catalogues this
+      sort of thing properly now.</p>
+
+      <p>The sound came with it. Utopian Virtual is a vaporwave microgenre
+      descended from James Ferraro’s <i>Far Side Virtual</i> in 2011, built out
+      of deliberately plastic MIDI: the demo preset, the smooth-jazz patch, the
+      four-second flourish a program played at you while it loaded. Playlists
+      file the scholastic strain of it under Encarta Wave, which is the right
+      name. It does not sound like the nineties. It sounds like what the
+      nineties thought was about to happen.</p>
+
+      <p>I used Encarta hard, and every time I opened it I thought about
+      <a href="/log/first-cd-rom">the hour in the school library</a>. That was
+      one disc, one drive, sixty minutes, and a librarian deciding I could have
+      them. A few years on I was putting a CD-ROM in a drive every day, to do
+      homework with. That is a strange fate for a miracle, and it is exactly
+      the fate you want a miracle to have.</p>
+
+      <p>The part I remember is not the articles. It is the noises. A bird
+      call, a national anthem, thirty seconds of a speech, a piece of the world
+      arriving through a computer speaker. An encyclopedia that could make a
+      sound was a different class of object from one that could not.</p>
+
+      <p>The story behind the disc is better than the disc. Britannica turned
+      Microsoft down in 1985, on the reasonable ground that a CD-ROM was not
+      what Britannica was. Microsoft licensed the text of Funk &amp; Wagnalls
+      instead, non-exclusively, and shipped Encarta in March 1993 at close to
+      four hundred dollars. Then the price fell. Then it came free with the
+      machine, and the argument for a shelf of leather-bound volumes stopped
+      being an argument. Britannica and World Book both made it onto discs of
+      their own, later and at several times the price. There was a trivia game
+      buried in Encarta on Ctrl+Z, MindMaze, a castle where every answer was
+      somewhere in the articles. I played it for the castle and learned things
+      by accident, which I now think is the whole trick.</p>
+
+      <p>What the music is nostalgic for is not the decade, it is the belief.
+      For about ten years, from that hour in the library to
+      the end of dial-up, the assumption was that putting a person and a
+      computer in the same room made the person smarter, and that this was
+      uncomplicated. Everything was a gateway. <a href="/log/myst">A game</a>
+      was a place, a disc was a library, and
+      <a href="/log/first-modem">a phone line</a> was every library at once.
+      Nobody in that room was worried about what the machine was doing to
+      anyone’s attention, because it had not started doing it yet.</p>
+
+      <p>Encarta closed at the end of 2009, and Microsoft said why: free
+      reference on the web had won. The optimism that sold the disc is what
+      dissolved the disc. That is not a tragedy, it is what winning looks like
+      from underneath, and it is the reason the genre can exist at all. You
+      cannot be nostalgic for a feeling that is still available.</p>
+
+      <p>The mix below ends its title with <i>(No AI)</i>. In 2026 that is a
+      credential. The entire appeal, thirty years ago, was that the machine
+      knew things you did not.</p>
+    `,
+    links: [
+      {
+        href: "https://www.youtube.com/watch?v=6QOUNvMX-ws",
+        label: "Utopian Scholastic: 1990s Nostalgic Atmospheres",
+      },
+      {
+        href: "https://cari.institute/aesthetics/utopian-scholastic",
+        label: "Utopian Scholastic at CARI",
+      },
+      {
+        href: "https://en.wikipedia.org/wiki/Utopian_scholastic",
+        label: "Utopian scholastic on Wikipedia",
+      },
+    ],
+  },
+  {
     id: "detroit-trading",
     published: "2026-09-04",
     year: 2018,
