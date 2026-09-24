@@ -50,6 +50,7 @@ type Entry = {
   year: number;
   date?: string | undefined;
   published?: string | undefined;
+  updated?: string | undefined;
   until?: string | number | undefined;
   track: Track;
   title: string;

@@ -26,6 +26,8 @@
  *   site. Required once an entry has a `body`, because the feed dates items by
  *   it. It is not `year`: `year` is when the thing happened, which for most of
  *   this timeline is decades before anyone wrote about it.
+ * @property {string} [updated] `YYYY-MM-DD`, the last day the writing changed,
+ *   when that is later than `published`. The sitemap dates the page by it.
  * @property {number|string} [until] the last year, or `'now'` for something still going
  * @property {Track} track
  * @property {string} title

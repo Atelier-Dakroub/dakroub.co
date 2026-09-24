@@ -2,7 +2,7 @@
 // otherwise. `npx transclude-check` reads this too.
 
 import { site } from './app/data/site.js';
-import { written } from './app/data/timeline.js';
+import { eraOf, eras, written } from './app/data/timeline.js';
 
 export default {
   appDir: 'app',
@@ -38,7 +38,28 @@ export default {
   // so there is nothing to exclude.
   speculate: { eagerness: 'moderate' },
 
-  sitemap: { hostname: site.origin },
+  // The route table gives the sitemap every URL and no dates. `entries` names
+  // the same URLs again with a `lastmod`, and the two are merged by path. A
+  // written entry changed on the day it went up, or on `updated` if it has been
+  // edited since. A page that lists entries changed when the newest of them did.
+  // Pages with no date of their own, like /work, are left without one rather
+  // than given today's, because a date that moves on every build is a date a
+  // crawler learns to ignore.
+  sitemap: {
+    hostname: site.origin,
+    entries: () => {
+      const changed = (entry) => entry.updated ?? entry.published;
+      const newest = (list) => list.map(changed).sort().at(-1);
+      return [
+        { path: '/', lastmod: newest(written) },
+        ...eras.map((era) => ({
+          path: `/era/${era.slug}`,
+          lastmod: newest(written.filter((entry) => eraOf(entry.year) === era)),
+        })),
+        ...written.map((entry) => ({ path: `/log/${entry.id}`, lastmod: changed(entry) })),
+      ];
+    },
+  },
 
   feed: {
     hostname: site.origin,

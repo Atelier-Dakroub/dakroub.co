@@ -588,6 +588,7 @@ export const entries = [
   {
     id: "utopian-scholastic",
     published: "2026-09-22",
+    updated: "2026-09-24",
     year: 2017,
     track: "world",
     title: "Utopian Scholastic",
