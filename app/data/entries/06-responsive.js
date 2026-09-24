@@ -634,7 +634,8 @@ export const entries = [
       homework with. That is a strange fate for a miracle, and it is exactly
       the fate you want a miracle to have.</p>
 
-      <p>The part I remember is not the articles. It is the noises. A bird
+      <p>I read the articles, <a href="/log/encarta">the composers most of
+      all</a>, but what stayed with me is the noises. A bird
       call, a national anthem, thirty seconds of a speech, a piece of the world
       arriving through a computer speaker. An encyclopedia that could make a
       sound was a different class of object from one that could not.</p>
