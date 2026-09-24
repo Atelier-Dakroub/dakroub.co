@@ -365,6 +365,71 @@ export const entries = [
     `,
   },
   {
+    id: "encarta",
+    published: "2026-09-24",
+    year: 1994,
+    track: "learn",
+    title: "Encarta",
+    dek: "The first disc I owned that was not a game. I read every composer in it, and it taught me what a page on a screen could look like.",
+    tags: ["microsoft", "cd-rom", "music", "design"],
+    feature: true,
+    spec: [
+      { label: "Published", value: "Microsoft · March 1993" },
+      { label: "Launch price", value: "$395" },
+      { label: "By October 1993", value: "$99" },
+      { label: "Built on", value: "Microsoft Multimedia Viewer, on top of Windows Help" },
+      { label: "Versions owned", value: "Several, each replacing the last" },
+      { label: "What I read", value: "Every composer in it" },
+    ],
+    body: `
+      <p>I came to Encarta after the price fell. Microsoft launched it in March
+      1993 at $395 and cut it to $99 that October, and not long after, a copy
+      was mine. It was the first serious disc I owned. The CD-ROMs before it
+      were games. This one was a reference book, and I bought it more than
+      once, a newer version each time, which is not a thing anybody does with a
+      reference book.</p>
+
+      <p>I was deep into classical music then,
+      <a href="/log/clarkston-high">on the saxophone</a> and
+      <a href="/log/midi-rig">at the keyboard</a>, and I read every article
+      Encarta had on a composer. Then I played the recordings that came with
+      them. That was the part I could not get over. I read about a symphony and
+      then I heard it. A name halfway down the article was a link, and the link
+      was another composer, with more music. I could not believe how much was
+      at my fingertips, on a desk in a bedroom in Michigan.</p>
+
+      <p>For years I assumed it was built on web technology, because it
+      behaved like the web. Words in the text were links, and every page was
+      one click from another. It was not, at least not at first. The early
+      editions ran on Microsoft Multimedia Viewer, a toolkit built on top of
+      Windows Help and compiled from Rich Text Format files. It was the same
+      idea as <a href="/log/hypercard">HyperCard</a> and the web, reached by a
+      different road. Encarta only turned into web pages later. By 2001 the
+      Encarta Reference Suite would not install without Internet Explorer
+      5.5.</p>
+
+      <p>What I took from it was layout. Encarta was the first time I read text
+      on a screen that somebody had set with care. A title, a column of body
+      copy narrow enough to read, the pictures and sounds kept to one side, and
+      links in a color that said what they were without shouting about it.
+      Everything else I read on a computer then was text you put up with. This
+      was text you wanted to keep reading.</p>
+
+      <p>When I started <a href="/log/first-web-page">making web pages</a> a
+      couple of years later, that is what I was trying to make. A readable
+      column, a link where the reader would want one, and the sense that the
+      page was one room in a very large building. I did not know that was a
+      design approach. I thought it was what a page was.</p>
+    `,
+    links: [
+      { href: "https://en.wikipedia.org/wiki/Encarta", label: "Encarta on Wikipedia" },
+      {
+        href: "https://en.wikipedia.org/wiki/Microsoft_Multimedia_Viewer",
+        label: "Microsoft Multimedia Viewer, the engine underneath",
+      },
+    ],
+  },
+  {
     id: "netscape",
     year: 1994,
     date: "1994-10-13",

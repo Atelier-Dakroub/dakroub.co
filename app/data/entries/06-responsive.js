@@ -627,7 +627,7 @@ export const entries = [
       name. It does not sound like the nineties. It sounds like what the
       nineties thought was about to happen.</p>
 
-      <p>I used Encarta hard, and every time I opened it I thought about
+      <p>I used <a href="/log/encarta">Encarta</a> hard, and every time I opened it I thought about
       <a href="/log/first-cd-rom">the hour in the school library</a>. That was
       one disc, one drive, sixty minutes, and a librarian deciding I could have
       them. A few years on I was putting a CD-ROM in a drive every day, to do
