@@ -532,6 +532,54 @@
 
 /* ── About and colophon ────────────────────────────────────────────────── */
 
+/* The headshot. A disc with the same hairline every card on the site has,
+   above the name on a phone and beside it once there is room. */
+.portrait {
+  position: relative;
+  inline-size: 6.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--wash);
+}
+
+.portrait img {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+/* The studio white is cooler than the paper, and on a dark page it is the
+   brightest thing there. Multiplying by a color fixes both from one rule: the
+   paper's own tone in light mode, so the white takes its warmth, and a grey in
+   dark mode, so the disc stops glaring. `light-dark()` rather than a
+   `prefers-color-scheme` block, for the reason in styles/tokens.css. */
+.portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: light-dark(var(--paper), oklch(80% 0.006 266));
+  mix-blend-mode: multiply;
+}
+
+@media (width >= 45rem) {
+  .about__head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--space-l);
+  }
+
+  .about__head > * {
+    grid-column: 1;
+  }
+
+  .about__head > .portrait {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+    inline-size: 10rem;
+  }
+}
+
 /* The paragraph under the contact line. Named apart from `.role__summary`,
    which is the one-line summary on each individual role. */
 .page__summary {
